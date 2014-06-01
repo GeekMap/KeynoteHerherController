@@ -7,22 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6BA815D21938882700FAEAD6 /* KHCSSPSlideshare.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA815D11938882700FAEAD6 /* KHCSSPSlideshare.m */; };
-		6BA815D519388D7E00FAEAD6 /* KHCSISlideshare.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA815D419388D7E00FAEAD6 /* KHCSISlideshare.m */; };
+		6F6835DC193B7AD8001517F2 /* KHCSISlideshare.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835D7193B7AD8001517F2 /* KHCSISlideshare.m */; };
+		6F6835DD193B7AD8001517F2 /* KHCSSPSlideshare.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835DB193B7AD8001517F2 /* KHCSSPSlideshare.m */; };
+		6F6835E8193B7AF3001517F2 /* KHCAddSlideNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835DF193B7AF2001517F2 /* KHCAddSlideNavController.m */; };
+		6F6835E9193B7AF3001517F2 /* KHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835E1193B7AF3001517F2 /* KHCAppDelegate.m */; };
+		6F6835EA193B7AF3001517F2 /* KHCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835E3193B7AF3001517F2 /* KHCMainViewController.m */; };
+		6F6835EB193B7AF3001517F2 /* KHCSlideListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835E5193B7AF3001517F2 /* KHCSlideListViewController.m */; };
+		6F6835EC193B7AF3001517F2 /* KHCSSPSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835E7193B7AF3001517F2 /* KHCSSPSelectorViewController.m */; };
+		6F6835EE193B7B02001517F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835ED193B7B02001517F2 /* Main.storyboard */; };
+		6F6835F2193B7B46001517F2 /* slideshare.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835F1193B7B46001517F2 /* slideshare.png */; };
+		6F6835F4193B7BB8001517F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835F3193B7BB8001517F2 /* Images.xcassets */; };
+		6F6835FB193B7BC5001517F2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835F7193B7BC5001517F2 /* InfoPlist.strings */; };
+		6F6835FC193B7BC5001517F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835F9193B7BC5001517F2 /* main.m */; };
+		6F6835FD193B7BC5001517F2 /* slider-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835FA193B7BC5001517F2 /* slider-Info.plist */; };
 		6FEECA58193869560007B09F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA57193869560007B09F /* Foundation.framework */; };
 		6FEECA5A193869560007B09F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA59193869560007B09F /* CoreGraphics.framework */; };
 		6FEECA5C193869560007B09F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA5B193869560007B09F /* UIKit.framework */; };
-		6FEECA62193869560007B09F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FEECA60193869560007B09F /* InfoPlist.strings */; };
-		6FEECA64193869560007B09F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEECA63193869560007B09F /* main.m */; };
-		6FEECA68193869560007B09F /* KHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEECA67193869560007B09F /* KHCAppDelegate.m */; };
-		6FEECA6A193869560007B09F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FEECA69193869560007B09F /* Images.xcassets */; };
 		6FEECA71193869570007B09F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA70193869570007B09F /* XCTest.framework */; };
 		6FEECA72193869570007B09F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA57193869560007B09F /* Foundation.framework */; };
 		6FEECA73193869570007B09F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA5B193869560007B09F /* UIKit.framework */; };
 		6FEECA7B193869570007B09F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FEECA79193869570007B09F /* InfoPlist.strings */; };
 		6FEECA7D193869570007B09F /* sliderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEECA7C193869570007B09F /* sliderTests.m */; };
-		6FEECA8719386CB90007B09F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FEECA8619386CB90007B09F /* Main.storyboard */; };
-		6FEECA8A19386DBD0007B09F /* KHCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEECA8919386DBD0007B09F /* KHCMainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,31 +41,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6BA815CE1938869D00FAEAD6 /* KHCSlideServiceProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KHCSlideServiceProvider.h; path = SSP/KHCSlideServiceProvider.h; sourceTree = "<group>"; };
-		6BA815CF193886DC00FAEAD6 /* KHCSlideItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KHCSlideItem.h; path = SSP/KHCSlideItem.h; sourceTree = "<group>"; };
-		6BA815D01938882700FAEAD6 /* KHCSSPSlideshare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSSPSlideshare.h; path = SSP/KHCSSPSlideshare.h; sourceTree = "<group>"; };
-		6BA815D11938882700FAEAD6 /* KHCSSPSlideshare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSSPSlideshare.m; path = SSP/KHCSSPSlideshare.m; sourceTree = "<group>"; };
-		6BA815D319388D7E00FAEAD6 /* KHCSISlideshare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSISlideshare.h; path = SSP/KHCSISlideshare.h; sourceTree = "<group>"; };
-		6BA815D419388D7E00FAEAD6 /* KHCSISlideshare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSISlideshare.m; path = SSP/KHCSISlideshare.m; sourceTree = "<group>"; };
+		6F6835D6193B7AD8001517F2 /* KHCSISlideshare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSISlideshare.h; path = src/SSP/KHCSISlideshare.h; sourceTree = "<group>"; };
+		6F6835D7193B7AD8001517F2 /* KHCSISlideshare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSISlideshare.m; path = src/SSP/KHCSISlideshare.m; sourceTree = "<group>"; };
+		6F6835D8193B7AD8001517F2 /* KHCSlideItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideItem.h; path = src/SSP/KHCSlideItem.h; sourceTree = "<group>"; };
+		6F6835D9193B7AD8001517F2 /* KHCSlideServiceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideServiceProvider.h; path = src/SSP/KHCSlideServiceProvider.h; sourceTree = "<group>"; };
+		6F6835DA193B7AD8001517F2 /* KHCSSPSlideshare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSSPSlideshare.h; path = src/SSP/KHCSSPSlideshare.h; sourceTree = "<group>"; };
+		6F6835DB193B7AD8001517F2 /* KHCSSPSlideshare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSSPSlideshare.m; path = src/SSP/KHCSSPSlideshare.m; sourceTree = "<group>"; };
+		6F6835DE193B7AF2001517F2 /* KHCAddSlideNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCAddSlideNavController.h; path = src/KHCAddSlideNavController.h; sourceTree = "<group>"; };
+		6F6835DF193B7AF2001517F2 /* KHCAddSlideNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCAddSlideNavController.m; path = src/KHCAddSlideNavController.m; sourceTree = "<group>"; };
+		6F6835E0193B7AF2001517F2 /* KHCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCAppDelegate.h; path = src/KHCAppDelegate.h; sourceTree = "<group>"; };
+		6F6835E1193B7AF3001517F2 /* KHCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCAppDelegate.m; path = src/KHCAppDelegate.m; sourceTree = "<group>"; };
+		6F6835E2193B7AF3001517F2 /* KHCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCMainViewController.h; path = src/KHCMainViewController.h; sourceTree = "<group>"; };
+		6F6835E3193B7AF3001517F2 /* KHCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCMainViewController.m; path = src/KHCMainViewController.m; sourceTree = "<group>"; };
+		6F6835E4193B7AF3001517F2 /* KHCSlideListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideListViewController.h; path = src/KHCSlideListViewController.h; sourceTree = "<group>"; };
+		6F6835E5193B7AF3001517F2 /* KHCSlideListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSlideListViewController.m; path = src/KHCSlideListViewController.m; sourceTree = "<group>"; };
+		6F6835E6193B7AF3001517F2 /* KHCSSPSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSSPSelectorViewController.h; path = src/KHCSSPSelectorViewController.h; sourceTree = "<group>"; };
+		6F6835E7193B7AF3001517F2 /* KHCSSPSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSSPSelectorViewController.m; path = src/KHCSSPSelectorViewController.m; sourceTree = "<group>"; };
+		6F6835ED193B7B02001517F2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = src/Main.storyboard; sourceTree = "<group>"; };
+		6F6835F1193B7B46001517F2 /* slideshare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slideshare.png; sourceTree = "<group>"; };
+		6F6835F3193B7BB8001517F2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6F6835F5193B7BC5001517F2 /* slider-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "slider-Prefix.pch"; sourceTree = "<group>"; };
+		6F6835F8193B7BC5001517F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		6F6835F9193B7BC5001517F2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6F6835FA193B7BC5001517F2 /* slider-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "slider-Info.plist"; sourceTree = "<group>"; };
 		6FEECA54193869560007B09F /* slider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = slider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FEECA57193869560007B09F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6FEECA59193869560007B09F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6FEECA5B193869560007B09F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		6FEECA5F193869560007B09F /* slider-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "slider-Info.plist"; sourceTree = "<group>"; };
-		6FEECA61193869560007B09F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6FEECA63193869560007B09F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6FEECA65193869560007B09F /* slider-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "slider-Prefix.pch"; sourceTree = "<group>"; };
-		6FEECA66193869560007B09F /* KHCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHCAppDelegate.h; sourceTree = "<group>"; };
-		6FEECA67193869560007B09F /* KHCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHCAppDelegate.m; sourceTree = "<group>"; };
-		6FEECA69193869560007B09F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6FEECA6F193869570007B09F /* sliderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sliderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FEECA70193869570007B09F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6FEECA78193869570007B09F /* sliderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sliderTests-Info.plist"; sourceTree = "<group>"; };
 		6FEECA7A193869570007B09F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6FEECA7C193869570007B09F /* sliderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sliderTests.m; sourceTree = "<group>"; };
-		6FEECA8619386CB90007B09F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		6FEECA8819386DBD0007B09F /* KHCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHCMainViewController.h; sourceTree = "<group>"; };
-		6FEECA8919386DBD0007B09F /* KHCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHCMainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,14 +102,38 @@
 		6BA815C619387E1600FAEAD6 /* SSP */ = {
 			isa = PBXGroup;
 			children = (
-				6BA815CF193886DC00FAEAD6 /* KHCSlideItem.h */,
-				6BA815D319388D7E00FAEAD6 /* KHCSISlideshare.h */,
-				6BA815D419388D7E00FAEAD6 /* KHCSISlideshare.m */,
-				6BA815CE1938869D00FAEAD6 /* KHCSlideServiceProvider.h */,
-				6BA815D01938882700FAEAD6 /* KHCSSPSlideshare.h */,
-				6BA815D11938882700FAEAD6 /* KHCSSPSlideshare.m */,
+				6F6835D6193B7AD8001517F2 /* KHCSISlideshare.h */,
+				6F6835D7193B7AD8001517F2 /* KHCSISlideshare.m */,
+				6F6835D8193B7AD8001517F2 /* KHCSlideItem.h */,
+				6F6835D9193B7AD8001517F2 /* KHCSlideServiceProvider.h */,
+				6F6835DA193B7AD8001517F2 /* KHCSSPSlideshare.h */,
+				6F6835DB193B7AD8001517F2 /* KHCSSPSlideshare.m */,
 			);
 			name = SSP;
+			sourceTree = "<group>";
+		};
+		6F6835EF193B7B46001517F2 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				6F6835F0193B7B46001517F2 /* images */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		6F6835F0193B7B46001517F2 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				6F6835F1193B7B46001517F2 /* slideshare.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		6F6835F6193B7BC5001517F2 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				6F6835F7193B7BC5001517F2 /* InfoPlist.strings */,
+			);
+			path = en.lproj;
 			sourceTree = "<group>";
 		};
 		6FEECA4B193869560007B09F = {
@@ -133,14 +169,21 @@
 		6FEECA5D193869560007B09F /* slider */ = {
 			isa = PBXGroup;
 			children = (
-				6BA815C619387E1600FAEAD6 /* SSP */,
-				6FEECA66193869560007B09F /* KHCAppDelegate.h */,
-				6FEECA67193869560007B09F /* KHCAppDelegate.m */,
-				6FEECA8619386CB90007B09F /* Main.storyboard */,
-				6FEECA8819386DBD0007B09F /* KHCMainViewController.h */,
-				6FEECA8919386DBD0007B09F /* KHCMainViewController.m */,
-				6FEECA69193869560007B09F /* Images.xcassets */,
+				6F6835F3193B7BB8001517F2 /* Images.xcassets */,
+				6F6835EF193B7B46001517F2 /* resources */,
 				6FEECA5E193869560007B09F /* Supporting Files */,
+				6BA815C619387E1600FAEAD6 /* SSP */,
+				6F6835ED193B7B02001517F2 /* Main.storyboard */,
+				6F6835DE193B7AF2001517F2 /* KHCAddSlideNavController.h */,
+				6F6835DF193B7AF2001517F2 /* KHCAddSlideNavController.m */,
+				6F6835E0193B7AF2001517F2 /* KHCAppDelegate.h */,
+				6F6835E1193B7AF3001517F2 /* KHCAppDelegate.m */,
+				6F6835E2193B7AF3001517F2 /* KHCMainViewController.h */,
+				6F6835E3193B7AF3001517F2 /* KHCMainViewController.m */,
+				6F6835E4193B7AF3001517F2 /* KHCSlideListViewController.h */,
+				6F6835E5193B7AF3001517F2 /* KHCSlideListViewController.m */,
+				6F6835E6193B7AF3001517F2 /* KHCSSPSelectorViewController.h */,
+				6F6835E7193B7AF3001517F2 /* KHCSSPSelectorViewController.m */,
 			);
 			path = slider;
 			sourceTree = "<group>";
@@ -148,10 +191,10 @@
 		6FEECA5E193869560007B09F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6FEECA5F193869560007B09F /* slider-Info.plist */,
-				6FEECA60193869560007B09F /* InfoPlist.strings */,
-				6FEECA63193869560007B09F /* main.m */,
-				6FEECA65193869560007B09F /* slider-Prefix.pch */,
+				6F6835F6193B7BC5001517F2 /* en.lproj */,
+				6F6835F5193B7BC5001517F2 /* slider-Prefix.pch */,
+				6F6835F9193B7BC5001517F2 /* main.m */,
+				6F6835FA193B7BC5001517F2 /* slider-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -249,9 +292,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FEECA62193869560007B09F /* InfoPlist.strings in Resources */,
-				6FEECA6A193869560007B09F /* Images.xcassets in Resources */,
-				6FEECA8719386CB90007B09F /* Main.storyboard in Resources */,
+				6F6835F4193B7BB8001517F2 /* Images.xcassets in Resources */,
+				6F6835F2193B7B46001517F2 /* slideshare.png in Resources */,
+				6F6835FD193B7BC5001517F2 /* slider-Info.plist in Resources */,
+				6F6835EE193B7B02001517F2 /* Main.storyboard in Resources */,
+				6F6835FB193B7BC5001517F2 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,11 +315,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FEECA64193869560007B09F /* main.m in Sources */,
-				6BA815D21938882700FAEAD6 /* KHCSSPSlideshare.m in Sources */,
-				6FEECA8A19386DBD0007B09F /* KHCMainViewController.m in Sources */,
-				6FEECA68193869560007B09F /* KHCAppDelegate.m in Sources */,
-				6BA815D519388D7E00FAEAD6 /* KHCSISlideshare.m in Sources */,
+				6F6835E8193B7AF3001517F2 /* KHCAddSlideNavController.m in Sources */,
+				6F6835DD193B7AD8001517F2 /* KHCSSPSlideshare.m in Sources */,
+				6F6835EB193B7AF3001517F2 /* KHCSlideListViewController.m in Sources */,
+				6F6835EC193B7AF3001517F2 /* KHCSSPSelectorViewController.m in Sources */,
+				6F6835DC193B7AD8001517F2 /* KHCSISlideshare.m in Sources */,
+				6F6835E9193B7AF3001517F2 /* KHCAppDelegate.m in Sources */,
+				6F6835FC193B7BC5001517F2 /* main.m in Sources */,
+				6F6835EA193B7AF3001517F2 /* KHCMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,10 +345,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6FEECA60193869560007B09F /* InfoPlist.strings */ = {
+		6F6835F7193B7BC5001517F2 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6FEECA61193869560007B09F /* en */,
+				6F6835F8193B7BC5001517F2 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

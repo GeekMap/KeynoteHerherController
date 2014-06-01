@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="IWe-oS-RsU">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="YeW-CZ-5p1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IWe-oS-RsU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KC9-VH-ZDs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Be1-4T-5q0" kind="relationship" relationship="rootViewController" id="S2S-wY-aq9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nhG-6Z-c48" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="220" y="-438"/>
+        </scene>
+        <!--Selector View Controller - Select Slide Service-->
+        <scene sceneID="k4H-uB-hyg">
+            <objects>
+                <viewController storyboardIdentifier="KHCSSPSelectorViewController" id="YLS-VF-gMF" customClass="KHCSSPSelectorViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qpj-CK-nE9"/>
+                        <viewControllerLayoutGuide type="bottom" id="rEs-l8-ubJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A7d-OM-0W3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrz-hb-KPS">
+                                <rect key="frame" x="60" y="156" width="200" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="slideshare.png"/>
+                                <connections>
+                                    <action selector="doneButtonClicked:" destination="5fH-9T-an7" eventType="touchUpInside" id="mCZ-zc-xS7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Select Slide Service" id="dyf-eW-GnK"/>
+                    <connections>
+                        <outlet property="btnSlideShare" destination="hrz-hb-KPS" id="2ug-Oz-2jX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5fH-9T-an7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="665" y="237"/>
+        </scene>
+        <!--Slide List View Controller-->
+        <scene sceneID="hFc-MS-yYh">
+            <objects>
+                <tableViewController id="Be1-4T-5q0" customClass="KHCSlideListViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="sPk-nA-3VH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="search" id="Gbe-Uo-8Fo">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="Be1-4T-5q0" id="zYP-iP-QMA"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="slideCell" id="yNF-JY-bJx">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yNF-JY-bJx" id="eA5-am-zFC">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cU-rc-5mD">
+                                            <rect key="frame" x="20" y="11" width="0.0" height="0.0"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Be1-4T-5q0" id="C9m-Ie-F0E"/>
+                            <outlet property="delegate" destination="Be1-4T-5q0" id="Z30-2h-jRc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="2XD-mh-bsX">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="qeX-ul-DjY">
+                            <connections>
+                                <action selector="addSlideClicked:" destination="Be1-4T-5q0" id="E2A-m4-vhr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="dwf-UP-VvR" id="egd-YK-yWy"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O1S-02-tCy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="1aU-fe-XuF">
+                    <connections>
+                        <outlet property="delegate" destination="Be1-4T-5q0" id="hDV-VT-PxF"/>
+                        <outlet property="searchContentsController" destination="Be1-4T-5q0" id="j6u-fx-oRZ"/>
+                        <outlet property="searchResultsDataSource" destination="Be1-4T-5q0" id="zC7-Re-mlf"/>
+                        <outlet property="searchResultsDelegate" destination="Be1-4T-5q0" id="M0x-lA-ucr"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="dwf-UP-VvR">
+                    <connections>
+                        <outlet property="delegate" destination="Be1-4T-5q0" id="yEf-eA-hil"/>
+                        <outlet property="searchBar" destination="Gbe-Uo-8Fo" id="JMU-5m-Tlb"/>
+                        <outlet property="searchContentsController" destination="Be1-4T-5q0" id="Hax-Uw-j4Z"/>
+                        <outlet property="searchResultsDataSource" destination="Be1-4T-5q0" id="N8M-e2-nlV"/>
+                        <outlet property="searchResultsDelegate" destination="Be1-4T-5q0" id="TS5-SY-uwi"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="665" y="-438"/>
+        </scene>
+        <!--Add Slide Nav Controller-->
+        <scene sceneID="Jbv-wD-aAs">
+            <objects>
+                <navigationController storyboardIdentifier="KHCAddSlideNavController" automaticallyAdjustsScrollViewInsets="NO" id="P8Z-to-vUI" customClass="KHCAddSlideNavController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Oz0-Hq-lCe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YLS-VF-gMF" kind="relationship" relationship="rootViewController" id="55Q-bd-LtM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W8t-fc-1qy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="220" y="237"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="slideshare.png" width="550" height="150"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

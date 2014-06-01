@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KHCMainViewController : UIViewController
+@interface KHCMainViewController : UINavigationController
 
 @end
