@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        overflow:hidden;
+      }
+      div{
+        height:720PX;
+        width:1280PX;
+        text-align:center;
+        border:0px solid silver;
+        display: table-cell;
+        vertical-align:middle;
+        color:#FFFFFF;
+        background-color:#000000;
+        font-weight:bold;
+        font-family:Verdana, Geneva, sans-serif;
+        font-size:40px;
+    }
+    </style>
+    <title>hello?</title>
+  </head>
+  <body>
+    <DIV id="message">meow</DIV>
+    <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+    <script type="text/javascript">
+      window.onload = function() {
+        cast.receiver.logger.setLevelValue(0);
+        window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+        console.log('Starting Receiver Manager');
+        
+        castReceiverManager.onReady = function(event) {
+          console.log('Received Ready event: ' + JSON.stringify(event.data));
+          window.castReceiverManager.setApplicationState("Application status is ready...");
+        };
+        
+        castReceiverManager.onSenderConnected = function(event) {
+          console.log('Received Sender Connected event: ' + event.data);
+          console.log(window.castReceiverManager.getSender(event.data).userAgent);
+        };
+        
+        castReceiverManager.onSenderDisconnected = function(event) {
+          console.log('Received Sender Disconnected event: ' + event.data);
+          if (window.castReceiverManager.getSenders().length == 0) {
+            window.close();
+          }
+        };
+        
+        window.messageBus = window.castReceiverManager.getCastMessageBus('urn:x-cast:com.cve-2014-0160.keynote-herher-controller');
+
+        window.messageBus.onMessage = function(event) {
+          console.log('Message [' + event.senderId + ']: ' + event.data);
+          displayText(event.data);
+          window.messageBus.send(event.senderId, event.data);
+        }
+
+        window.castReceiverManager.start({statusText: "Application is starting"});
+        console.log('Receiver Manager started');
+      };
+      
+      function displayText(text) {
+        var decoded_text = (JSON.parse(text));
+
+        console.log(text);
+        document.getElementById("message").innerHTML = "";
+        document.getElementById("message").innerHTML += "command: " + decoded_text.command + "<br/>";
+        document.getElementById("message").innerHTML += "title: " + decoded_text.title + "<br/>";
+        document.getElementById("message").innerHTML += "url_prefix: " + decoded_text.url_prefix + "<br/>";
+        document.getElementById("message").innerHTML += "url_postfix: " + decoded_text.url_postfix + "<br/>";
+        document.getElementById("message").innerHTML += "pg_count: " + decoded_text.pg_count + "<br/>";
+        document.getElementById("message").innerHTML += "pg_no: " + decoded_text.pg_no + "<br/>";
+        window.castReceiverManager.setApplicationState(text);
+      };
+    </script>
+  </body>
+</html>
