@@ -10,6 +10,7 @@
 #import "KHCSlideItem.h"
 
 @protocol KHCSlideServiceProvider <NSObject>
+- (id) initWithUsername: (NSString *) username;
 - (id<KHCSlideItem>) getUserSlideList: (NSString *)user;
 @end
 

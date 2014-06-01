@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @protocol KHCSlideItem <NSObject>
-
+- (id) initWithURL: (NSString*) url;
+- (NSDictionary*) getMetadata;
 @end

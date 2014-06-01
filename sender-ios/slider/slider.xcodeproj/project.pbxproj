@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B08F04F193BA96E002513D4 /* KHCSlideManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B08F04E193BA96E002513D4 /* KHCSlideManager.m */; };
+		6B08F051193BAA24002513D4 /* SSPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B08F050193BAA24002513D4 /* SSPTests.m */; };
 		6F6835DC193B7AD8001517F2 /* KHCSISlideshare.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835D7193B7AD8001517F2 /* KHCSISlideshare.m */; };
 		6F6835DD193B7AD8001517F2 /* KHCSSPSlideshare.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835DB193B7AD8001517F2 /* KHCSSPSlideshare.m */; };
 		6F6835E8193B7AF3001517F2 /* KHCAddSlideNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835DF193B7AF2001517F2 /* KHCAddSlideNavController.m */; };
@@ -41,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B08F04D193BA96E002513D4 /* KHCSlideManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHCSlideManager.h; sourceTree = "<group>"; };
+		6B08F04E193BA96E002513D4 /* KHCSlideManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHCSlideManager.m; sourceTree = "<group>"; };
+		6B08F050193BAA24002513D4 /* SSPTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPTests.m; sourceTree = "<group>"; };
 		6F6835D6193B7AD8001517F2 /* KHCSISlideshare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSISlideshare.h; path = src/SSP/KHCSISlideshare.h; sourceTree = "<group>"; };
 		6F6835D7193B7AD8001517F2 /* KHCSISlideshare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSISlideshare.m; path = src/SSP/KHCSISlideshare.m; sourceTree = "<group>"; };
 		6F6835D8193B7AD8001517F2 /* KHCSlideItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideItem.h; path = src/SSP/KHCSlideItem.h; sourceTree = "<group>"; };
@@ -184,6 +189,8 @@
 				6F6835E5193B7AF3001517F2 /* KHCSlideListViewController.m */,
 				6F6835E6193B7AF3001517F2 /* KHCSSPSelectorViewController.h */,
 				6F6835E7193B7AF3001517F2 /* KHCSSPSelectorViewController.m */,
+				6B08F04D193BA96E002513D4 /* KHCSlideManager.h */,
+				6B08F04E193BA96E002513D4 /* KHCSlideManager.m */,
 			);
 			path = slider;
 			sourceTree = "<group>";
@@ -203,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				6FEECA7C193869570007B09F /* sliderTests.m */,
+				6B08F050193BAA24002513D4 /* SSPTests.m */,
 				6FEECA77193869570007B09F /* Supporting Files */,
 			);
 			path = sliderTests;
@@ -319,6 +327,7 @@
 				6F6835DD193B7AD8001517F2 /* KHCSSPSlideshare.m in Sources */,
 				6F6835EB193B7AF3001517F2 /* KHCSlideListViewController.m in Sources */,
 				6F6835EC193B7AF3001517F2 /* KHCSSPSelectorViewController.m in Sources */,
+				6B08F04F193BA96E002513D4 /* KHCSlideManager.m in Sources */,
 				6F6835DC193B7AD8001517F2 /* KHCSISlideshare.m in Sources */,
 				6F6835E9193B7AF3001517F2 /* KHCAppDelegate.m in Sources */,
 				6F6835FC193B7BC5001517F2 /* main.m in Sources */,
@@ -330,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B08F051193BAA24002513D4 /* SSPTests.m in Sources */,
 				6FEECA7D193869570007B09F /* sliderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
