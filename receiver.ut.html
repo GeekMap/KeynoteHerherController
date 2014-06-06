@@ -2,9 +2,7 @@
 <html>
   <head>
     <style type="text/css">
-      body {
-        overflow:hidden;
-      }
+      body {overflow:hidden;}
       div{
         height:720PX;
         width:1280PX;
@@ -16,13 +14,14 @@
         background-color:#000000;
         font-weight:bold;
         font-family:Verdana, Geneva, sans-serif;
-        font-size:40px;
+        font-size:30px;
     }
     </style>
     <title>hello?</title>
   </head>
   <body>
-    <DIV id="message">meow</DIV>
+    <div id="message">meow</div>
+    <div id="raw-msg">i am raw msg</div>
     <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
     <script type="text/javascript">
       window.onload = function() {
@@ -64,12 +63,26 @@
 
         console.log(text);
         document.getElementById("message").innerHTML = "";
-        document.getElementById("message").innerHTML += "command: " + decoded_text.command + "<br/>";
-        document.getElementById("message").innerHTML += "title: " + decoded_text.title + "<br/>";
-        document.getElementById("message").innerHTML += "url_prefix: " + decoded_text.url_prefix + "<br/>";
-        document.getElementById("message").innerHTML += "url_postfix: " + decoded_text.url_postfix + "<br/>";
-        document.getElementById("message").innerHTML += "pg_count: " + decoded_text.pg_count + "<br/>";
-        document.getElementById("message").innerHTML += "pg_no: " + decoded_text.pg_no + "<br/>";
+        document.getElementById("message").innerHTML += "cmd: " + decoded_text.cmd + "<br/>";
+        switch (decoded_text.cmd){
+          case "init":
+            document.getElementById("message").innerHTML += "title: " + decoded_text.meta.title + "<br/>";
+            document.getElementById("message").innerHTML += "url_prefix: " + decoded_text.meta.url_prefix + "<br/>";
+            document.getElementById("message").innerHTML += "url_postfix: " + decoded_text.meta.url_postfix + "<br/>";
+            document.getElementById("message").innerHTML += "max_page: " + decoded_text.meta.max_page + "<br/>";
+            document.getElementById("message").innerHTML += "min_page: " + decoded_text.meta.min_page + "<br/>";
+            break;
+          case "go":
+            document.getElementById("message").innerHTML += "page: " + decoded_text.meta.page + "<br/>";
+            break;
+          case "uninit":
+            // doing nothing...
+            break;
+          default:
+            document.getElementById("message").innerHTML += "ERROR: undefined command received.<br/>";
+        }
+        document.getElementById("raw-msg").innerHTML = text;
+        
         window.castReceiverManager.setApplicationState(text);
       };
     </script>
