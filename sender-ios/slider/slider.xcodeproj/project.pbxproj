@@ -25,6 +25,7 @@
 		6F6835FB193B7BC5001517F2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835F7193B7BC5001517F2 /* InfoPlist.strings */; };
 		6F6835FC193B7BC5001517F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835F9193B7BC5001517F2 /* main.m */; };
 		6F6835FD193B7BC5001517F2 /* slider-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835FA193B7BC5001517F2 /* slider-Info.plist */; };
+		6F7D5A851941BBBF00C8D845 /* KHCSlideSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D5A841941BBBF00C8D845 /* KHCSlideSelectorViewController.m */; };
 		6FEECA58193869560007B09F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA57193869560007B09F /* Foundation.framework */; };
 		6FEECA5A193869560007B09F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA59193869560007B09F /* CoreGraphics.framework */; };
 		6FEECA5C193869560007B09F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA5B193869560007B09F /* UIKit.framework */; };
@@ -73,6 +74,8 @@
 		6F6835F8193B7BC5001517F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		6F6835F9193B7BC5001517F2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6F6835FA193B7BC5001517F2 /* slider-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "slider-Info.plist"; sourceTree = "<group>"; };
+		6F7D5A831941BBBF00C8D845 /* KHCSlideSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideSelectorViewController.h; path = src/KHCSlideSelectorViewController.h; sourceTree = "<group>"; };
+		6F7D5A841941BBBF00C8D845 /* KHCSlideSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSlideSelectorViewController.m; path = src/KHCSlideSelectorViewController.m; sourceTree = "<group>"; };
 		6FEECA54193869560007B09F /* slider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = slider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FEECA57193869560007B09F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6FEECA59193869560007B09F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -195,6 +198,8 @@
 				6F6835E5193B7AF3001517F2 /* KHCSlideListViewController.m */,
 				6F6835E6193B7AF3001517F2 /* KHCSSPSelectorViewController.h */,
 				6F6835E7193B7AF3001517F2 /* KHCSSPSelectorViewController.m */,
+				6F7D5A831941BBBF00C8D845 /* KHCSlideSelectorViewController.h */,
+				6F7D5A841941BBBF00C8D845 /* KHCSlideSelectorViewController.m */,
 				6B08F04D193BA96E002513D4 /* KHCSlideManager.h */,
 				6B08F04E193BA96E002513D4 /* KHCSlideManager.m */,
 			);
@@ -337,6 +342,7 @@
 				6F6835DC193B7AD8001517F2 /* KHCSISlideshare.m in Sources */,
 				6F6835E9193B7AF3001517F2 /* KHCAppDelegate.m in Sources */,
 				6F6835FC193B7BC5001517F2 /* main.m in Sources */,
+				6F7D5A851941BBBF00C8D845 /* KHCSlideSelectorViewController.m in Sources */,
 				6F6835EA193B7AF3001517F2 /* KHCMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

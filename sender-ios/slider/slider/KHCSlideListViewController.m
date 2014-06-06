@@ -1,18 +1,18 @@
 //
-//  KHCAddSlideNavController.m
+//  KHCMainViewController.m
 //  slider
 //
-//  Created by Chuck Lin on 6/1/14.
+//  Created by Chuck Lin on 5/30/14.
 //
 //
 
-#import "KHCAddSlideNavController.h"
+#import "KHCMainViewController.h"
 
-@interface KHCAddSlideNavController ()
+@interface KHCMainViewController ()
 
 @end
 
-@implementation KHCAddSlideNavController
+@implementation KHCMainViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,8 +35,4 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)cancelButtonClicked:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 @end

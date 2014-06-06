@@ -32,7 +32,8 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.LeftBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSlideClicked:)];
     
     slides = [NSMutableArray arrayWithObjects:@"Don't you dare!", @"Yes, I do", @"Head first", nil];
 }
