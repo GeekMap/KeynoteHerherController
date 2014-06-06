@@ -124,7 +124,7 @@
 #pragma SearchBar Delegate
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[cd] %@", searchText];
     searchResults = [slides filteredArrayUsingPredicate:resultPredicate];
 }
 
