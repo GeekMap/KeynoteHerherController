@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "KHCSlideManager.h"
 
 @interface SlideManagerTests : XCTestCase
 
@@ -26,9 +27,20 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testSlideManager
 {
-    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    KHCSlideManager* slide_manager = [[KHCSlideManager alloc] init];
+    while (true) {
+        NSArray* list = [slide_manager getChromeCastList];
+        
+        if ([list count] > 0) {
+            NSLog(@"Get !!");
+            for (NSString* name in list) {
+                NSLog(@"get %@", name);
+            }
+            break;
+        }
+    }
 }
 
 @end
