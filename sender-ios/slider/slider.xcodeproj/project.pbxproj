@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B08F04F193BA96E002513D4 /* KHCSlideManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B08F04E193BA96E002513D4 /* KHCSlideManager.m */; };
+		6B08F051193BAA24002513D4 /* SSPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B08F050193BAA24002513D4 /* SSPTests.m */; };
+		6BA415BB1941A654008D42B4 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA415BA1941A654008D42B4 /* GoogleCast.framework */; };
+		6BA415BC1941A654008D42B4 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA415BA1941A654008D42B4 /* GoogleCast.framework */; };
+		6BA415BE1941A745008D42B4 /* SlideManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA415BD1941A745008D42B4 /* SlideManagerTests.m */; };
 		6F6835DC193B7AD8001517F2 /* KHCSISlideshare.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835D7193B7AD8001517F2 /* KHCSISlideshare.m */; };
 		6F6835DD193B7AD8001517F2 /* KHCSSPSlideshare.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835DB193B7AD8001517F2 /* KHCSSPSlideshare.m */; };
 		6F6835E8193B7AF3001517F2 /* KHCAddSlideNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835DF193B7AF2001517F2 /* KHCAddSlideNavController.m */; };
@@ -27,7 +32,6 @@
 		6FEECA72193869570007B09F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA57193869560007B09F /* Foundation.framework */; };
 		6FEECA73193869570007B09F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA5B193869560007B09F /* UIKit.framework */; };
 		6FEECA7B193869570007B09F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FEECA79193869570007B09F /* InfoPlist.strings */; };
-		6FEECA7D193869570007B09F /* sliderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEECA7C193869570007B09F /* sliderTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B08F04D193BA96E002513D4 /* KHCSlideManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHCSlideManager.h; sourceTree = "<group>"; };
+		6B08F04E193BA96E002513D4 /* KHCSlideManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHCSlideManager.m; sourceTree = "<group>"; };
+		6B08F050193BAA24002513D4 /* SSPTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPTests.m; sourceTree = "<group>"; };
+		6BA415BA1941A654008D42B4 /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = slider/resources/framework/GoogleCast.framework; sourceTree = "<group>"; };
+		6BA415BD1941A745008D42B4 /* SlideManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideManagerTests.m; sourceTree = "<group>"; };
 		6F6835D6193B7AD8001517F2 /* KHCSISlideshare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSISlideshare.h; path = src/SSP/KHCSISlideshare.h; sourceTree = "<group>"; };
 		6F6835D7193B7AD8001517F2 /* KHCSISlideshare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSISlideshare.m; path = src/SSP/KHCSISlideshare.m; sourceTree = "<group>"; };
 		6F6835D8193B7AD8001517F2 /* KHCSlideItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideItem.h; path = src/SSP/KHCSlideItem.h; sourceTree = "<group>"; };
@@ -72,7 +81,6 @@
 		6FEECA70193869570007B09F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6FEECA78193869570007B09F /* sliderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sliderTests-Info.plist"; sourceTree = "<group>"; };
 		6FEECA7A193869570007B09F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6FEECA7C193869570007B09F /* sliderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sliderTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BA415BB1941A654008D42B4 /* GoogleCast.framework in Frameworks */,
 				6FEECA5A193869560007B09F /* CoreGraphics.framework in Frameworks */,
 				6FEECA5C193869560007B09F /* UIKit.framework in Frameworks */,
 				6FEECA58193869560007B09F /* Foundation.framework in Frameworks */,
@@ -90,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BA415BC1941A654008D42B4 /* GoogleCast.framework in Frameworks */,
 				6FEECA71193869570007B09F /* XCTest.framework in Frameworks */,
 				6FEECA73193869570007B09F /* UIKit.framework in Frameworks */,
 				6FEECA72193869570007B09F /* Foundation.framework in Frameworks */,
@@ -158,6 +168,7 @@
 		6FEECA56193869560007B09F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6BA415BA1941A654008D42B4 /* GoogleCast.framework */,
 				6FEECA57193869560007B09F /* Foundation.framework */,
 				6FEECA59193869560007B09F /* CoreGraphics.framework */,
 				6FEECA5B193869560007B09F /* UIKit.framework */,
@@ -184,6 +195,8 @@
 				6F6835E5193B7AF3001517F2 /* KHCSlideListViewController.m */,
 				6F6835E6193B7AF3001517F2 /* KHCSSPSelectorViewController.h */,
 				6F6835E7193B7AF3001517F2 /* KHCSSPSelectorViewController.m */,
+				6B08F04D193BA96E002513D4 /* KHCSlideManager.h */,
+				6B08F04E193BA96E002513D4 /* KHCSlideManager.m */,
 			);
 			path = slider;
 			sourceTree = "<group>";
@@ -202,7 +215,8 @@
 		6FEECA76193869570007B09F /* sliderTests */ = {
 			isa = PBXGroup;
 			children = (
-				6FEECA7C193869570007B09F /* sliderTests.m */,
+				6B08F050193BAA24002513D4 /* SSPTests.m */,
+				6BA415BD1941A745008D42B4 /* SlideManagerTests.m */,
 				6FEECA77193869570007B09F /* Supporting Files */,
 			);
 			path = sliderTests;
@@ -319,6 +333,7 @@
 				6F6835DD193B7AD8001517F2 /* KHCSSPSlideshare.m in Sources */,
 				6F6835EB193B7AF3001517F2 /* KHCSlideListViewController.m in Sources */,
 				6F6835EC193B7AF3001517F2 /* KHCSSPSelectorViewController.m in Sources */,
+				6B08F04F193BA96E002513D4 /* KHCSlideManager.m in Sources */,
 				6F6835DC193B7AD8001517F2 /* KHCSISlideshare.m in Sources */,
 				6F6835E9193B7AF3001517F2 /* KHCAppDelegate.m in Sources */,
 				6F6835FC193B7BC5001517F2 /* main.m in Sources */,
@@ -330,7 +345,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FEECA7D193869570007B09F /* sliderTests.m in Sources */,
+				6B08F051193BAA24002513D4 /* SSPTests.m in Sources */,
+				6BA415BE1941A745008D42B4 /* SlideManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,9 +455,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/slider/resources/framework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "slider/slider-Prefix.pch";
 				INFOPLIST_FILE = "slider/slider-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -452,9 +473,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/slider/resources/framework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "slider/slider-Prefix.pch";
 				INFOPLIST_FILE = "slider/slider-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -468,6 +494,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/slider/resources/framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "slider/slider-Prefix.pch";
@@ -490,6 +517,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/slider/resources/framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "slider/slider-Prefix.pch";
