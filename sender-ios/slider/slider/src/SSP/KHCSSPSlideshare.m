@@ -6,8 +6,10 @@
 //
 //
 
-#import "KHCSSPSlideshare.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "KHCSSPSlideshare.h"
+#import "KHCSISlideshare.h"
+
 
 #define TIMESTAMP [NSString stringWithFormat:@"%d",(time_t)[[NSDate date] timeIntervalSince1970]]
 static NSString *const SLIDESHARE_API_KEY = @"Nr6UMFRO";
@@ -22,55 +24,6 @@ static NSString *const SLIDESHARE_API_SHAREDSECRET = @"YDkAB20Z";
 static NSString* SLIDESHARE_GET_SLIDESSHOW_BY_USER_TEMPLATE_URL = @"https://www.slideshare.net/api/2/get_slideshows_by_user?username_for=%@&api_key=%@&ts=%@&hash=%@";
 
 
-/*
-// XML parser
-@interface Slideshow : NSObject {
-    NSString *userName;
-    NSString *firstName;
-    NSString *lastName;
-}
-@property (nonatomic, retain) NSString *Title;
-@end
-
-@interface XMLParser : NSObject {
-    NSMutableString *currentElementValue;
-    Slideshow *slidesshow;
-    NSMutableArray *slidesshows;
-}
-
-@property (nonatomic, retain) Slideshow *slidesshow;
-@property (nonatomic, retain) NSMutableArray *slidesshows;
-
-- (XMLParser *) initXMLParser;
-
-@end
-
-@implementation XMLParser
-@synthesize slidesshow, slidesshows;
-
-- (XMLParser *) initXMLParser {
-    self = [super init];
-    // init array of user objects
-    slidesshows = [[NSMutableArray alloc] init];
-    return self;
-}
-
-- (void)parser:(NSXMLParser *)parser
-didStartElement:(NSString *)elementName
-  namespaceURI:(NSString *)namespaceURI
- qualifiedName:(NSString *)qualifiedName
-    attributes:(NSDictionary *)attributeDict {
-	
-    if ([elementName isEqualToString:@"Slideshow"]) {
-        slidesshow = [[Slideshow alloc] init];
-        //We do not have any attributes in the user elements, but if
-        // you do, you can extract them here:
-        // user.att = [[attributeDict objectForKey:@"<att name>"] ...];
-    }
-}
-
-@end
-*/
  
 @implementation KHCSSPSlideshare
 
@@ -96,10 +49,20 @@ didStartElement:(NSString *)elementName
                                      returningResponse:&response
                                                  error:&error];
     
-    NSLog(@"%@",[[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding]);
+    NSString* xml = [[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding];
+    NSRegularExpression *url_reg = [NSRegularExpression regularExpressionWithPattern:@"<URL>(.+)</URL>" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray* matches = [url_reg matchesInString:xml options:0 range:NSMakeRange(0, [xml length])];
     
-    return nil;
-
+    NSMutableArray* si_array = [[NSMutableArray alloc] init];
+    for (NSTextCheckingResult* match in matches) {
+        NSRange url_range = [match rangeAtIndex:1];
+        NSString* substring = [xml substringWithRange:url_range];
+        NSLog(@"Extracted URL: %@",substring);
+        
+        KHCSISlideshare* si_item = [[KHCSISlideshare alloc] initWithURL:substring];
+        [si_array addObject:si_item];
+    }
+    return si_array;
 }
 
 
