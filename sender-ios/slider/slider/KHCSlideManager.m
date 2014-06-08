@@ -28,7 +28,7 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
 {
     self = [super init];
     if (self) {
-        _selectedDevice = nil;
+        self.selectedDevice = nil;
         self.deviceScanner = nil;
         self.deviceManager = nil;
         
@@ -53,15 +53,15 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
 {
     for (GCKDevice* device in self.deviceScanner.devices) {
         if ([chromecast_name isEqualToString:device.friendlyName]) {
-            _selectedDevice = device;
+            self.selectedDevice = device;
         }
     }
     
-    if (_selectedDevice == nil)
+    if (self.selectedDevice == nil)
         return;
     
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-    self.deviceManager = [[GCKDeviceManager alloc] initWithDevice: _selectedDevice clientPackageName:[info objectForKey:@"CFBundleIdentifier"]];
+    self.deviceManager = [[GCKDeviceManager alloc] initWithDevice: self.selectedDevice clientPackageName:[info objectForKey:@"CFBundleIdentifier"]];
 
     self.deviceManager.delegate = self;
     [self.deviceManager connect];
@@ -90,8 +90,8 @@ didConnectToCastApplication:(GCKApplicationMetadata *)applicationMetadata
             sessionID:(NSString *)sessionID
   launchedApplication:(BOOL)launchedApp {
     
-    _cmdChannel = [[KHCCommandChannel alloc] initWithNamespace:APP_NAMESPACE];
-    [self.deviceManager addChannel:_cmdChannel];
+    self.cmdChannel = [[KHCCommandChannel alloc] initWithNamespace:APP_NAMESPACE];
+    [self.deviceManager addChannel: self.cmdChannel];
 }
 
 

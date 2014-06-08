@@ -8,7 +8,7 @@
 
 #import "KHCSISlideshare.h"
 
-static NSString* SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare.net/api/oembed/2?url=%@&format=json";
+static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare.net/api/oembed/2?url=%@&format=json";
 
 @implementation KHCSISlideshare
 {

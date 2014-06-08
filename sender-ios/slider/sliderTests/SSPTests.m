@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "KHCSISlideshare.h"
+#import "KHCSSPSlideshare.h"
 
 @interface SSPTests : XCTestCase
 
@@ -34,6 +35,16 @@
     
     for (id key in metadata) {
         NSLog(@"key: %@, value: %@ \n", key, [metadata objectForKey:key]);
+    }
+}
+
+
+- (void) testSSPSlideshare
+{
+    NSArray* list = [KHCSSPSlideshare getUserSlideList: @"rashmi"];
+    for (KHCSISlideshare* slide_item in list) {
+        NSDictionary *metadata = [slide_item getMetadata];
+        NSLog(@"Slide %@\n", [metadata objectForKey:@"title"]);
     }
 }
 
