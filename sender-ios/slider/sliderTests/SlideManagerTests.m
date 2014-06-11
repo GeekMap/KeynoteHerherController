@@ -14,11 +14,16 @@
 @end
 
 @implementation SlideManagerTests
+{
+    KHCSlideManager* manager;
+}
 
 - (void)setUp
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    manager = [[KHCSlideManager alloc] init];
+    
 }
 
 - (void)tearDown
@@ -27,20 +32,17 @@
     [super tearDown];
 }
 
-- (void)testSlideManager
+- (void) testSelectChromeCast
 {
-    KHCSlideManager* slide_manager = [[KHCSlideManager alloc] init];
-    while (true) {
-        NSArray* list = [slide_manager getChromeCastList];
-        
-        if ([list count] > 0) {
-            NSLog(@"Get !!");
-            for (NSString* name in list) {
-                NSLog(@"get %@", name);
-            }
-            break;
-        }
+    NSArray* list = [manager getChromeCastList];
+    for (NSString* chromecast in list) {
+        NSLog(chromecast);
     }
+}
+
+- (void) testInitReceiver
+{
+    
 }
 
 @end

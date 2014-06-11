@@ -112,6 +112,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B2CF8791948588600EC63B5 /* ChromeCast */ = {
+			isa = PBXGroup;
+			children = (
+				6B08F04D193BA96E002513D4 /* KHCSlideManager.h */,
+				6B08F04E193BA96E002513D4 /* KHCSlideManager.m */,
+				6BF4AABB1941BA2A00F9AF13 /* KHCCommandChannel.h */,
+				6BF4AABC1941BA2A00F9AF13 /* KHCCommandChannel.m */,
+			);
+			name = ChromeCast;
+			sourceTree = "<group>";
+		};
 		6BA815C619387E1600FAEAD6 /* SSP */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +198,7 @@
 				6F6835EF193B7B46001517F2 /* resources */,
 				6FEECA5E193869560007B09F /* Supporting Files */,
 				6BA815C619387E1600FAEAD6 /* SSP */,
+				6B2CF8791948588600EC63B5 /* ChromeCast */,
 				6F6835ED193B7B02001517F2 /* Main.storyboard */,
 				6F6835DE193B7AF2001517F2 /* KHCAddSlideNavController.h */,
 				6F6835DF193B7AF2001517F2 /* KHCAddSlideNavController.m */,
@@ -198,10 +210,6 @@
 				6F6835E5193B7AF3001517F2 /* KHCSlideListViewController.m */,
 				6F6835E6193B7AF3001517F2 /* KHCSSPSelectorViewController.h */,
 				6F6835E7193B7AF3001517F2 /* KHCSSPSelectorViewController.m */,
-				6B08F04D193BA96E002513D4 /* KHCSlideManager.h */,
-				6B08F04E193BA96E002513D4 /* KHCSlideManager.m */,
-				6BF4AABB1941BA2A00F9AF13 /* KHCCommandChannel.h */,
-				6BF4AABC1941BA2A00F9AF13 /* KHCCommandChannel.m */,
 			);
 			path = slider;
 			sourceTree = "<group>";
@@ -509,6 +517,12 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "sliderTests/sliderTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+					"-framework",
+					XCTest,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -528,6 +542,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "slider/slider-Prefix.pch";
 				INFOPLIST_FILE = "sliderTests/sliderTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+					"-framework",
+					XCTest,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
