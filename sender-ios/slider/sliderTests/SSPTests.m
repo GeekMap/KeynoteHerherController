@@ -10,6 +10,7 @@
 #import "KHCSISlideshare.h"
 #import "KHCSSPSlideshare.h"
 #import "KHCSISpeakerDeck.h"
+#import "KHCSSPSpeakerDeck.h"
 
 @interface SSPTests : XCTestCase
 
@@ -45,7 +46,7 @@
     NSArray* list = [KHCSSPSlideshare getUserSlideList: @"rashmi"];
     for (KHCSISlideshare* slide_item in list) {
         NSDictionary *metadata = [slide_item getSIData];
-        NSLog(@"Slide %@\n", [metadata objectForKey:@"title"]);
+        NSLog(@"Slide Title: %@\n", [metadata objectForKey:@"title"]);
     }
 }
 
@@ -56,6 +57,15 @@
     
     for (id key in metadata) {
         NSLog(@"key: %@, value: %@ \n", key, [metadata objectForKey:key]);
+    }
+}
+
+- (void) testSSPSpeakerDeck
+{
+    NSArray* list = [KHCSSPSpeakerDeck getUserSlideList: @"shpigford"];
+    for (KHCSISpeakerDeck* slide_item in list) {
+        NSDictionary *metadata = [slide_item getSIData];
+        NSLog(@"Slide Title: %@\n", [metadata objectForKey:@"title"]);
     }
 }
 

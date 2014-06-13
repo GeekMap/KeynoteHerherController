@@ -64,9 +64,9 @@
     matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
     NSString* max = [NSString stringWithFormat:@"%d" ,[[html substringWithRange:matchRange] intValue]-1];
 
-    NSLog(@"Hash: %@", hash);
-    NSLog(@"Max: %@", max);
-    NSLog(@"Title: %@", title);
+//    NSLog(@"Hash: %@", hash);
+//    NSLog(@"Max: %@", max);
+//    NSLog(@"Title: %@", title);
     
     // return
     NSMutableDictionary* ret = [[NSMutableDictionary alloc] initWithCapacity:5];
