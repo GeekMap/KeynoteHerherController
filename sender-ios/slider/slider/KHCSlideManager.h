@@ -19,7 +19,7 @@
 - (void)connectChromeCastWithName: (NSString*) chromecast_name;
 - (void)deviceDisconnected;
 
-- (void) receiverInitWithTitle:(NSString*) title urlPrefix:(NSString*) url_prefix urlPostfix:(NSString*) url_postfix minPage:(NSString*) min_page maxPage:(NSString*)max_page;
+- (void) receiverInitWithSI: (id<KHCSlideItem>)slide_item;
 - (void) receiverUninit;
 - (void) receiverNextPage;
 - (void) receiverPrePage;

@@ -9,7 +9,7 @@
 #import "KHCSlideManager.h"
 #import "KHCCommandChannel.h"
 
-static NSString *const APP_ID = @"6EC34210";
+static NSString *const APP_ID = @"43049BBC";
 static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-herher-controller";
 
 @interface KHCSlideManager (){
@@ -69,6 +69,13 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
 
     self.deviceManager.delegate = self;
     [self.deviceManager connect];
+    
+}
+
+- (void) receiverInitWithSI: (id<KHCSlideItem>)slide_item
+{
+    NSDictionary* meta = [slide_item getSIData];
+    [self receiverInitWithTitle:[meta objectForKey:@"title"] urlPrefix:[meta objectForKey:@"url_prefix"] urlPostfix:[meta objectForKey:@"url_postfix"] minPage:[meta objectForKey:@"min_page"] maxPage:[meta objectForKey:@"max_page"]];
     
 }
 
