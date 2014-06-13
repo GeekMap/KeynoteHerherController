@@ -76,6 +76,10 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
           this.min_page = message.min_page;
 
           $("#slide_title").html(this.title);
+
+          // show first page
+          message.page = message.min_page;
+          this.onGo(senderId, message);
         }
       }
       else {
@@ -102,15 +106,30 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
 
     onGo: function(senderId, message) {
       console.log('<onGo senderId="' + senderId + '">');
-      if (message.page){
-        var slide = $("#slide_spotlight")[0];
-
-        if (slide.style.visibility == 'hidden'){
-          console.log('changing visibility...');
-          $("#slide_title")[0].style.visibility = 'hidden';
-          slide.style.visibility = 'visible';
+      if (!this.is_start){
+        this.sendError(senderId, 'slider has not been initialized');
+      }
+      else if (message.page){
+        if (parseInt(message.page) < parseInt(this.min_page)){
+          this.sendError(senderId, 'page number is less than the minimum number: ' + message.page);
         }
-        slide.src = this.url_prefix + message.page + this.url_postfix;
+        else if (parseInt(message.page) > parseInt(this.max_page)){
+          this.sendError(senderId, 'page number is larger than the maximum number: ' + message.page);
+        }
+        else {
+          var slide = $("#slide_spotlight")[0];
+
+          if (slide.style.visibility == 'hidden'){
+            console.log('changing visibility...');
+            $("#slide_title")[0].style.visibility = 'hidden';
+            slide.style.visibility = 'visible';
+          }
+          slide.src = this.url_prefix + message.page + this.url_postfix;
+
+          var image = new Image();
+          image.src = slide.src;
+          ColorTunes.launch(image, slide);
+        }
       }
       else {
         this.sendError(senderId, 'missing parameters for init');
