@@ -10,5 +10,5 @@
 
 @protocol KHCSlideItem <NSObject>
 - (id) initWithURL: (NSString*) url;
-- (NSDictionary*) getMetadata;
+- (NSDictionary*) getSIData;
 @end
