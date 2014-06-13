@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "KHCSISlideshare.h"
 #import "KHCSSPSlideshare.h"
+#import "KHCSISpeakerDeck.h"
 
 @interface SSPTests : XCTestCase
 
@@ -31,7 +32,7 @@
 - (void) testSISlideshare
 {
     KHCSISlideshare* slide_item = [[KHCSISlideshare alloc] initWithURL:@"http://www.slideshare.net/haraldf/business-quotes-for-2011"];
-    NSDictionary *metadata = [slide_item getMetadata];
+    NSDictionary *metadata = [slide_item getSIData];
     
     for (id key in metadata) {
         NSLog(@"key: %@, value: %@ \n", key, [metadata objectForKey:key]);
@@ -43,8 +44,18 @@
 {
     NSArray* list = [KHCSSPSlideshare getUserSlideList: @"rashmi"];
     for (KHCSISlideshare* slide_item in list) {
-        NSDictionary *metadata = [slide_item getMetadata];
+        NSDictionary *metadata = [slide_item getSIData];
         NSLog(@"Slide %@\n", [metadata objectForKey:@"title"]);
+    }
+}
+
+-(void) testSISpeakerDeck
+{
+    KHCSISpeakerDeck* slide_item = [[KHCSISpeakerDeck alloc] initWithURL:@"https://speakerdeck.com/player/03ad1120aa2501313da22a463594f846"];
+    NSDictionary *metadata = [slide_item getSIData];
+    
+    for (id key in metadata) {
+        NSLog(@"key: %@, value: %@ \n", key, [metadata objectForKey:key]);
     }
 }
 
