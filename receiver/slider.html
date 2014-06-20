@@ -1,37 +1,76 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Slider</title>
-    <script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.js"></script> 
-    <script src="js/slider.js"></script>
-    <script src="js/jquery-photo-resize.js"></script>
+<!doctype html>
 
-    <link rel=stylesheet type="text/css" href="css/slider.css">
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Slider</title>
+    
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/impress-demo.css" rel="stylesheet" />
+    
+    <script src="http://code.jquery.com/jquery-latest.js"></script> 
+    <script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+    <script src="js/slider.js"></script>
+
     <script type="text/javascript">
       window.onload = onLoad;
 
       function onLoad() {
         window.engine = new cast.KHC();
       }
-
-      function resizeImg() {
-        $("img").photoResize({
-          bottomSpacing: 0
-        });        
-      }
-
-      $(document).ready(resizeImg);
     </script>
-  </head>
-  <body>
-    <table>
-      <tr>
-        <td align="center" valign="center">
-          <div id="slide_title" style="color:white; font-size:100px;">Slider</div>
-          <img id="slide_spotlight" style="visibility: hidden;" src="img/black.png" />
-        </td>
-      </tr>
-    </table>
-  </body>
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress">
+<!--     <div id="slide-1" class="step slide" data-x="0" data-y="0" style="background-image:url(http://image.slidesharecdn.com/zipcodetw-findtaiwan-zip-code-by-address-fuzzily-140517041937-phpapp02/95/slide-1-1024.jpg);">
+    </div>
+ -->
+<!--     <div class="step slide" data-x="0" data-y="-1500">
+        <q>Don't you think that presentations given <strong>in modern browsers</strong> shouldn't <strong>copy the limits</strong> of 'classic' slide decks?</q>
+    </div>
+
+    <div class="step slide" data-x="1000" data-y="-1500">
+        <q>Would you like to <strong>impress your audience</strong> with <strong>stunning visualization</strong> of your talk?</q>
+    </div> -->
+
+    <!-- <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10"></div> -->
+</div>
+
+<div class="hint">
+    <p>Slider (KHC) by CVE-2014-0160.SecureCloud.Trend.TW</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+<script src="js/impress.js"></script>
+<script></script>
+
+<!--    
+        var api = impress();
+    
+        `api.init()` - initializes the presentation,
+        `api.next()` - moves to next step of the presentation,
+        `api.prev()` - moves to previous step of the presentation,
+        `api.goto( idx | id | element, [duration] )` - moves the presentation to the step given by its index number
+                id or the DOM element; second parameter can be used to define duration of the transition in ms,
+                but it's optional - if not provided default transition duration for the presentation will be used.
+        
+
+        // $('#slide-1').css("background-image", "url(http://image.slidesharecdn.com/zipcodetw-findtaiwan-zip-code-by-address-fuzzily-140517041937-phpapp02/95/slide-10-1024.jpg)");
+-->
+
+</body>
 </html>
