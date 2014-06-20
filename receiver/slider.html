@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Slider</title>
+    <script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script> 
+    <script src="js/slider.js"></script>
+    <script src="js/jquery-photo-resize.js"></script>
+
+    <link rel=stylesheet type="text/css" href="css/slider.css">
+    <script type="text/javascript">
+      window.onload = onLoad;
+
+      function onLoad() {
+        window.engine = new cast.KHC();
+      }
+
+      function resizeImg() {
+        $("img").photoResize({
+          bottomSpacing: 0
+        });        
+      }
+
+      $(document).ready(resizeImg);
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td align="center" valign="center">
+          <div id="slide_title" style="color:white; font-size:100px;">Slider</div>
+          <img id="slide_spotlight" style="visibility: hidden;" src="img/black.png" />
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

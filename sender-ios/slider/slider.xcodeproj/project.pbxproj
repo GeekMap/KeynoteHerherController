@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6B08F04F193BA96E002513D4 /* KHCSlideManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B08F04E193BA96E002513D4 /* KHCSlideManager.m */; };
 		6B08F051193BAA24002513D4 /* SSPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B08F050193BAA24002513D4 /* SSPTests.m */; };
+		6B3A1A02194AE0740008FA9B /* KHCSISpeakerDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3A1A01194AE0740008FA9B /* KHCSISpeakerDeck.m */; };
+		6B3D1517194AFF98002702E4 /* KHCSSPSpeakerDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3D1516194AFF98002702E4 /* KHCSSPSpeakerDeck.m */; };
 		6BA415BB1941A654008D42B4 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA415BA1941A654008D42B4 /* GoogleCast.framework */; };
 		6BA415BC1941A654008D42B4 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA415BA1941A654008D42B4 /* GoogleCast.framework */; };
 		6BA415BE1941A745008D42B4 /* SlideManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA415BD1941A745008D42B4 /* SlideManagerTests.m */; };
@@ -50,6 +52,10 @@
 		6B08F04D193BA96E002513D4 /* KHCSlideManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHCSlideManager.h; sourceTree = "<group>"; };
 		6B08F04E193BA96E002513D4 /* KHCSlideManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHCSlideManager.m; sourceTree = "<group>"; };
 		6B08F050193BAA24002513D4 /* SSPTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPTests.m; sourceTree = "<group>"; };
+		6B3A1A00194AE0740008FA9B /* KHCSISpeakerDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSISpeakerDeck.h; path = src/SSP/KHCSISpeakerDeck.h; sourceTree = "<group>"; };
+		6B3A1A01194AE0740008FA9B /* KHCSISpeakerDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSISpeakerDeck.m; path = src/SSP/KHCSISpeakerDeck.m; sourceTree = "<group>"; };
+		6B3D1515194AFF98002702E4 /* KHCSSPSpeakerDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSSPSpeakerDeck.h; path = src/SSP/KHCSSPSpeakerDeck.h; sourceTree = "<group>"; };
+		6B3D1516194AFF98002702E4 /* KHCSSPSpeakerDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSSPSpeakerDeck.m; path = src/SSP/KHCSSPSpeakerDeck.m; sourceTree = "<group>"; };
 		6BA415BA1941A654008D42B4 /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = slider/resources/framework/GoogleCast.framework; sourceTree = "<group>"; };
 		6BA415BD1941A745008D42B4 /* SlideManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideManagerTests.m; sourceTree = "<group>"; };
 		6BF4AABB1941BA2A00F9AF13 /* KHCCommandChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCCommandChannel.h; path = src/KHCCommandChannel.h; sourceTree = "<group>"; };
@@ -115,15 +121,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B2CF8791948588600EC63B5 /* ChromeCast */ = {
+			isa = PBXGroup;
+			children = (
+				6B08F04D193BA96E002513D4 /* KHCSlideManager.h */,
+				6B08F04E193BA96E002513D4 /* KHCSlideManager.m */,
+				6BF4AABB1941BA2A00F9AF13 /* KHCCommandChannel.h */,
+				6BF4AABC1941BA2A00F9AF13 /* KHCCommandChannel.m */,
+			);
+			name = ChromeCast;
+			sourceTree = "<group>";
+		};
 		6BA815C619387E1600FAEAD6 /* SSP */ = {
 			isa = PBXGroup;
 			children = (
+				6F6835D8193B7AD8001517F2 /* KHCSlideItem.h */,
 				6F6835D6193B7AD8001517F2 /* KHCSISlideshare.h */,
 				6F6835D7193B7AD8001517F2 /* KHCSISlideshare.m */,
-				6F6835D8193B7AD8001517F2 /* KHCSlideItem.h */,
+				6B3A1A00194AE0740008FA9B /* KHCSISpeakerDeck.h */,
+				6B3A1A01194AE0740008FA9B /* KHCSISpeakerDeck.m */,
 				6F6835D9193B7AD8001517F2 /* KHCSlideServiceProvider.h */,
 				6F6835DA193B7AD8001517F2 /* KHCSSPSlideshare.h */,
 				6F6835DB193B7AD8001517F2 /* KHCSSPSlideshare.m */,
+				6B3D1515194AFF98002702E4 /* KHCSSPSpeakerDeck.h */,
+				6B3D1516194AFF98002702E4 /* KHCSSPSpeakerDeck.m */,
 			);
 			name = SSP;
 			sourceTree = "<group>";
@@ -190,6 +211,7 @@
 				6F6835EF193B7B46001517F2 /* resources */,
 				6FEECA5E193869560007B09F /* Supporting Files */,
 				6BA815C619387E1600FAEAD6 /* SSP */,
+				6B2CF8791948588600EC63B5 /* ChromeCast */,
 				6F6835ED193B7B02001517F2 /* Main.storyboard */,
 				6F6835DE193B7AF2001517F2 /* KHCAddSlideNavController.h */,
 				6F6835DF193B7AF2001517F2 /* KHCAddSlideNavController.m */,
@@ -201,12 +223,15 @@
 				6F6835E5193B7AF3001517F2 /* KHCSlideListViewController.m */,
 				6F6835E6193B7AF3001517F2 /* KHCSSPSelectorViewController.h */,
 				6F6835E7193B7AF3001517F2 /* KHCSSPSelectorViewController.m */,
+<<<<<<< HEAD
 				6F7D5A831941BBBF00C8D845 /* KHCSlideSelectorViewController.h */,
 				6F7D5A841941BBBF00C8D845 /* KHCSlideSelectorViewController.m */,
 				6B08F04D193BA96E002513D4 /* KHCSlideManager.h */,
 				6B08F04E193BA96E002513D4 /* KHCSlideManager.m */,
 				6BF4AABB1941BA2A00F9AF13 /* KHCCommandChannel.h */,
 				6BF4AABC1941BA2A00F9AF13 /* KHCCommandChannel.m */,
+=======
+>>>>>>> 7c9efe2863d0c61c0be89afe6f9773fa6ab5fb8d
 			);
 			path = slider;
 			sourceTree = "<group>";
@@ -339,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B3D1517194AFF98002702E4 /* KHCSSPSpeakerDeck.m in Sources */,
 				6F6835E8193B7AF3001517F2 /* KHCAddSlideNavController.m in Sources */,
 				6F6835DD193B7AD8001517F2 /* KHCSSPSlideshare.m in Sources */,
 				6F6835EB193B7AF3001517F2 /* KHCSlideListViewController.m in Sources */,
@@ -346,6 +372,7 @@
 				6B08F04F193BA96E002513D4 /* KHCSlideManager.m in Sources */,
 				6F6835DC193B7AD8001517F2 /* KHCSISlideshare.m in Sources */,
 				6BF4AABD1941BA2A00F9AF13 /* KHCCommandChannel.m in Sources */,
+				6B3A1A02194AE0740008FA9B /* KHCSISpeakerDeck.m in Sources */,
 				6F6835E9193B7AF3001517F2 /* KHCAppDelegate.m in Sources */,
 				6F6835FC193B7BC5001517F2 /* main.m in Sources */,
 				6F7D5A851941BBBF00C8D845 /* KHCSlideSelectorViewController.m in Sources */,
@@ -515,6 +542,12 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "sliderTests/sliderTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+					"-framework",
+					XCTest,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -534,6 +567,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "slider/slider-Prefix.pch";
 				INFOPLIST_FILE = "sliderTests/sliderTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+					"-framework",
+					XCTest,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

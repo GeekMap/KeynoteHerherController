@@ -17,9 +17,11 @@
 
 - (NSArray*) getChromeCastList;
 - (void)connectChromeCastWithName: (NSString*) chromecast_name;
+- (void)deviceDisconnected;
 
-//- (id) initWithSlideItem: (id<KHCSlideItem>) slideItem;
-//- (void) nextPage;
-//- (void) prePage;
-//- (void) currentPage;
+- (void) receiverInitWithSI: (id<KHCSlideItem>)slide_item;
+- (void) receiverUninit;
+- (void) receiverNextPage;
+- (void) receiverPrePage;
+
 @end

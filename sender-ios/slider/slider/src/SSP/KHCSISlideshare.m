@@ -8,7 +8,7 @@
 
 #import "KHCSISlideshare.h"
 
-static NSString* SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare.net/api/oembed/2?url=%@&format=json";
+static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare.net/api/oembed/2?url=%@&format=json";
 
 @implementation KHCSISlideshare
 {
@@ -75,6 +75,20 @@ static NSString* SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare.net/ap
     NSDictionary *res = [NSJSONSerialization JSONObjectWithData:url_data options:NSJSONReadingMutableLeaves error:&error];
     
     return res;
+}
+
+- (NSDictionary*) getSIData
+{
+    NSDictionary* meta = [self getMetadata];
+    NSMutableDictionary* ret = [[NSMutableDictionary alloc] initWithCapacity:5];
+    
+    [ret setValue:[meta objectForKey:@"title"] forKey:@"title"];
+    [ret setValue:[meta objectForKey:@"slide_image_baseurl"] forKey:@"url_prefix"];
+    [ret setValue:[meta objectForKey:@"slide_image_baseurl_suffix"] forKey:@"url_postfix"];
+    [ret setValue:@"1" forKey:@"min_page"];
+    [ret setValue:[meta objectForKey:@"total_slides"] forKey:@"max_page"];
+    
+    return ret;
 }
 
 @end
