@@ -33,11 +33,13 @@
 - (void) testSISlideshare
 {
     KHCSISlideshare* slide_item = [[KHCSISlideshare alloc] initWithURL:@"http://www.slideshare.net/haraldf/business-quotes-for-2011"];
-    NSDictionary *metadata = [slide_item getSIData];
-    
-    for (id key in metadata) {
-        NSLog(@"key: %@, value: %@ \n", key, [metadata objectForKey:key]);
-    }
+    NSLog(@"Title: %@", [slide_item title]);
+    NSLog(@"Author: %@", [slide_item author]);
+    NSLog(@"Cover: %@", [slide_item cover_url]);
+    NSLog(@"UrlPrefix: %@", [slide_item url_prefix]);
+    NSLog(@"UrlPostfix: %@", [slide_item url_postfix]);
+    NSLog(@"MinPage: %d", [slide_item min_page]);
+    NSLog(@"MaxPage: %d", [slide_item max_page]);
 }
 
 
@@ -45,27 +47,27 @@
 {
     NSArray* list = [KHCSSPSlideshare getUserSlideList: @"rashmi"];
     for (KHCSISlideshare* slide_item in list) {
-        NSDictionary *metadata = [slide_item getSIData];
-        NSLog(@"Slide Title: %@\n", [metadata objectForKey:@"title"]);
+        NSLog(@"Title: %@", [slide_item title]);
     }
 }
 
 -(void) testSISpeakerDeck
 {
     KHCSISpeakerDeck* slide_item = [[KHCSISpeakerDeck alloc] initWithURL:@"https://speakerdeck.com/player/03ad1120aa2501313da22a463594f846"];
-    NSDictionary *metadata = [slide_item getSIData];
-    
-    for (id key in metadata) {
-        NSLog(@"key: %@, value: %@ \n", key, [metadata objectForKey:key]);
-    }
+    NSLog(@"Title: %@", [slide_item title]);
+    NSLog(@"Author: %@", [slide_item author]);
+    NSLog(@"Cover: %@", [slide_item cover_url]);
+    NSLog(@"UrlPrefix: %@", [slide_item url_prefix]);
+    NSLog(@"UrlPostfix: %@", [slide_item url_postfix]);
+    NSLog(@"MinPage: %d", [slide_item min_page]);
+    NSLog(@"MaxPage: %d", [slide_item max_page]);
 }
 
 - (void) testSSPSpeakerDeck
 {
     NSArray* list = [KHCSSPSpeakerDeck getUserSlideList: @"shpigford"];
     for (KHCSISpeakerDeck* slide_item in list) {
-        NSDictionary *metadata = [slide_item getSIData];
-        NSLog(@"Slide Title: %@\n", [metadata objectForKey:@"title"]);
+        NSLog(@"Title: %@", [slide_item title]);
     }
 }
 

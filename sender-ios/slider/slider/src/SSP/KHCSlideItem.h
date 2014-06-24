@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @protocol KHCSlideItem <NSObject>
+@property(readonly) NSString* title;
+@property(readonly) NSString* author;
+@property(readonly) NSString* cover_url;
+@property(readonly) NSString* url_prefix;
+@property(readonly) NSString* url_postfix;
+@property(readonly) int min_page;
+@property(readonly) int max_page;
+
 - (id) initWithURL: (NSString*) url;
-- (NSDictionary*) getSIData;
+- (void) refresh_cache;
 @end

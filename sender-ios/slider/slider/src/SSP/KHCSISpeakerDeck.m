@@ -11,6 +11,7 @@
 @implementation KHCSISpeakerDeck
 {
     NSString* base_url;
+    NSDictionary* meta_dict;
 }
 
 - (id) initWithURL: (NSString*) url
@@ -20,11 +21,12 @@
     self = [super init];
     if (self) {
         base_url = url;
+        meta_dict = nil;
     }
     return self;
 }
 
-- (NSDictionary*) getSIData
+- (NSDictionary*) getMetadata
 {
     // https://speakerd.s3.amazonaws.com/presentations/03ad1120aa2501313da22a463594f846/slide_0.jpg
     // NSLog(@"URL: ", base_url);
@@ -45,15 +47,26 @@
                                                  error:&error];
     
     NSString* html = [[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding];
-    // NSLog(@"HTML: %@",html);
+    NSLog(@"HTML: %@",html);
 
     NSRegularExpression *reg;
     NSRange matchRange;
     // get title
-    reg =[NSRegularExpression regularExpressionWithPattern:@"<title>(.+) // Speaker Deck</title>" options:NSRegularExpressionCaseInsensitive error:nil];
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<title>(.+?) // Speaker Deck</title>" options:NSRegularExpressionCaseInsensitive error:nil];
     matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
     NSString* title = [html substringWithRange:matchRange];
 
+    // get author
+    reg =[NSRegularExpression regularExpressionWithPattern:@"Talk by <a href=\"https://speakerdeck.com/(.+?)\"" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* author = [html substringWithRange:matchRange];
+    
+    // get author
+    reg =[NSRegularExpression regularExpressionWithPattern:@"\"thumb\":\"(.+?)\"" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* cover_url = [html substringWithRange:matchRange];
+
+    
     // get hash
     reg =[NSRegularExpression regularExpressionWithPattern:@"https://speakerdeck.com/player/([a-zA-Z0-9]+)$" options:NSRegularExpressionCaseInsensitive error:nil];
     matchRange = [[reg firstMatchInString:base_url options:0 range:NSMakeRange(0, [base_url length])] rangeAtIndex:1];
@@ -69,14 +82,73 @@
 //    NSLog(@"Title: %@", title);
     
     // return
-    NSMutableDictionary* ret = [[NSMutableDictionary alloc] initWithCapacity:5];
+    NSMutableDictionary* ret = [[NSMutableDictionary alloc] initWithCapacity:7];
     [ret setValue:title forKey:@"title"];
+    [ret setValue:author forKey:@"author"];
+    [ret setValue:cover_url forKey:@"cover_url"];
     [ret setValue:[NSString stringWithFormat:@"https://speakerd.s3.amazonaws.com/presentations/%@/slide_", hash] forKey:@"url_prefix"];
     [ret setValue:@".jpg" forKey:@"url_postfix"];
-    [ret setValue:@"0" forKey:@"min_page"];
     [ret setValue:max forKey:@"max_page"];
     
     return ret;
+}
+
+- (void) refresh_cache
+{
+    meta_dict = [self getMetadata];
+}
+
+- (NSString*) title
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"title"];
+}
+
+- (NSString*) author
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"author"];
+}
+
+- (NSString*) cover_url
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"cover_url"];
+}
+
+- (NSString*) url_prefix
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"url_prefix"];
+}
+
+- (NSString*) url_postfix
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"url_postfix"];
+}
+
+- (int) min_page
+{
+    return 0;
+}
+
+- (int) max_page
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [[meta_dict objectForKey:@"max_page"] intValue];
 }
 
 @end
