@@ -11,7 +11,7 @@
 #import "KHCSISlideshare.h"
 
 
-#define TIMESTAMP [NSString stringWithFormat:@"%d",(time_t)[[NSDate date] timeIntervalSince1970]]
+#define TIMESTAMP [NSString stringWithFormat:@"%ld",(time_t)[[NSDate date] timeIntervalSince1970]]
 static NSString *const SLIDESHARE_API_KEY = @"Nr6UMFRO";
 static NSString *const SLIDESHARE_API_SHAREDSECRET = @"YDkAB20Z";
 
@@ -50,7 +50,7 @@ static NSString* SLIDESHARE_GET_SLIDESSHOW_BY_USER_TEMPLATE_URL = @"https://www.
                                                  error:&error];
     
     NSString* xml = [[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding];
-    NSRegularExpression *url_reg = [NSRegularExpression regularExpressionWithPattern:@"<URL>(.+)</URL>" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSRegularExpression *url_reg = [NSRegularExpression regularExpressionWithPattern:@"<URL>(.+?)</URL>" options:NSRegularExpressionCaseInsensitive error:nil];
     NSArray* matches = [url_reg matchesInString:xml options:0 range:NSMakeRange(0, [xml length])];
     
     NSMutableArray* si_array = [[NSMutableArray alloc] init];
@@ -72,7 +72,7 @@ static NSString* SLIDESHARE_GET_SLIDESSHOW_BY_USER_TEMPLATE_URL = @"https://www.
     NSData *data = [input dataUsingEncoding:NSUTF8StringEncoding];
     uint8_t digest[CC_SHA1_DIGEST_LENGTH];
     
-    CC_SHA1(data.bytes, data.length, digest);
+    CC_SHA1(data.bytes, (unsigned int)data.length, digest);
     
     NSMutableString *output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
     

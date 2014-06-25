@@ -8,6 +8,7 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
 
   var is_start = false;
   var sender_id = '';
+  var SLIDE_CANVAS_ID = 'impress';
 
   function KHC(board) {
     console.log('******** KeynoteHerherController ********');
@@ -70,12 +71,25 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
           this.sender_id = senderId;
 
           this.title = message.title;
-          this.url_prefix = message.url_prefix;
-          this.url_postfix = message.url_postfix;
           this.max_page = message.max_page;
           this.min_page = message.min_page;
 
-          $("#slide_title").html(this.title);
+          this._clearAllNode(SLIDE_CANVAS_ID);
+
+          for (var i = message.min_page; i <= message.max_page; i++) {
+            var datax = 1000 * i;
+
+            this._addDivNode(
+              SLIDE_CANVAS_ID, 
+              '', 
+              datax.toString(), 
+              '0', 
+              'background-image:url(' + message.url_prefix + i + message.url_postfix + ');',
+              'step slide'
+            );
+          }
+
+          impress().init();
 
           // show first page
           message.page = message.min_page;
@@ -95,40 +109,29 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
       this.is_start = false;
       this.sender_id = '';
 
-      var slide = $("#slide_spotlight")[0];
-
-      $("#slide_title")[0].style.visibility = 'visible';
-      slide.style.visibility = 'hidden';
-      $("#slide_title").html('._.\\~/');
+      this._clearAllNode(SLIDE_CANVAS_ID);
+      this._addDivNode(SLIDE_CANVAS_ID, '<q>bye ._.\\~/</q>', '', '', '', '');
 
       console.log('</onUninit>');
     },
 
     onGo: function(senderId, message) {
+      var page = parseInt(message.page) - 1;
+
       console.log('<onGo senderId="' + senderId + '">');
       if (!this.is_start){
         this.sendError(senderId, 'slider has not been initialized');
       }
       else if (message.page){
-        if (parseInt(message.page) < parseInt(this.min_page)){
+        if (page < parseInt(this.min_page)-1){
           this.sendError(senderId, 'page number is less than the minimum number: ' + message.page);
         }
-        else if (parseInt(message.page) > parseInt(this.max_page)){
+        else if (page >= parseInt(this.max_page)){
           this.sendError(senderId, 'page number is larger than the maximum number: ' + message.page);
         }
         else {
-          var slide = $("#slide_spotlight")[0];
-
-          if (slide.style.visibility == 'hidden'){
-            console.log('changing visibility...');
-            $("#slide_title")[0].style.visibility = 'hidden';
-            slide.style.visibility = 'visible';
-          }
-          slide.src = this.url_prefix + message.page + this.url_postfix;
-
-          var image = new Image();
-          image.src = slide.src;
-          ColorTunes.launch(image, slide);
+          var api = impress();
+          api.goto(page);
         }
       }
       else {
@@ -143,6 +146,22 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
 
     broadcast: function(message) {
       this.castMessageBus_.broadcast(message);
+    },
+
+    _addDivNode: function(domId, html, x, y, style, className){
+      var div = document.createElement('div');
+      div.className = className;
+      div.setAttribute('data-x', x);
+      div.setAttribute('data-y', y);
+      div.setAttribute('style', style);
+      document.getElementById(domId).appendChild(div);
+    },
+
+    _clearAllNode: function(domId){
+      var canvas = document.getElementById(domId);
+      while (canvas.firstChild) {
+          canvas.removeChild(canvas.firstChild);
+      }
     }
   };
 
