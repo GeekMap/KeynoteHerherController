@@ -8,6 +8,7 @@
 
 #import "KHCSlideListViewController.h"
 #import "KHCAddSlideNavController.h"
+#import "KHCConfirmPageViewController.h"
 
 @interface KHCSlideListViewController ()
 {
@@ -36,11 +37,15 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSlideClicked:)];
     
     slides = [NSMutableArray arrayWithObjects:@"Don't you dare!", @"Yes, I do", @"Head first", nil];
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.tableView setContentOffset:CGPointMake(0, -20)];
+    //adjust search bar location
+    //self.tableView.contentOffset = CGPointMake(0,  searchBar.frame.size.height - self.tableView.contentOffset.y);
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,6 +125,17 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *selectedValue = [slides objectAtIndex:indexPath.row];
+    NSLog(@"%@", selectedValue);
+    
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    KHCConfirmPageViewController *confirmPage = (KHCConfirmPageViewController*) [storyBoard instantiateViewControllerWithIdentifier: @"KHCConfirmPage"];
+    
+    [self.navigationController pushViewController:confirmPage animated:YES];
 }
 
 #pragma SearchBar Delegate

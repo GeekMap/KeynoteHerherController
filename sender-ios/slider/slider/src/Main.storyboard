@@ -118,7 +118,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="2XD-mh-bsX"/>
                     <connections>
+                        <outlet property="searchBar" destination="Gbe-Uo-8Fo" id="pDe-e1-04i"/>
                         <outlet property="searchDisplayController" destination="dwf-UP-VvR" id="egd-YK-yWy"/>
+                        <segue destination="q6u-pP-rV2" kind="push" id="Afn-Me-SbO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1S-02-tCy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -141,6 +143,25 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="665" y="-438"/>
+        </scene>
+        <!--Confirm Page View Controller-->
+        <scene sceneID="VfU-P8-o9W">
+            <objects>
+                <viewController storyboardIdentifier="KHCConfirmPage" id="q6u-pP-rV2" customClass="KHCConfirmPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r2T-ME-HtT"/>
+                        <viewControllerLayoutGuide type="bottom" id="zbe-dD-MyL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AKo-8K-PuK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xZC-9T-78A"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6mP-yg-ikH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="-438"/>
         </scene>
         <!--Add Slide Nav Controller-->
         <scene sceneID="Jbv-wD-aAs">

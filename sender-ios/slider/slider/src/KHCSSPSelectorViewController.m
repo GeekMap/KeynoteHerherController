@@ -60,7 +60,6 @@
 
         [slideSelectorView view];
         [slideSelectorView setTitle:title];
-        NSLog(@"TEST1");
         [self.navigationController pushViewController:slideSelectorView animated:YES];
     }
 }

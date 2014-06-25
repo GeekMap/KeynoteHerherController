@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KHCSlideListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface KHCSlideListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>{
+        IBOutlet UISearchBar *searchBar;
+}
 
 - (IBAction)addSlideClicked:(id)sender;
 @end
