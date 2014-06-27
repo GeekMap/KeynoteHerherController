@@ -28,6 +28,9 @@
 		6F6835FC193B7BC5001517F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835F9193B7BC5001517F2 /* main.m */; };
 		6F7D5A851941BBBF00C8D845 /* KHCSlideSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D5A841941BBBF00C8D845 /* KHCSlideSelectorViewController.m */; };
 		6F9DF5C9195D4DA400E81574 /* KHCSlideControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9DF5C8195D4DA400E81574 /* KHCSlideControllerViewController.m */; };
+		6F9DF5D0195D77EA00E81574 /* arrow-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9DF5CE195D77EA00E81574 /* arrow-down.png */; };
+		6F9DF5D1195D77EA00E81574 /* arrow-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9DF5CF195D77EA00E81574 /* arrow-up.png */; };
+		6F9DF5D5195D7A2400E81574 /* settings-wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9DF5D4195D7A2400E81574 /* settings-wrench.png */; };
 		6FA88136195ACD9800B3870A /* CKTableAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA88135195ACD9800B3870A /* CKTableAlertView.m */; };
 		6FD2AE7E19541C6300A8648C /* KHCConfirmPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2AE7D19541C6300A8648C /* KHCConfirmPageViewController.m */; };
 		6FD2AE8119541CBB00A8648C /* KHCSlideManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2AE8019541CBB00A8648C /* KHCSlideManager.m */; };
@@ -87,6 +90,9 @@
 		6F7D5A841941BBBF00C8D845 /* KHCSlideSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSlideSelectorViewController.m; path = src/KHCSlideSelectorViewController.m; sourceTree = "<group>"; };
 		6F9DF5C7195D4DA400E81574 /* KHCSlideControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideControllerViewController.h; path = src/KHCSlideControllerViewController.h; sourceTree = "<group>"; };
 		6F9DF5C8195D4DA400E81574 /* KHCSlideControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSlideControllerViewController.m; path = src/KHCSlideControllerViewController.m; sourceTree = "<group>"; };
+		6F9DF5CE195D77EA00E81574 /* arrow-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-down.png"; sourceTree = "<group>"; };
+		6F9DF5CF195D77EA00E81574 /* arrow-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-up.png"; sourceTree = "<group>"; };
+		6F9DF5D4195D7A2400E81574 /* settings-wrench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-wrench.png"; sourceTree = "<group>"; };
 		6FA88134195ACD9800B3870A /* CKTableAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKTableAlertView.h; path = CKTableAlert/CKTableAlertView.h; sourceTree = "<group>"; };
 		6FA88135195ACD9800B3870A /* CKTableAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKTableAlertView.m; path = CKTableAlert/CKTableAlertView.m; sourceTree = "<group>"; };
 		6FD2AE7C19541C6300A8648C /* KHCConfirmPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCConfirmPageViewController.h; path = src/KHCConfirmPageViewController.h; sourceTree = "<group>"; };
@@ -169,6 +175,9 @@
 		6F6835F0193B7B46001517F2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6F9DF5CE195D77EA00E81574 /* arrow-down.png */,
+				6F9DF5D4195D7A2400E81574 /* settings-wrench.png */,
+				6F9DF5CF195D77EA00E81574 /* arrow-up.png */,
 				6F6835F1193B7B46001517F2 /* slideshare.png */,
 			);
 			path = images;
@@ -360,8 +369,11 @@
 			files = (
 				6F6835F4193B7BB8001517F2 /* Images.xcassets in Resources */,
 				6F6835F2193B7B46001517F2 /* slideshare.png in Resources */,
+				6F9DF5D1195D77EA00E81574 /* arrow-up.png in Resources */,
 				6F6835EE193B7B02001517F2 /* Main.storyboard in Resources */,
+				6F9DF5D0195D77EA00E81574 /* arrow-down.png in Resources */,
 				6F6835FB193B7BC5001517F2 /* InfoPlist.strings in Resources */,
+				6F9DF5D5195D7A2400E81574 /* settings-wrench.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
