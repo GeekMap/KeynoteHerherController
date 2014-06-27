@@ -109,7 +109,6 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
     slide_max_page = 0;
     slide_min_page = 0;
     [self.cmdChannel sendTextMessage:cmd];
-    [self deviceDisconnected];
 }
 
 - (void) receiverNextPage
@@ -170,7 +169,10 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
     
     [self.deviceManager launchApplication: APP_ID];
     if (callback_obj) {
-        [callback_obj performSelector: callback];
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [callback_obj performSelector: callback withObject:[NSNumber numberWithBool:YES]];
+        #pragma clang diagnostic pop
     }
 
 }
@@ -194,6 +196,12 @@ didFailToConnectToApplicationWithError:(NSError *)error {
 - (void)deviceManager:(GCKDeviceManager *)deviceManager
 didFailToConnectWithError:(GCKError *)error {
     [self showError:error];
+    if (callback_obj) {
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [callback_obj performSelector: callback withObject:[NSNumber numberWithBool:NO]];
+        #pragma clang diagnostic pop
+    }
     [self deviceDisconnected];
 }
 
@@ -217,12 +225,12 @@ didReceiveStatusForApplication:(GCKApplicationMetadata *)applicationMetadata {
 
 #pragma mark - misc
 - (void)showError:(NSError *)error {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
-                                                    message:NSLocalizedString(error.description, nil)
-                                                   delegate:nil
-                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                          otherButtonTitles:nil];
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+//                                                    message:NSLocalizedString(error.description, nil)
+//                                                   delegate:nil
+//                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
+//                                          otherButtonTitles:nil];
+//    [alert show];
 }
 
 @end
