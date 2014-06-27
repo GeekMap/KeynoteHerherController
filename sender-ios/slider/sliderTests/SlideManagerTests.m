@@ -36,13 +36,9 @@
 {
     NSArray* list = [manager getChromeCastList];
     for (NSString* chromecast in list) {
-        NSLog(chromecast);
+        NSLog(@"%@", chromecast);
     }
 }
 
-- (void) testInitReceiver
-{
-    
-}
 
 @end

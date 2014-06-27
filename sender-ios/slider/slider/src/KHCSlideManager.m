@@ -74,8 +74,11 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
 
 - (void) receiverInitWithSI: (id<KHCSlideItem>)slide_item
 {
-    NSDictionary* meta = [slide_item getSIData];
-    [self receiverInitWithTitle:[meta objectForKey:@"title"] urlPrefix:[meta objectForKey:@"url_prefix"] urlPostfix:[meta objectForKey:@"url_postfix"] minPage:[meta objectForKey:@"min_page"] maxPage:[meta objectForKey:@"max_page"]];
+    [self receiverInitWithTitle:[slide_item title]
+                      urlPrefix:[slide_item url_prefix]
+                     urlPostfix:[slide_item url_postfix]
+                        minPage:[NSString stringWithFormat:@"%d", [slide_item min_page]]
+                        maxPage:[NSString stringWithFormat:@"%d", [slide_item max_page]]];
     
 }
 
@@ -167,7 +170,7 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
 didConnectToCastApplication:(GCKApplicationMetadata *)applicationMetadata
             sessionID:(NSString *)sessionID
   launchedApplication:(BOOL)launchedApp {
-    NSLog(@"application has launched %hhd", launchedApp);
+    NSLog(@"application has launched %d", launchedApp);
     
     self.cmdChannel = [[KHCCommandChannel alloc] initWithNamespace:APP_NAMESPACE];
     [self.deviceManager addChannel: self.cmdChannel];

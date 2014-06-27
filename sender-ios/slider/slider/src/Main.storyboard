@@ -22,7 +22,26 @@
             </objects>
             <point key="canvasLocation" x="220" y="-438"/>
         </scene>
-        <!--Selector View Controller - Select Slide Service-->
+        <!--Selector View Controller-->
+        <scene sceneID="8bm-sE-eRR">
+            <objects>
+                <viewController storyboardIdentifier="slideSelectorView" id="Nia-ne-f8y" customClass="KHCSSPSelectorViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jog-Bc-ZuH"/>
+                        <viewControllerLayoutGuide type="bottom" id="CkK-Hb-xPG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jqQ-YM-r34">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ncs-oO-1VO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pmc-Et-lUr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="237"/>
+        </scene>
+        <!--Selector View Controller-->
         <scene sceneID="k4H-uB-hyg">
             <objects>
                 <viewController storyboardIdentifier="KHCSSPSelectorViewController" id="YLS-VF-gMF" customClass="KHCSSPSelectorViewController" sceneMemberID="viewController">
@@ -38,21 +57,25 @@
                                 <rect key="frame" x="60" y="156" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="slideshare.png"/>
-                                <connections>
-                                    <action selector="doneButtonClicked:" destination="5fH-9T-an7" eventType="touchUpInside" id="mCZ-zc-xS7"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Select Slide Service" id="dyf-eW-GnK"/>
+                    <navigationItem key="navigationItem" id="dyf-eW-GnK">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="qdT-nc-D7k">
+                            <connections>
+                                <action selector="cancelButtonClicked:" destination="5fH-9T-an7" id="Gfp-cQ-FFD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btnSlideShare" destination="hrz-hb-KPS" id="2ug-Oz-2jX"/>
+                        <segue destination="Nia-ne-f8y" kind="push" identifier="SelectSlide" id="Akj-fY-dBF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fH-9T-an7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="665" y="237"/>
+            <point key="canvasLocation" x="655" y="237"/>
         </scene>
         <!--Slide List View Controller-->
         <scene sceneID="hFc-MS-yYh">
@@ -93,15 +116,11 @@
                             <outlet property="delegate" destination="Be1-4T-5q0" id="Z30-2h-jRc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2XD-mh-bsX">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="qeX-ul-DjY">
-                            <connections>
-                                <action selector="addSlideClicked:" destination="Be1-4T-5q0" id="E2A-m4-vhr"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="2XD-mh-bsX"/>
                     <connections>
+                        <outlet property="searchBar" destination="Gbe-Uo-8Fo" id="pDe-e1-04i"/>
                         <outlet property="searchDisplayController" destination="dwf-UP-VvR" id="egd-YK-yWy"/>
+                        <segue destination="q6u-pP-rV2" kind="push" id="Afn-Me-SbO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1S-02-tCy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,6 +143,25 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="665" y="-438"/>
+        </scene>
+        <!--Confirm Page View Controller-->
+        <scene sceneID="VfU-P8-o9W">
+            <objects>
+                <viewController storyboardIdentifier="KHCConfirmPage" id="q6u-pP-rV2" customClass="KHCConfirmPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r2T-ME-HtT"/>
+                        <viewControllerLayoutGuide type="bottom" id="zbe-dD-MyL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AKo-8K-PuK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xZC-9T-78A"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6mP-yg-ikH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="-438"/>
         </scene>
         <!--Add Slide Nav Controller-->
         <scene sceneID="Jbv-wD-aAs">

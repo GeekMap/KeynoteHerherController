@@ -13,6 +13,7 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
 @implementation KHCSISlideshare
 {
     NSString* base_url;
+    NSDictionary* meta_dict;
 }
 
 - (id) initWithURL:(NSString *)url
@@ -20,6 +21,7 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     self = [super init];
     if (self) {
         base_url = url;
+        meta_dict = nil;
     }
     return self;
 }
@@ -77,18 +79,61 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     return res;
 }
 
-- (NSDictionary*) getSIData
+- (void) refresh_cache
 {
-    NSDictionary* meta = [self getMetadata];
-    NSMutableDictionary* ret = [[NSMutableDictionary alloc] initWithCapacity:5];
-    
-    [ret setValue:[meta objectForKey:@"title"] forKey:@"title"];
-    [ret setValue:[meta objectForKey:@"slide_image_baseurl"] forKey:@"url_prefix"];
-    [ret setValue:[meta objectForKey:@"slide_image_baseurl_suffix"] forKey:@"url_postfix"];
-    [ret setValue:@"1" forKey:@"min_page"];
-    [ret setValue:[meta objectForKey:@"total_slides"] forKey:@"max_page"];
-    
-    return ret;
+    meta_dict = [self getMetadata];
 }
 
+- (NSString*) title
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"title"];
+}
+
+- (NSString*) author
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"author_name"];
+}
+
+- (NSString*) cover_url
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"thumbnail"];
+}
+
+- (NSString*) url_prefix
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"slide_image_baseurl"];
+}
+
+- (NSString*) url_postfix
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"slide_image_baseurl_suffix"];
+}
+
+- (int) min_page
+{
+    return 1;
+}
+
+- (int) max_page
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [[meta_dict objectForKey:@"total_slides"] intValue];
+}
 @end

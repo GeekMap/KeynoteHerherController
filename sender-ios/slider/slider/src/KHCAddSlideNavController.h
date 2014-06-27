@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface KHCAddSlideNavController : UINavigationController
--(IBAction)doneButtonClicked:(id)sender;
+-(IBAction)cancelButtonClicked:(id)sender;
 @end
