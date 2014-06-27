@@ -144,6 +144,12 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
     
 }
 
+- (void) deviceDisconnect
+{
+    [self.deviceManager stopApplication];
+    [self deviceDisconnected];
+}
+
 - (void) deviceDisconnected {
     self.cmdChannel = nil;
     self.deviceManager = nil;

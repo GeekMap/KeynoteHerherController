@@ -17,7 +17,7 @@
 
 - (NSArray*) getChromeCastList;
 - (void)connectChromeCastWithName: (NSString*) chromecast_name withID:(id) cb_obj withCallback: (SEL)cb ;
-- (void)deviceDisconnected;
+- (void)deviceDisconnect;
 
 - (void) receiverInitWithSI: (id<KHCSlideItem>)slide_item;
 - (void) receiverUninit;

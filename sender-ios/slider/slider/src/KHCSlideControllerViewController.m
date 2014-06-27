@@ -102,7 +102,7 @@
 - (void)didClickEnd: (id)sender
 {
     [_slideMgr receiverUninit];
-    [_slideMgr deviceDisconnected];
+    [_slideMgr deviceDisconnect];
 }
 
 - (void)didReceiveMemoryWarning
