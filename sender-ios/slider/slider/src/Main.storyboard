@@ -120,7 +120,7 @@
                     <connections>
                         <outlet property="searchBar" destination="Gbe-Uo-8Fo" id="pDe-e1-04i"/>
                         <outlet property="searchDisplayController" destination="dwf-UP-VvR" id="egd-YK-yWy"/>
-                        <segue destination="q6u-pP-rV2" kind="push" id="Afn-Me-SbO"/>
+                        <segue destination="q6u-pP-rV2" kind="push" identifier="ConfirmSlide" id="Afn-Me-SbO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1S-02-tCy" userLabel="First Responder" sceneMemberID="firstResponder"/>

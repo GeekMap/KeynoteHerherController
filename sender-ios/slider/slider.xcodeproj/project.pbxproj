@@ -26,7 +26,6 @@
 		6F6835F4193B7BB8001517F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835F3193B7BB8001517F2 /* Images.xcassets */; };
 		6F6835FB193B7BC5001517F2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835F7193B7BC5001517F2 /* InfoPlist.strings */; };
 		6F6835FC193B7BC5001517F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835F9193B7BC5001517F2 /* main.m */; };
-		6F6835FD193B7BC5001517F2 /* slider-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835FA193B7BC5001517F2 /* slider-Info.plist */; };
 		6F7D5A851941BBBF00C8D845 /* KHCSlideSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D5A841941BBBF00C8D845 /* KHCSlideSelectorViewController.m */; };
 		6F9DF5C9195D4DA400E81574 /* KHCSlideControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9DF5C8195D4DA400E81574 /* KHCSlideControllerViewController.m */; };
 		6FA88136195ACD9800B3870A /* CKTableAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA88135195ACD9800B3870A /* CKTableAlertView.m */; };
@@ -361,7 +360,6 @@
 			files = (
 				6F6835F4193B7BB8001517F2 /* Images.xcassets in Resources */,
 				6F6835F2193B7B46001517F2 /* slideshare.png in Resources */,
-				6F6835FD193B7BC5001517F2 /* slider-Info.plist in Resources */,
 				6F6835EE193B7B02001517F2 /* Main.storyboard in Resources */,
 				6F6835FB193B7BC5001517F2 /* InfoPlist.strings in Resources */,
 			);
