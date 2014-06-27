@@ -16,7 +16,7 @@
 @property(nonatomic, strong) GCKDeviceManager* deviceManager;
 
 - (NSArray*) getChromeCastList;
-- (void)connectChromeCastWithName: (NSString*) chromecast_name;
+- (void)connectChromeCastWithName: (NSString*) chromecast_name withID:(id) cb_obj withCallback: (SEL)cb ;
 - (void)deviceDisconnected;
 
 - (void) receiverInitWithSI: (id<KHCSlideItem>)slide_item;

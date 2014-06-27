@@ -16,6 +16,8 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
     int slide_current_page;
     int slide_min_page;
     int slide_max_page;
+    id callback_obj;
+    SEL callback;
 }
 
 @property GCKApplicationMetadata *applicationMetadata;
@@ -53,7 +55,7 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
     return list;
 }
 
-- (void)connectChromeCastWithName: (NSString*) chromecast_name
+- (void)connectChromeCastWithName: (NSString*) chromecast_name withID:(id)cb_obj withCallback:(SEL)cb
 {
     for (GCKDevice* device in self.deviceScanner.devices) {
         if ([chromecast_name isEqualToString:device.friendlyName]) {
@@ -69,6 +71,9 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
 
     self.deviceManager.delegate = self;
     [self.deviceManager connect];
+    callback_obj = cb_obj;
+    callback = cb;
+    
     
 }
 
@@ -164,6 +169,10 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
     NSLog(@"connected!!");
     
     [self.deviceManager launchApplication: APP_ID];
+    if (callback_obj) {
+        [callback_obj performSelector: callback];
+    }
+
 }
 
 - (void)deviceManager:(GCKDeviceManager *)deviceManager
