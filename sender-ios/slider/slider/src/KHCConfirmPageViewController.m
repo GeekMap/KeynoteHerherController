@@ -19,6 +19,7 @@
 @interface KHCConfirmPageViewController ()
 {
     KHCSlideManager *slideManager;
+    NSObject<KHCSlideItem> *_slide;
     Boolean handling_connection;
     CKTableAlertView *alert;
     UIButton *btnChooseChromecast;
@@ -65,6 +66,7 @@
 
 - (void)setSlide: (id<KHCSlideItem>)slide
 {
+    _slide = slide;
 }
 
 #pragma mark - CKTableAlertDelegate
@@ -84,7 +86,7 @@
         [[tableAlert table] deselectRowAtIndexPath:indexPath animated:NO];
         
         // connect to chromecast
-        [slideManager connectChromeCastWithName:cell.textLabel.text withID:self withCallback:@selector(callbackForConnection)];
+        [slideManager connectChromeCastWithName:cell.textLabel.text withID:self withCallback:@selector(callbackForConnection:)];
         
         NSLog(@"Row #%@ selected", [NSNumber numberWithInteger:indexPath.row]);
     } else {
@@ -93,21 +95,22 @@
     }
 }
 
-- (void) callbackForConnection
+- (void) callbackForConnection: (NSNumber*) connected
 {
-//    if (connected) {
-    NSLog(@"Callback Connected");
-    
-    [alert hide];
-    
-    handling_connection = false;
-    
-    KHCSlideControllerViewController *slideController = [[KHCSlideControllerViewController alloc] initWithSlideManager:slideManager];
-    
-    [slideController view];
-    
-    [self.navigationController pushViewController:slideController animated:YES];
-//    }
+    if ([connected intValue] == YES) {
+        NSLog(@"Callback Connected");
+        
+        [alert hide];
+        
+        handling_connection = false;
+        
+        KHCSlideControllerViewController *slideController = [[KHCSlideControllerViewController alloc] initWithSlideManager:slideManager];
+        
+        [slideController view];
+        [slideController setSlide: _slide];
+        
+        [self.navigationController pushViewController:slideController animated:YES];
+    }
 }
 
 - (void) clickedCancelButtonInTableAlert:(CKTableAlertView *)tableAlert

@@ -9,6 +9,8 @@
 #import "KHCSlideListViewController.h"
 #import "KHCAddSlideNavController.h"
 #import "KHCConfirmPageViewController.h"
+#import "KHCSlideItem.h"
+#import "KHCSISlideshare.h"
 
 @interface KHCSlideListViewController ()
 {
@@ -36,7 +38,8 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSlideClicked:)];
     
-    slides = [NSMutableArray arrayWithObjects:@"Don't you dare!", @"Yes, I do", @"Head first", nil];
+    KHCSISlideshare *slide = [[KHCSISlideshare alloc] initWithURL: @"http://www.slideshare.net/haraldf/business-quotes-for-2011"];
+    slides = [NSMutableArray arrayWithObjects:slide, nil];
     
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
@@ -90,14 +93,14 @@
     }
     
     // Display recipe in the table cell
-    NSString *slide = nil;
+    NSObject<KHCSlideItem> *slide = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         slide = [searchResults objectAtIndex:indexPath.row];
     } else {
         slide = [slides objectAtIndex:indexPath.row];
     }
     
-    [cell.textLabel setText:slide];
+    [cell.textLabel setText:slide.title];
     return cell;
 }
 
@@ -135,6 +138,7 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     KHCConfirmPageViewController *confirmPage = (KHCConfirmPageViewController*) [storyBoard instantiateViewControllerWithIdentifier: @"KHCConfirmPage"];
     
+    [confirmPage setSlide:[slides objectAtIndex:indexPath.row]];
     [self.navigationController pushViewController:confirmPage animated:YES];
 }
 

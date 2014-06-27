@@ -14,4 +14,9 @@
     NSLog(@"received message: %@", message);
 }
 
+- (BOOL)sendTextMessage:(NSString *)message
+{
+    NSLog(@"Send cmd: %@", message);
+    return [super sendTextMessage:message];
+}
 @end

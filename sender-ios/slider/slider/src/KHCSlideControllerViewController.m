@@ -8,10 +8,12 @@
 
 #import "KHCSlideControllerViewController.h"
 #import "KHCSlideManager.h"
+#import "KHCSlideItem.h"
 
 @interface KHCSlideControllerViewController ()
 {
     KHCSlideManager *_slideMgr;
+    NSObject<KHCSlideItem> *_slide;
 }
 @end
 
@@ -56,12 +58,16 @@
     [btnUp setBackgroundColor:[UIColor colorWithRed:0.6 green:0.6 blue:1.0 alpha:1.0]];
     [btnUp setTitle:@"page up" forState:UIControlStateNormal];
     [btnUp setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [btnUp addTarget:self action:@selector(didClickPageUp:) forControlEvents:UIControlEventTouchUpInside];
+    
     UIButton *btnDown = [UIButton buttonWithType:UIButtonTypeCustom];
     btnDown.frame = CGRectMake(30, 120, 200, 40);
     [btnDown setBackgroundColor:[UIColor colorWithRed:0.6 green:0.6 blue:1.0 alpha:1.0]];
     [btnDown setTitle:@"page up" forState:UIControlStateNormal];
     [btnDown setTitle:@"page down" forState:UIControlStateNormal];
     [btnDown setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [btnDown addTarget:self action:@selector(didClickPageDown:) forControlEvents:UIControlEventTouchUpInside];
+    
     UIButton *btnEnd = [UIButton buttonWithType:UIButtonTypeCustom];
     btnEnd.frame = CGRectMake(30, 170, 200, 40);
     [btnEnd.layer setCornerRadius:5.0f];
@@ -73,16 +79,40 @@
     [self.view addSubview:btnUp];
     [self.view addSubview:btnDown];
     [self.view addSubview:btnEnd];
+    
+    [self startPlay];
+}
+
+- (void)startPlay
+{
+    NSLog(@"start play slide with title: %@", _slide.title);
+    [_slideMgr receiverInitWithSI: _slide];
+}
+
+- (void)didClickPageUp: (id)sender
+{
+    [_slideMgr receiverPrePage];
+}
+
+- (void)didClickPageDown: (id)sender
+{
+    [_slideMgr receiverNextPage];
 }
 
 - (void)didClickEnd: (id)sender
 {
+    [_slideMgr receiverUninit];
     [_slideMgr deviceDisconnected];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)setSlide: (id<KHCSlideItem>)slide
+{
+    _slide = slide;
 }
 
 @end

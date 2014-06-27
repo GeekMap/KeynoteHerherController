@@ -12,5 +12,6 @@
 @interface KHCSlideControllerViewController : UIViewController
 
 - (id) initWithSlideManager: (KHCSlideManager*) slideMgr;
+- (void)setSlide: (id<KHCSlideItem>)slide;
 
 @end

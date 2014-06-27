@@ -9,7 +9,7 @@
 #import "KHCSlideManager.h"
 #import "KHCCommandChannel.h"
 
-static NSString *const APP_ID = @"43049BBC";
+static NSString *const APP_ID = @"6EC34210";
 static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-herher-controller";
 
 @interface KHCSlideManager (){
@@ -168,13 +168,6 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
     NSLog(@"connected!!");
     
     [self.deviceManager launchApplication: APP_ID];
-    if (callback_obj) {
-        #pragma clang diagnostic push
-        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [callback_obj performSelector: callback withObject:[NSNumber numberWithBool:YES]];
-        #pragma clang diagnostic pop
-    }
-
 }
 
 - (void)deviceManager:(GCKDeviceManager *)deviceManager
@@ -185,6 +178,13 @@ didConnectToCastApplication:(GCKApplicationMetadata *)applicationMetadata
     
     self.cmdChannel = [[KHCCommandChannel alloc] initWithNamespace:APP_NAMESPACE];
     [self.deviceManager addChannel: self.cmdChannel];
+
+    if (callback_obj) {
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [callback_obj performSelector: callback withObject:[NSNumber numberWithBool:YES]];
+    #pragma clang diagnostic pop
+    }
 }
 
 - (void)deviceManager:(GCKDeviceManager *)deviceManager
