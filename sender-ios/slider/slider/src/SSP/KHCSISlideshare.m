@@ -26,6 +26,15 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     return self;
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:base_url forKey:@"base_url"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [self initWithURL:[decoder decodeObjectForKey:@"base_url"]];
+    return self;
+}
+
 - (NSDictionary*) getMetadata
 {
     /*

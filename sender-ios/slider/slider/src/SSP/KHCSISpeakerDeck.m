@@ -26,6 +26,15 @@
     return self;
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:base_url forKey:@"base_url"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [self initWithURL:[decoder decodeObjectForKey:@"base_url"]];
+    return self;
+}
+
 - (NSDictionary*) getMetadata
 {
     // https://speakerd.s3.amazonaws.com/presentations/03ad1120aa2501313da22a463594f846/slide_0.jpg

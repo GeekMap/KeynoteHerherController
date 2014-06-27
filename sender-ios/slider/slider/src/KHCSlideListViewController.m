@@ -38,10 +38,9 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSlideClicked:)];
     
-    KHCSISlideshare *slide = [[KHCSISlideshare alloc] initWithURL: @"http://www.slideshare.net/haraldf/business-quotes-for-2011"];
-    slides = [NSMutableArray arrayWithObjects:slide, nil];
+    [self loadData];
     
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,8 +60,39 @@
 {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     KHCAddSlideNavController *addSlideViewController = (KHCAddSlideNavController*) [storyBoard instantiateViewControllerWithIdentifier: @"KHCAddSlideNavController"];
-
+    
+    KHCSISlideshare *slide = [[KHCSISlideshare alloc] initWithURL: @"http://www.slideshare.net/haraldf/business-quotes-for-2011"];
+    [slides addObject:slide];
+    [self saveData];
+    NSLog(@"add new slide");
+    [self.tableView reloadData];
     [self presentViewController:addSlideViewController animated:YES completion:NULL];
+}
+
+- (void) loadData
+{
+    NSData *savedArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"slideArray"];
+    if (savedArray != nil)
+    {
+        NSLog(@"Use stored data.");
+        NSArray *oldArray = [NSKeyedUnarchiver unarchiveObjectWithData:savedArray];
+        if (oldArray != nil) {
+            slides = [[NSMutableArray alloc] initWithArray:oldArray];
+        } else {
+            slides = [[NSMutableArray alloc] init];
+        }
+        NSLog(@"Get");
+    }
+    else
+    {
+        NSLog(@"Use default");
+        slides = [NSMutableArray arrayWithObjects: nil];
+    }
+}
+
+- (void) saveData
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:slides] forKey:@"slideArray"];
 }
 
 #pragma mark - Table view data source
