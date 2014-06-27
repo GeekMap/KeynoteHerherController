@@ -51,8 +51,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6B08F04D193BA96E002513D4 /* KHCSlideManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideManager.h; path = "/Users/chucklin/workspace/KeynoteHerherController/sender-ios/slider/slider/KHCSlideManager.h"; sourceTree = "<absolute>"; };
-		6B08F04E193BA96E002513D4 /* KHCSlideManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSlideManager.m; path = "/Users/chucklin/workspace/KeynoteHerherController/sender-ios/slider/slider/KHCSlideManager.m"; sourceTree = "<absolute>"; };
 		6B08F050193BAA24002513D4 /* SSPTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPTests.m; sourceTree = "<group>"; };
 		6B3A1A00194AE0740008FA9B /* KHCSISpeakerDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSISpeakerDeck.h; path = src/SSP/KHCSISpeakerDeck.h; sourceTree = "<group>"; };
 		6B3A1A01194AE0740008FA9B /* KHCSISpeakerDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSISpeakerDeck.m; path = src/SSP/KHCSISpeakerDeck.m; sourceTree = "<group>"; };
@@ -134,8 +132,6 @@
 			children = (
 				6FD2AE7F19541CBB00A8648C /* KHCSlideManager.h */,
 				6FD2AE8019541CBB00A8648C /* KHCSlideManager.m */,
-				6B08F04D193BA96E002513D4 /* KHCSlideManager.h */,
-				6B08F04E193BA96E002513D4 /* KHCSlideManager.m */,
 				6BF4AABB1941BA2A00F9AF13 /* KHCCommandChannel.h */,
 				6BF4AABC1941BA2A00F9AF13 /* KHCCommandChannel.m */,
 			);
