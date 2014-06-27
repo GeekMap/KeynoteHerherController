@@ -28,6 +28,7 @@
 		6F6835FC193B7BC5001517F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835F9193B7BC5001517F2 /* main.m */; };
 		6F6835FD193B7BC5001517F2 /* slider-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835FA193B7BC5001517F2 /* slider-Info.plist */; };
 		6F7D5A851941BBBF00C8D845 /* KHCSlideSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D5A841941BBBF00C8D845 /* KHCSlideSelectorViewController.m */; };
+		6F9DF5C9195D4DA400E81574 /* KHCSlideControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9DF5C8195D4DA400E81574 /* KHCSlideControllerViewController.m */; };
 		6FA88136195ACD9800B3870A /* CKTableAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA88135195ACD9800B3870A /* CKTableAlertView.m */; };
 		6FD2AE7E19541C6300A8648C /* KHCConfirmPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2AE7D19541C6300A8648C /* KHCConfirmPageViewController.m */; };
 		6FD2AE8119541CBB00A8648C /* KHCSlideManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2AE8019541CBB00A8648C /* KHCSlideManager.m */; };
@@ -85,6 +86,8 @@
 		6F6835FA193B7BC5001517F2 /* slider-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "slider-Info.plist"; sourceTree = "<group>"; };
 		6F7D5A831941BBBF00C8D845 /* KHCSlideSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideSelectorViewController.h; path = src/KHCSlideSelectorViewController.h; sourceTree = "<group>"; };
 		6F7D5A841941BBBF00C8D845 /* KHCSlideSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSlideSelectorViewController.m; path = src/KHCSlideSelectorViewController.m; sourceTree = "<group>"; };
+		6F9DF5C7195D4DA400E81574 /* KHCSlideControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideControllerViewController.h; path = src/KHCSlideControllerViewController.h; sourceTree = "<group>"; };
+		6F9DF5C8195D4DA400E81574 /* KHCSlideControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSlideControllerViewController.m; path = src/KHCSlideControllerViewController.m; sourceTree = "<group>"; };
 		6FA88134195ACD9800B3870A /* CKTableAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKTableAlertView.h; path = CKTableAlert/CKTableAlertView.h; sourceTree = "<group>"; };
 		6FA88135195ACD9800B3870A /* CKTableAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKTableAlertView.m; path = CKTableAlert/CKTableAlertView.m; sourceTree = "<group>"; };
 		6FD2AE7C19541C6300A8648C /* KHCConfirmPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCConfirmPageViewController.h; path = src/KHCConfirmPageViewController.h; sourceTree = "<group>"; };
@@ -245,6 +248,8 @@
 				6BF4AABC1941BA2A00F9AF13 /* KHCCommandChannel.m */,
 				6FD2AE7C19541C6300A8648C /* KHCConfirmPageViewController.h */,
 				6FD2AE7D19541C6300A8648C /* KHCConfirmPageViewController.m */,
+				6F9DF5C7195D4DA400E81574 /* KHCSlideControllerViewController.h */,
+				6F9DF5C8195D4DA400E81574 /* KHCSlideControllerViewController.m */,
 			);
 			path = slider;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 				6B3D1517194AFF98002702E4 /* KHCSSPSpeakerDeck.m in Sources */,
 				6F6835E8193B7AF3001517F2 /* KHCAddSlideNavController.m in Sources */,
 				6F6835DD193B7AD8001517F2 /* KHCSSPSlideshare.m in Sources */,
+				6F9DF5C9195D4DA400E81574 /* KHCSlideControllerViewController.m in Sources */,
 				6F6835EB193B7AF3001517F2 /* KHCSlideListViewController.m in Sources */,
 				6F6835EC193B7AF3001517F2 /* KHCSSPSelectorViewController.m in Sources */,
 				6F6835DC193B7AD8001517F2 /* KHCSISlideshare.m in Sources */,

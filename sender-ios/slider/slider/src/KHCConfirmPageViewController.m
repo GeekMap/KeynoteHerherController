@@ -9,6 +9,7 @@
 #import "KHCConfirmPageViewController.h"
 #import "KHCSlideItem.h"
 #import "KHCSlideManager.h"
+#import "KHCSlideControllerViewController.h"
 #import "CKTableAlertView.h"
 
 #define PlayBtnHeight 40
@@ -19,6 +20,8 @@
 {
     KHCSlideManager *slideManager;
     Boolean handling_connection;
+    CKTableAlertView *alert;
+    UIButton *btnChooseChromecast;
 }
 @end
 
@@ -33,29 +36,18 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
 
-    UIButton *btnChooseChromecast = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btnChooseChromecast = [UIButton buttonWithType:UIButtonTypeCustom];
     btnChooseChromecast.frame = CGRectMake(PlayBtnPaddingX,
-                               screenHeight - PlayBtnHeight - PlayBtnPaddingY - 50,
+                               screenHeight - PlayBtnHeight - PlayBtnPaddingY,
                                screenWidth - PlayBtnPaddingX*2,
                                PlayBtnHeight);
     [btnChooseChromecast.layer setCornerRadius:5.0f];
     
     [btnChooseChromecast setBackgroundColor:[UIColor colorWithRed:0.6 green:0.6 blue:1.0 alpha:1.0]];
-    [btnChooseChromecast setTitle:@"..." forState:UIControlStateNormal];
+    [btnChooseChromecast setTitle:@"Select ChromeCast & Play" forState:UIControlStateNormal];
     [btnChooseChromecast setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btnChooseChromecast addTarget:self action:@selector(chooseChromecast:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnChooseChromecast];
-    
-    UIButton *btnPlay = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    btnPlay.frame = CGRectMake(PlayBtnPaddingX,
-                                screenHeight - PlayBtnHeight - PlayBtnPaddingY,
-                                screenWidth - PlayBtnPaddingX*2,
-                                PlayBtnHeight);
-    [btnPlay.layer setCornerRadius:5.0f];
-    [btnPlay setBackgroundColor:[UIColor redColor]];
-    [btnPlay setTitle:@"Play" forState:UIControlStateNormal];
-    [btnPlay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.view addSubview:btnPlay];
     
     slideManager = [[KHCSlideManager alloc] init];
     
@@ -64,8 +56,6 @@
 
 - (void)chooseChromecast: (id)sender
 {
-    CKTableAlertView *alert;
-
     alert = [[CKTableAlertView alloc] initWithArray: [slideManager getChromeCastList] title:@"Select your Chromecast" hasCancelButton:YES];
     
 	[alert setDelegate:self];
@@ -73,15 +63,8 @@
 	[alert show];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)setSlide: (id<KHCSlideItem>)slide
 {
-
 }
 
 #pragma mark - CKTableAlertDelegate
@@ -101,12 +84,30 @@
         [[tableAlert table] deselectRowAtIndexPath:indexPath animated:NO];
         
         // connect to chromecast
+        [slideManager connectChromeCastWithName:cell.textLabel.text withID:self withCallback:@selector(callbackForConnection)];
         
         NSLog(@"Row #%@ selected", [NSNumber numberWithInteger:indexPath.row]);
     } else {
         NSLog(@"Currently handling another cell");
         [[tableAlert table] deselectRowAtIndexPath:indexPath animated:NO];
     }
+}
+
+- (void) callbackForConnection
+{
+//    if (connected) {
+    NSLog(@"Callback Connected");
+    
+    [alert hide];
+    
+    handling_connection = false;
+    
+    KHCSlideControllerViewController *slideController = [[KHCSlideControllerViewController alloc] initWithSlideManager:slideManager];
+    
+    [slideController view];
+    
+    [self.navigationController pushViewController:slideController animated:YES];
+//    }
 }
 
 - (void) clickedCancelButtonInTableAlert:(CKTableAlertView *)tableAlert
