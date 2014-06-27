@@ -77,7 +77,7 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
           this._clearAllNode(SLIDE_CANVAS_ID);
 
           for (var i = message.min_page; i <= message.max_page; i++) {
-            var datax = 1000 * i;
+            var datax = 1000 * i; //
 
             this._addDivNode(
               SLIDE_CANVAS_ID, 
