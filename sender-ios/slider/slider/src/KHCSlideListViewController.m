@@ -11,11 +11,13 @@
 #import "KHCConfirmPageViewController.h"
 #import "KHCSlideItem.h"
 #import "KHCSISlideshare.h"
+#import "KHCSlideTableViewCell.h"
 
 @interface KHCSlideListViewController ()
 {
     NSMutableArray *slides;
     NSArray *searchResults;
+    NSString *cellIdentifier;
 }
 
 @end
@@ -38,16 +40,12 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSlideClicked:)];
     
+    cellIdentifier = @"slideCell";
+    [self.tableView registerClass:[KHCSlideTableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    
     [self loadData];
     
     //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    //adjust search bar location
-    //self.tableView.contentOffset = CGPointMake(0,  searchBar.frame.size.height - self.tableView.contentOffset.y);
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,31 +59,31 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     KHCAddSlideNavController *addSlideViewController = (KHCAddSlideNavController*) [storyBoard instantiateViewControllerWithIdentifier: @"KHCAddSlideNavController"];
     
-    KHCSISlideshare *slide = [[KHCSISlideshare alloc] initWithURL: @"http://www.slideshare.net/haraldf/business-quotes-for-2011"];
-    [slides addObject:slide];
-    [self saveData];
-    NSLog(@"add new slide");
-    [self.tableView reloadData];
+//    KHCSISlideshare *slide = [[KHCSISlideshare alloc] initWithURL: @"http://www.slideshare.net/haraldf/business-quotes-for-2011"];
+//    [slides addObject:slide];
+//    [self saveData];
+//    NSLog(@"add new slide");
+//    [self.tableView reloadData];
     [self presentViewController:addSlideViewController animated:YES completion:NULL];
 }
 
 - (void) loadData
 {
+    NSLog(@"Load user stored data.");
     NSData *savedArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"slideArray"];
     if (savedArray != nil)
     {
-        NSLog(@"Use stored data.");
         NSArray *oldArray = [NSKeyedUnarchiver unarchiveObjectWithData:savedArray];
         if (oldArray != nil) {
             slides = [[NSMutableArray alloc] initWithArray:oldArray];
         } else {
             slides = [[NSMutableArray alloc] init];
         }
-        NSLog(@"Get");
+        NSLog(@"Loaded successfully.");
     }
     else
     {
-        NSLog(@"Use default");
+        NSLog(@"No saved data.");
         slides = [NSMutableArray arrayWithObjects: nil];
     }
 }
@@ -114,23 +112,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"slideCell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    KHCSlideTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[KHCSlideTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    // Display recipe in the table cell
+    // Display slide info in the tablecell
     NSObject<KHCSlideItem> *slide = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         slide = [searchResults objectAtIndex:indexPath.row];
     } else {
         slide = [slides objectAtIndex:indexPath.row];
     }
+
+    NSString *image_url = [NSString stringWithFormat:@"http:%@", slide.cover_url];
     
-    [cell.textLabel setText:slide.title];
+    [cell.titleLabel setText:slide.title];
+    [cell.coverImageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
+    [cell.pageNumLabel setText:[NSString stringWithFormat:@"Pages: %d", (slide.max_page-slide.min_page+1)]];
     return cell;
 }
 
@@ -146,9 +147,10 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [slides removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self saveData];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath

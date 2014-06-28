@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface KHCSSPSelectorViewController : UIViewController
-{
-    IBOutlet UIButton *btnSlideShare;
-}
+
 @end

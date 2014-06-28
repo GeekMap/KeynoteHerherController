@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KHCSlideSelectorViewController : UINavigationController
+@interface KHCSlideSelectorViewController : UIViewController
+
+@property (nonatomic, retain) NSString *sspName;
+@property (nonatomic, retain) NSString *userName;
 
 @end

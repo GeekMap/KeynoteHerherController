@@ -7,19 +7,22 @@
 //
 
 #import "KHCSlideSelectorViewController.h"
+#import "KHCSSPSlideshare.h"
+#import "KHCSlideItem.h"
 
 @interface KHCSlideSelectorViewController ()
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
 @implementation KHCSlideSelectorViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+        [view setBackgroundColor:[UIColor whiteColor]];
+        self.view = view;
     }
     return self;
 }
@@ -32,17 +35,32 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    CGRect frame = CGRectMake (20.0, 10.0, 80, 80);
-    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:frame];
-    [self.view addSubview:self.activityIndicatorView];
+
+    //size helper
+    CGSize size = self.view.frame.size;
     
-    [self.activityIndicatorView startAnimating];
+    UIActivityIndicatorView *_activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _activityIndicatorView.center = CGPointMake(size.width / 2.0, size.height / 2.0);
+    [_activityIndicatorView startAnimating];
+    [self.view addSubview:_activityIndicatorView];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewDidAppear:animated];
+
+    NSLog(@"SSP name: %@", _sspName);
+    NSLog(@"User name: %@", _userName);
+    
+    if ([_sspName isEqualToString: @"SlideShare"]) {
+        NSLog(@"Hi");
+        NSArray *slides = [KHCSSPSlideshare getUserSlideList:self.userName];
+        NSLog(@"Hi again");
+        for (NSObject<KHCSlideItem> *slide in slides) {
+            NSLog(@"Slide title: %@", slide.title);
+        }
+        NSLog(@"End printing");
+    }
 }
 
 @end

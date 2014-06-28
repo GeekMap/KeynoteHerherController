@@ -52,13 +52,6 @@
                     <view key="view" contentMode="scaleToFill" id="A7d-OM-0W3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrz-hb-KPS">
-                                <rect key="frame" x="60" y="156" width="200" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="slideshare.png"/>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="dyf-eW-GnK">
@@ -69,7 +62,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="btnSlideShare" destination="hrz-hb-KPS" id="2ug-Oz-2jX"/>
                         <segue destination="Nia-ne-f8y" kind="push" identifier="SelectSlide" id="Akj-fY-dBF"/>
                     </connections>
                 </viewController>
@@ -182,9 +174,6 @@
             <point key="canvasLocation" x="220" y="237"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="slideshare.png" width="550" height="150"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
