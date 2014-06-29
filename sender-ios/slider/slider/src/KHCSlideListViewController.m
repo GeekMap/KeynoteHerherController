@@ -59,11 +59,11 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     KHCAddSlideNavController *addSlideViewController = (KHCAddSlideNavController*) [storyBoard instantiateViewControllerWithIdentifier: @"KHCAddSlideNavController"];
     
-//    KHCSISlideshare *slide = [[KHCSISlideshare alloc] initWithURL: @"http://www.slideshare.net/haraldf/business-quotes-for-2011"];
-//    [slides addObject:slide];
-//    [self saveData];
-//    NSLog(@"add new slide");
-//    [self.tableView reloadData];
+    KHCSISlideshare *slide = [[KHCSISlideshare alloc] initWithURL: @"http://www.slideshare.net/haraldf/business-quotes-for-2011"];
+    [slides addObject:slide];
+    [self saveData];
+    NSLog(@"add new slide");
+    [self.tableView reloadData];
     [self presentViewController:addSlideViewController animated:YES completion:NULL];
 }
 
@@ -130,7 +130,7 @@
     NSString *image_url = [NSString stringWithFormat:@"http:%@", slide.cover_url];
     
     [cell.titleLabel setText:slide.title];
-    [cell.coverImageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
+    [cell.imageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
     [cell.pageNumLabel setText:[NSString stringWithFormat:@"Pages: %d", (slide.max_page-slide.min_page+1)]];
     return cell;
 }

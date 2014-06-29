@@ -11,7 +11,6 @@
 @interface KHCSlideTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UIImageView *coverImageView;
 @property (strong, nonatomic) UILabel *pageNumLabel;
 
 @end

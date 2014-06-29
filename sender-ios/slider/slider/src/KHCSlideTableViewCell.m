@@ -18,23 +18,40 @@
         CGSize size = self.contentView.frame.size;
 
         // Initialize UI units
-        self.coverImageView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, size.height, size.height)];
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(size.height+4, 0, size.width - size.height, size.height - 16.0)];
         self.pageNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(size.height+4, size.height - 16.0, size.width - size.height, 16)];
         
         // Configure Main Label
-        [self.coverImageView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.titleLabel setFont:[UIFont boldSystemFontOfSize:20.0]];
         [self.titleLabel setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
         [self.pageNumLabel setFont:[UIFont systemFontOfSize:12.0]];
         [self.pageNumLabel setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
         
         // Add Main Label to Content View
-        [self.contentView addSubview:self.coverImageView];
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.pageNumLabel];
+        
+        self.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0);
     }
     return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+
+    if (self.editing) {
+        CGRect bounds = self.bounds;
+        CGSize size = self.contentView.frame.size;
+        self.imageView.frame = CGRectMake(bounds.origin.x + 2, 0, size.height, size.height);
+        self.imageView.bounds = CGRectMake(bounds.origin.x + 2, 0, size.height, size.height);
+    } else {
+        CGSize size = self.contentView.frame.size;
+        self.imageView.frame = CGRectMake(2, 0, size.height, size.height);
+        self.imageView.bounds = CGRectMake(2, 0, size.height, size.height);
+    }
+
 }
 
 - (void)awakeFromNib
