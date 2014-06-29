@@ -134,10 +134,8 @@
         slide = [slides objectAtIndex:indexPath.row];
     }
 
-    NSString *image_url = [slide cover_url];
-    
     [cell.titleLabel setText:slide.title];
-    [cell.imageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];
+//    [cell.imageView setImage:[UIImage imageWitzzhData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[slide cover_url]]]]];
     [cell.pageNumLabel setText:[NSString stringWithFormat:@"Pages: %d", (slide.max_page-slide.min_page+1)]];
     return cell;
 }
