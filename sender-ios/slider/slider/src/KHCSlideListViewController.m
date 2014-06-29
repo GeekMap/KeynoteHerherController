@@ -177,7 +177,12 @@
 #pragma SearchBar Delegate
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[cd] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithBlock:^BOOL(id<KHCSlideItem> evaluatedObject, NSDictionary *bindings) {
+        NSString *title = [evaluatedObject.title lowercaseString];
+        NSString *searchString = [searchText lowercaseString];
+        return [title rangeOfString:searchString].location != NSNotFound;
+    }];
+
     searchResults = [slides filteredArrayUsingPredicate:resultPredicate];
 }
 
