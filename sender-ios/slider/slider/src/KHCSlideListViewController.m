@@ -12,6 +12,7 @@
 #import "KHCSlideItem.h"
 #import "KHCSISlideshare.h"
 #import "KHCSlideTableViewCell.h"
+#import "KHCSISpeakerDeck.h"
 
 @interface KHCSlideListViewController ()
 {
@@ -59,8 +60,14 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     KHCAddSlideNavController *addSlideViewController = (KHCAddSlideNavController*) [storyBoard instantiateViewControllerWithIdentifier: @"KHCAddSlideNavController"];
     
+    // example
     KHCSISlideshare *slide = [[KHCSISlideshare alloc] initWithURL: @"http://www.slideshare.net/haraldf/business-quotes-for-2011"];
     [slides addObject:slide];
+    slide = [[KHCSISlideshare alloc] initWithURL: @"http://http://www.slideshare.net/jierenshih/2014-device-appslider56"];
+    [slides addObject:slide];
+    KHCSISpeakerDeck *slide_sd = [[KHCSISpeakerDeck alloc] initWithURL:@"https://speakerdeck.com/player/03ad1120aa2501313da22a463594f846"];
+    [slides addObject:slide_sd];
+
     [self saveData];
     NSLog(@"add new slide");
     [self.tableView reloadData];
@@ -127,7 +134,7 @@
         slide = [slides objectAtIndex:indexPath.row];
     }
 
-    NSString *image_url = [NSString stringWithFormat:@"http:%@", slide.cover_url];
+    NSString *image_url = [slide cover_url];
     
     [cell.titleLabel setText:slide.title];
     [cell.imageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]]];

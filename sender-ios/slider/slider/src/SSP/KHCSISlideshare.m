@@ -114,7 +114,7 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     if (meta_dict == nil) {
         [self refresh_cache];
     }
-    return [meta_dict objectForKey:@"thumbnail"];
+    return [NSString stringWithFormat:@"http:%@",[meta_dict objectForKey:@"thumbnail"]];
 }
 
 - (NSString*) url_prefix
@@ -122,7 +122,7 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     if (meta_dict == nil) {
         [self refresh_cache];
     }
-    return [meta_dict objectForKey:@"slide_image_baseurl"];
+    return [NSString stringWithFormat:@"http:%@",[meta_dict objectForKey:@"slide_image_baseurl"]];
 }
 
 - (NSString*) url_postfix
