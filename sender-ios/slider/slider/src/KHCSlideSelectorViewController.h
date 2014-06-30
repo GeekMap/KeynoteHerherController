@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KHCSlideSelectorViewController : UIViewController
+@interface KHCSlideSelectorViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, retain) NSString *sspName;
 @property (nonatomic, retain) NSString *userName;

@@ -46,6 +46,8 @@
     
     [self loadData];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addSlide:) name:@"addSlide" object:nil];
+
     //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
@@ -55,22 +57,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)addSlideClicked:(id)sender
+- (void)addSlideClicked:(id)sender
 {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     KHCAddSlideNavController *addSlideViewController = (KHCAddSlideNavController*) [storyBoard instantiateViewControllerWithIdentifier: @"KHCAddSlideNavController"];
-    
-    // example
-    KHCSISlideshare *slide = [[KHCSISlideshare alloc] initWithURL: @"http://www.slideshare.net/haraldf/business-quotes-for-2011"];
-    [slides addObject:slide];
-    slide = [[KHCSISlideshare alloc] initWithURL: @"http://http://www.slideshare.net/jierenshih/2014-device-appslider56"];
-    [slides addObject:slide];
-    KHCSISpeakerDeck *slide_sd = [[KHCSISpeakerDeck alloc] initWithURL:@"https://speakerdeck.com/player/03ad1120aa2501313da22a463594f846"];
-    [slides addObject:slide_sd];
 
-    [self saveData];
-    NSLog(@"add new slide");
-    [self.tableView reloadData];
     [self presentViewController:addSlideViewController animated:YES completion:NULL];
 }
 
@@ -201,5 +192,14 @@
                                                      selectedScopeButtonIndex]]];
     
     return YES;
+}
+
+#pragma NoficationCenter Events
+- (void) addSlide:(NSNotification*) notification
+{
+    NSObject<KHCSlideItem> *slide = [notification object];
+    [slides addObject:slide];
+    [self saveData];
+    [self.tableView reloadData];
 }
 @end
