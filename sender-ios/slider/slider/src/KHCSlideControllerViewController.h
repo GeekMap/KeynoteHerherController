@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KHCSlideManager.h"
 
-@interface KHCSlideControllerViewController : UIViewController
+@interface KHCSlideControllerViewController : UIViewController <UIActionSheetDelegate>
 
 - (id) initWithSlideManager: (KHCSlideManager*) slideMgr;
 - (void)setSlide: (id<KHCSlideItem>)slide;

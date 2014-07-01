@@ -72,16 +72,16 @@
     [btnDown setImage:[UIImage imageNamed:@"arrow-down.png"] forState:UIControlStateNormal];
     [btnDown addTarget:self action:@selector(didClickPageDown:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *btnEnd = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnEnd.frame = CGRectMake(0, statusbarHeight, 100, 130);
-    btnEnd.layer.borderWidth = 0.5f;
-    btnEnd.layer.borderColor = [[UIColor colorWithRed:0.6 green:0.6 blue:1.0 alpha:1.0] CGColor];
-    [btnEnd setImage:[UIImage imageNamed:@"settings-wrench.png"] forState:UIControlStateNormal];
-    [btnEnd addTarget:self action:@selector(didClickEnd:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *btnTooldom = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnTooldom.frame = CGRectMake(0, statusbarHeight, 100, 130);
+    btnTooldom.layer.borderWidth = 0.5f;
+    btnTooldom.layer.borderColor = [[UIColor colorWithRed:0.6 green:0.6 blue:1.0 alpha:1.0] CGColor];
+    [btnTooldom setImage:[UIImage imageNamed:@"settings-wrench.png"] forState:UIControlStateNormal];
+    [btnTooldom addTarget:self action:@selector(didClickTooldom:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:btnUp];
     [self.view addSubview:btnDown];
-    [self.view addSubview:btnEnd];
+    [self.view addSubview:btnTooldom];
     
     [self startPlay];
 }
@@ -102,13 +102,12 @@
     [_slideMgr receiverNextPage];
 }
 
-- (void)didClickEnd: (id)sender
+- (void)didClickTooldom: (id)sender
 {
-    [_slideMgr receiverUninit];
-    [_slideMgr deviceDisconnect];
+    UIActionSheet *tooldoms = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"End slide" otherButtonTitles: nil];
     
-    [self.navigationController setNavigationBarHidden: NO animated:NO];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    tooldoms.actionSheetStyle = UIActionSheetStyleAutomatic;
+    [tooldoms showInView:self.view];
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,6 +118,18 @@
 - (void)setSlide: (id<KHCSlideItem>)slide
 {
     _slide = slide;
+}
+
+#pragma ActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [_slideMgr receiverUninit];
+        [_slideMgr deviceDisconnect];
+        
+        [self.navigationController setNavigationBarHidden: NO animated:NO];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 @end
