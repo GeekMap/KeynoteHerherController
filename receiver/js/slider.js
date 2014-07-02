@@ -1,6 +1,10 @@
-var cast = window.cast || {};
+var IS_DEBUG;
 
-cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
+if (!IS_DEBUG){
+  var cast = window.cast || {};
+  cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
+}
+
 // Anonymous namespace
 (function() {
   'use strict';
@@ -12,12 +16,34 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
 
   function KHC(board) {
     console.log('******** KeynoteHerherController ********');
-    this.castReceiverManager_ = cast.receiver.CastReceiverManager.getInstance();
-    this.castMessageBus_ = this.castReceiverManager_.getCastMessageBus(KHC.PROTOCOL, cast.receiver.CastMessageBus.MessageType.JSON);
-    this.castMessageBus_.onMessage = this.onMessage.bind(this);
-    this.castReceiverManager_.onSenderConnected = this.onSenderConnected.bind(this);
-    this.castReceiverManager_.onSenderDisconnected = this.onSenderDisconnected.bind(this);
-    this.castReceiverManager_.start();
+    if (!IS_DEBUG){
+      this.castReceiverManager_ = cast.receiver.CastReceiverManager.getInstance();
+      this.castMessageBus_ = this.castReceiverManager_.getCastMessageBus(KHC.PROTOCOL, cast.receiver.CastMessageBus.MessageType.JSON);
+      this.castMessageBus_.onMessage = this.onMessage.bind(this);
+      this.castReceiverManager_.onSenderConnected = this.onSenderConnected.bind(this);
+      this.castReceiverManager_.onSenderDisconnected = this.onSenderDisconnected.bind(this);
+      this.castReceiverManager_.start();
+    }
+    else {
+      unittest();
+    }
+  }
+
+  function unittest() {
+    console.log('in unittest');
+    var mock_slide = {};
+    mock_slide.title = 'i am test title';
+    //mock_slide.url_prefix = 'http://image.slidesharecdn.com/lineintroductionoastickers201405272014-h2-140619112634-phpapp01/95/slide-';
+    //mock_slide.url_postfix = '-638.jpg';
+    mock_slide.url_prefix = 'http://image.slidesharecdn.com/slideshare51230trendmicro-111102090557-phpapp02/95/slide-';
+    mock_slide.url_postfix = '-728.jpg';
+    // mock_slide.url_prefix = 'https://speakerd.s3.amazonaws.com/presentations/03ad1120aa2501313da22a463594f846/slide_';
+    // mock_slide.url_postfix = '.jpg'
+    mock_slide.min_page = '1';
+    mock_slide.max_page = '35';
+
+    // if (message.title && message.url_prefix && message.url_postfix && message.max_page && message.min_page){
+    KHC.prototype.onInit('123', mock_slide);
   }
 
   KHC.prototype = {
@@ -116,17 +142,17 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
     },
 
     onGo: function(senderId, message) {
-      var page = parseInt(message.page) - 1;
+      var page = parseInt(message.page) - parseInt(this.min_page);
 
       console.log('<onGo senderId="' + senderId + '">');
       if (!this.is_start){
         this.sendError(senderId, 'slider has not been initialized');
       }
       else if (message.page){
-        if (page < parseInt(this.min_page)-1){
+        if (page < 0){
           this.sendError(senderId, 'page number is less than the minimum number: ' + message.page);
         }
-        else if (page >= parseInt(this.max_page)){
+        else if (page >= parseInt(this.max_page) - parseInt(this.min_page)){
           this.sendError(senderId, 'page number is larger than the maximum number: ' + message.page);
         }
         else {
