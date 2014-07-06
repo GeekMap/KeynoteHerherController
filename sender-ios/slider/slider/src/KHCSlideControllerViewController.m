@@ -79,6 +79,16 @@
     [btnTooldom setImage:[UIImage imageNamed:@"settings-wrench.png"] forState:UIControlStateNormal];
     [btnTooldom addTarget:self action:@selector(didClickTooldom:) forControlEvents:UIControlEventTouchUpInside];
     
+    [btnUp addTarget:self action:@selector(changeButtonBackGroundColor:) forControlEvents:UIControlEventTouchDown];
+    [btnUp addTarget:self action:@selector(resetButtonBackGroundColor:) forControlEvents:UIControlEventTouchUpInside];
+    [btnUp addTarget:self action:@selector(resetButtonBackGroundColor:) forControlEvents:UIControlEventTouchUpOutside];
+    [btnDown addTarget:self action:@selector(changeButtonBackGroundColor:) forControlEvents:UIControlEventTouchDown];
+    [btnDown addTarget:self action:@selector(resetButtonBackGroundColor:) forControlEvents:UIControlEventTouchUpInside];
+    [btnDown addTarget:self action:@selector(resetButtonBackGroundColor:) forControlEvents:UIControlEventTouchUpOutside];
+    [btnTooldom addTarget:self action:@selector(changeButtonBackGroundColor:) forControlEvents:UIControlEventTouchDown];
+    [btnTooldom addTarget:self action:@selector(resetButtonBackGroundColor:) forControlEvents:UIControlEventTouchUpInside];
+    [btnTooldom addTarget:self action:@selector(resetButtonBackGroundColor:) forControlEvents:UIControlEventTouchUpOutside];
+    
     [self.view addSubview:btnUp];
     [self.view addSubview:btnDown];
     [self.view addSubview:btnTooldom];
@@ -118,6 +128,16 @@
 - (void)setSlide: (id<KHCSlideItem>)slide
 {
     _slide = slide;
+}
+
+#pragma ButtonReaction
+- (void)changeButtonBackGroundColor: (UIButton *) sender
+{
+    [sender setBackgroundColor:[UIColor colorWithWhite:0.6 alpha:0.2]];
+}
+
+- (void)resetButtonBackGroundColor: (UIButton*)sender {
+    [sender setBackgroundColor:[UIColor whiteColor]];
 }
 
 #pragma ActionSheetDelegate
