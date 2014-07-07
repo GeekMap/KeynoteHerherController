@@ -58,6 +58,7 @@
 		6FEECA72193869570007B09F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA57193869560007B09F /* Foundation.framework */; };
 		6FEECA73193869570007B09F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA5B193869560007B09F /* UIKit.framework */; };
 		6FEECA7B193869570007B09F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FEECA79193869570007B09F /* InfoPlist.strings */; };
+		6FFB987E196A48FB00FC6018 /* speakerdeck.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFB987D196A48FB00FC6018 /* speakerdeck.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,7 @@
 		6FEECA70193869570007B09F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6FEECA78193869570007B09F /* sliderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sliderTests-Info.plist"; sourceTree = "<group>"; };
 		6FEECA7A193869570007B09F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6FFB987D196A48FB00FC6018 /* speakerdeck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speakerdeck.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 				6F9DF5D4195D7A2400E81574 /* settings-wrench.png */,
 				6F9DF5CF195D77EA00E81574 /* arrow-up.png */,
 				6F6835F1193B7B46001517F2 /* slideshare.png */,
+				6FFB987D196A48FB00FC6018 /* speakerdeck.png */,
 				6BBFB67D1960096A0018EF7C /* Icon-40.png */,
 				6BBFB67E1960096A0018EF7C /* Icon-40@2x.png */,
 				6BBFB67F1960096A0018EF7C /* Icon-60.png */,
@@ -424,6 +427,7 @@
 				6BBFB68D1960096A0018EF7C /* Icon-40.png in Resources */,
 				6BBFB6981960096A0018EF7C /* Icon-Small@2x.png in Resources */,
 				6BBFB6961960096A0018EF7C /* Icon-Small-50@2x.png in Resources */,
+				6FFB987E196A48FB00FC6018 /* speakerdeck.png in Resources */,
 				6F6835F4193B7BB8001517F2 /* Images.xcassets in Resources */,
 				6BBFB6931960096A0018EF7C /* Icon-76.png in Resources */,
 				6BBFB69B1960096A0018EF7C /* iTunesArtwork.png in Resources */,

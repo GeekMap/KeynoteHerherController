@@ -41,9 +41,19 @@
     btnSlideShare.layer.borderColor = [UIColor colorWithRed:0.23 green:0.72 blue:0.83 alpha:1].CGColor;
     
     [btnSlideShare addTarget:self action:@selector(slideShareSelected:) forControlEvents:UIControlEventTouchUpInside];
+
     
+    UIButton *btnSpeakerdeck = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnSpeakerdeck setImage:[UIImage imageNamed:@"speakerdeck.png"] forState:UIControlStateNormal];
+    btnSpeakerdeck.frame = CGRectMake(50, 150, 165, 45);
+    btnSpeakerdeck.layer.cornerRadius = 10;
+    btnSpeakerdeck.layer.borderWidth = 1;
+    btnSpeakerdeck.layer.borderColor = [UIColor colorWithRed:0.23 green:0.72 blue:0.83 alpha:1].CGColor;
+    
+    [btnSpeakerdeck addTarget:self action:@selector(speakerDeckSelected:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:btnSlideShare];
+    [self.view addSubview:btnSpeakerdeck];
     // set a default SSP
     selectedSSP = @"SlideShare";
 }
@@ -61,6 +71,13 @@
     selectedSSP = @"SlideShare";
 }
 
+- (void)speakerDeckSelected:(id)sender{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Input username" message:@"Please input the username of speakerdeck." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Search", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+    
+    selectedSSP = @"SpeakerDeck";
+}
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
