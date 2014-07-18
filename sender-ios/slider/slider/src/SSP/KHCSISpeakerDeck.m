@@ -37,8 +37,7 @@
 
 - (NSDictionary*) getMetadata
 {
-    // https://speakerd.s3.amazonaws.com/presentations/03ad1120aa2501313da22a463594f846/slide_0.jpg
-    // NSLog(@"URL: ", base_url);
+    // https://speakerdeck.com/jlugia/build-your-cross-platform-service-in-a-week-with-app-engine
     NSURL* url = [NSURL URLWithString: base_url];
     NSURLRequest *url_request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestReturnCacheDataElseLoad
@@ -56,7 +55,7 @@
                                                  error:&error];
     
     NSString* html = [[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding];
-    //NSLog(@"HTML: %@",html);
+    NSLog(@"HTML: %@",html);
 
     NSRegularExpression *reg;
     NSRange matchRange;
@@ -66,38 +65,53 @@
     NSString* title = [html substringWithRange:matchRange];
 
     // get author
-    reg =[NSRegularExpression regularExpressionWithPattern:@"Talk by <a href=\"https://speakerdeck.com/(.+?)\"" options:NSRegularExpressionCaseInsensitive error:nil];
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<h2><a href=\"/(.+?)\">.+?</a></h2>" options:NSRegularExpressionCaseInsensitive error:nil];
     matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
     NSString* author = [html substringWithRange:matchRange];
     
-    // get author
-    reg =[NSRegularExpression regularExpressionWithPattern:@"\"thumb\":\"(.+?)\"" options:NSRegularExpressionCaseInsensitive error:nil];
-    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
-    NSString* cover_url = [html substringWithRange:matchRange];
-
-    
     // get hash
-    reg =[NSRegularExpression regularExpressionWithPattern:@"https://speakerdeck.com/player/([a-zA-Z0-9]+)$" options:NSRegularExpressionCaseInsensitive error:nil];
-    matchRange = [[reg firstMatchInString:base_url options:0 range:NSMakeRange(0, [base_url length])] rangeAtIndex:1];
-    NSString* hash = [base_url substringWithRange:matchRange];
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta property=\"og:image\" content=\"https://speakerd.s3.amazonaws.com/presentations/(.+?)/slide_0.jpg\"" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* hash = [html substringWithRange:matchRange];
     
     // get max_page
-    reg =[NSRegularExpression regularExpressionWithPattern:@" of ([0-9]+)" options:NSRegularExpressionCaseInsensitive error:nil];
+    reg =[NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat: @"data-id=\"%@\" data-slide-count=\"([0-9]+)\"", hash] options:NSRegularExpressionCaseInsensitive error:nil];
     matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
     NSString* max = [NSString stringWithFormat:@"%d" ,[[html substringWithRange:matchRange] intValue]-1];
 
-//    NSLog(@"Hash: %@", hash);
-//    NSLog(@"Max: %@", max);
-//    NSLog(@"Title: %@", title);
+    // get viewers_count
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<li class=\"views\">Stats <span>([0-9,]+) Views</span></li>" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* viewers_count = [html substringWithRange:matchRange];
+    viewers_count = [viewers_count stringByReplacingOccurrencesOfString:@"," withString:@""];
+    
+    // get upload_time
+    reg =[NSRegularExpression regularExpressionWithPattern:@"Published <mark>(.+?)</mark>" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* upload_time = [html substringWithRange:matchRange];
+    
+    // get description
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta name=\"twitter:description\" content=\"(.+?)\">" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* description = [html substringWithRange:matchRange];
+    
+    // get category
+    reg =[NSRegularExpression regularExpressionWithPattern:@"in <mark><a href=\".+?\">(.+?)</a></mark>" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* categories = [html substringWithRange:matchRange];
     
     // return
-    NSMutableDictionary* ret = [[NSMutableDictionary alloc] initWithCapacity:7];
+    NSMutableDictionary* ret = [[NSMutableDictionary alloc] initWithCapacity:10];
     [ret setValue:title forKey:@"title"];
     [ret setValue:author forKey:@"author"];
-    [ret setValue:cover_url forKey:@"cover_url"];
+    [ret setValue:[NSString stringWithFormat:@"https://speakerd.s3.amazonaws.com/presentations/%@/slide_0.jpg", hash] forKey:@"cover_url"];
     [ret setValue:[NSString stringWithFormat:@"https://speakerd.s3.amazonaws.com/presentations/%@/slide_", hash] forKey:@"url_prefix"];
     [ret setValue:@".jpg" forKey:@"url_postfix"];
     [ret setValue:max forKey:@"max_page"];
+    [ret setValue:viewers_count forKey:@"viewers_count"];
+    [ret setValue:upload_time forKey:@"upload_time"];
+    [ret setValue:description forKey:@"description"];
+    [ret setValue:categories forKey:@"categories"];
     
     return ret;
 }
@@ -158,6 +172,61 @@
         [self refresh_cache];
     }
     return [[meta_dict objectForKey:@"max_page"] intValue];
+}
+
+- (int) page_count
+{
+    return self.max_page - self.min_page + 1;
+}
+
+- (int) viewers_count
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [[meta_dict objectForKey:@"viewers_count"] intValue];
+}
+
+- (NSArray*) categories
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    NSArray* ary = [NSArray arrayWithObjects:[meta_dict objectForKey:@"categories"], nil];
+    return ary;
+}
+
+- (NSDate*) upload_time
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"LLLL dd, yyyy"];
+    
+    NSDate *date = [formatter dateFromString:[meta_dict objectForKey:@"upload_time"]];
+    return date;
+}
+
+- (NSString*) description
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"description"];
+}
+
+- (NSArray*) preview_pages
+{
+    NSMutableArray* ary = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 5; i++) {
+        if (self.min_page + i > self.max_page) {
+            break;
+        }
+        int page = self.min_page + i;
+        [ary addObject: [NSString stringWithFormat: @"%@%d%@", self.url_prefix, page, self.url_postfix]];
+    }
+    return ary;
 }
 
 @end

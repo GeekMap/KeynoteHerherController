@@ -33,17 +33,17 @@
     NSString* html = [[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding];
     // NSLog(@"HTML: %@",html);
     
-    //data-id="01edd780c7e0013168aa3a2cd771e4db"
-    NSRegularExpression *url_reg = [NSRegularExpression regularExpressionWithPattern:@"data-id=\"([a-zA-Z0-9]+)\"" options:NSRegularExpressionCaseInsensitive error:nil];
+    //<a class="slide_preview scrub" href="/shpigford/from-idea-to-5000-dollars-a-month-in-5-months">
+    NSRegularExpression *url_reg = [NSRegularExpression regularExpressionWithPattern:@"class=\"slide_preview scrub\" href=\"([a-zA-Z0-9-/]+)\"" options:NSRegularExpressionCaseInsensitive error:nil];
     NSArray* matches = [url_reg matchesInString:html options:0 range:NSMakeRange(0, [html length])];
     
     NSMutableArray* si_array = [[NSMutableArray alloc] init];
     for (NSTextCheckingResult* match in matches) {
         NSRange url_range = [match rangeAtIndex:1];
         NSString* substring = [html substringWithRange:url_range];
-        NSLog(@"Extracted HASH: %@",substring);
+        NSLog(@"Extracted suburl: %@",substring);
         
-        KHCSISpeakerDeck* si_item = [[KHCSISpeakerDeck alloc] initWithURL:[NSString stringWithFormat:@"https://speakerdeck.com/player/%@" ,substring]];
+        KHCSISpeakerDeck* si_item = [[KHCSISpeakerDeck alloc] initWithURL:[NSString stringWithFormat:@"https://speakerdeck.com%@" ,substring]];
         [si_array addObject:si_item];
     }
     return si_array;

@@ -17,6 +17,14 @@
 @property(readonly) int min_page;
 @property(readonly) int max_page;
 
+@property(readonly) int page_count;
+@property(readonly) int viewers_count;
+@property(readonly) NSArray* categories;
+@property(readonly) NSDate* upload_time;
+@property(readonly) NSString* description;
+@property(readonly) NSArray* preview_pages;
+
+
 - (id) initWithURL: (NSString*) url;
 - (void) refresh_cache;
 @end
