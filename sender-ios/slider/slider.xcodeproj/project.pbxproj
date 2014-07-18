@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FC9500C19795A3500C595CD /* RBVolumeButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9500B19795A3500C595CD /* RBVolumeButtons.m */; };
+		3FC9501019795DD800C595CD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC9500F19795DD800C595CD /* MediaPlayer.framework */; };
 		6B08F051193BAA24002513D4 /* SSPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B08F050193BAA24002513D4 /* SSPTests.m */; };
 		6B3A1A02194AE0740008FA9B /* KHCSISpeakerDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3A1A01194AE0740008FA9B /* KHCSISpeakerDeck.m */; };
 		6B3D1517194AFF98002702E4 /* KHCSSPSpeakerDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3D1516194AFF98002702E4 /* KHCSSPSpeakerDeck.m */; };
@@ -72,6 +74,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FC9500A19795A3500C595CD /* RBVolumeButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBVolumeButtons.h; sourceTree = "<group>"; };
+		3FC9500B19795A3500C595CD /* RBVolumeButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBVolumeButtons.m; sourceTree = "<group>"; };
+		3FC9500F19795DD800C595CD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		6B08F050193BAA24002513D4 /* SSPTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPTests.m; sourceTree = "<group>"; };
 		6B3A1A00194AE0740008FA9B /* KHCSISpeakerDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSISpeakerDeck.h; path = src/SSP/KHCSISpeakerDeck.h; sourceTree = "<group>"; };
 		6B3A1A01194AE0740008FA9B /* KHCSISpeakerDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSISpeakerDeck.m; path = src/SSP/KHCSISpeakerDeck.m; sourceTree = "<group>"; };
@@ -151,6 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC9501019795DD800C595CD /* MediaPlayer.framework in Frameworks */,
 				6BA415BB1941A654008D42B4 /* GoogleCast.framework in Frameworks */,
 				6FEECA5A193869560007B09F /* CoreGraphics.framework in Frameworks */,
 				6FEECA5C193869560007B09F /* UIKit.framework in Frameworks */,
@@ -172,9 +178,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FC9500919795A3500C595CD /* RBVolumeButtons */ = {
+			isa = PBXGroup;
+			children = (
+				3FC9500A19795A3500C595CD /* RBVolumeButtons.h */,
+				3FC9500B19795A3500C595CD /* RBVolumeButtons.m */,
+			);
+			path = RBVolumeButtons;
+			sourceTree = "<group>";
+		};
 		6B2CF8791948588600EC63B5 /* ChromeCast */ = {
 			isa = PBXGroup;
 			children = (
+				6BF4AABB1941BA2A00F9AF13 /* KHCCommandChannel.h */,
+				6BF4AABC1941BA2A00F9AF13 /* KHCCommandChannel.m */,
 				6FD2AE7F19541CBB00A8648C /* KHCSlideManager.h */,
 				6FD2AE8019541CBB00A8648C /* KHCSlideManager.m */,
 				6BF4AABB1941BA2A00F9AF13 /* KHCCommandChannel.h */,
@@ -203,6 +220,7 @@
 		6F6835EF193B7B46001517F2 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				3FC9500919795A3500C595CD /* RBVolumeButtons */,
 				6FD2AE82195435DD00A8648C /* CKTableAlert */,
 				6F6835F0193B7B46001517F2 /* images */,
 			);
@@ -276,6 +294,7 @@
 		6FEECA56193869560007B09F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3FC9500F19795DD800C595CD /* MediaPlayer.framework */,
 				6BA415BA1941A654008D42B4 /* GoogleCast.framework */,
 				6FEECA57193869560007B09F /* Foundation.framework */,
 				6FEECA59193869560007B09F /* CoreGraphics.framework */,
@@ -308,8 +327,6 @@
 				6F6835E7193B7AF3001517F2 /* KHCSSPSelectorViewController.m */,
 				6F7D5A831941BBBF00C8D845 /* KHCSlideSelectorViewController.h */,
 				6F7D5A841941BBBF00C8D845 /* KHCSlideSelectorViewController.m */,
-				6BF4AABB1941BA2A00F9AF13 /* KHCCommandChannel.h */,
-				6BF4AABC1941BA2A00F9AF13 /* KHCCommandChannel.m */,
 				6FD2AE7C19541C6300A8648C /* KHCConfirmPageViewController.h */,
 				6FD2AE7D19541C6300A8648C /* KHCConfirmPageViewController.m */,
 				6F9DF5C7195D4DA400E81574 /* KHCSlideControllerViewController.h */,
@@ -468,6 +485,7 @@
 				6FDE932A195E95C20077776D /* KHCSlideTableViewCell.m in Sources */,
 				6B3D1517194AFF98002702E4 /* KHCSSPSpeakerDeck.m in Sources */,
 				6F6835E8193B7AF3001517F2 /* KHCAddSlideNavController.m in Sources */,
+				3FC9500C19795A3500C595CD /* RBVolumeButtons.m in Sources */,
 				6F6835DD193B7AD8001517F2 /* KHCSSPSlideshare.m in Sources */,
 				6F9DF5C9195D4DA400E81574 /* KHCSlideControllerViewController.m in Sources */,
 				6F6835EB193B7AF3001517F2 /* KHCSlideListViewController.m in Sources */,

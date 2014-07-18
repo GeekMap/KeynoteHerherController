@@ -9,6 +9,7 @@
 #import "KHCSlideControllerViewController.h"
 #import "KHCSlideManager.h"
 #import "KHCSlideItem.h"
+#import "RBVolumeButtons.h"
 
 #define statusbarHeight 20
 
@@ -17,6 +18,7 @@
     KHCSlideManager *_slideMgr;
     NSObject<KHCSlideItem> *_slide;
     UIButton *btnUp, *btnDown, *btnTooldom;
+    RBVolumeButtons *buttonStealer;
 }
 @end
 
@@ -47,6 +49,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Setup Volume Button steal
+    buttonStealer = [[RBVolumeButtons alloc] init];
+    id controller = self;
+    buttonStealer.upBlock = ^{
+        [controller didClickPageUp:nil];
+    };
+    buttonStealer.downBlock = ^{
+        [controller didClickPageDown:nil];
+    };
+    
+    // Start Steal
+    [buttonStealer startStealingVolumeButtonEvents];
+    // Stop steal
+    // [buttonStealer stopStealingVolumeButtonEvents];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -96,6 +113,12 @@
     [self.view addSubview:btnTooldom];
     
     [self startPlay];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    buttonStealer = nil;
 }
 
 - (void)startPlay
