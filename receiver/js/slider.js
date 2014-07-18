@@ -35,11 +35,11 @@ if (!IS_DEBUG){
     mock_slide.title = 'i am test title';
     //mock_slide.url_prefix = 'http://image.slidesharecdn.com/lineintroductionoastickers201405272014-h2-140619112634-phpapp01/95/slide-';
     //mock_slide.url_postfix = '-638.jpg';
-    mock_slide.url_prefix = 'http://image.slidesharecdn.com/slideshare51230trendmicro-111102090557-phpapp02/95/slide-';
-    mock_slide.url_postfix = '-728.jpg';
-    // mock_slide.url_prefix = 'https://speakerd.s3.amazonaws.com/presentations/03ad1120aa2501313da22a463594f846/slide_';
-    // mock_slide.url_postfix = '.jpg'
-    mock_slide.min_page = '1';
+    // mock_slide.url_prefix = 'http://image.slidesharecdn.com/slideshare51230trendmicro-111102090557-phpapp02/95/slide-';
+    // mock_slide.url_postfix = '-728.jpg';
+    mock_slide.url_prefix = 'https://speakerd.s3.amazonaws.com/presentations/03ad1120aa2501313da22a463594f846/slide_';
+    mock_slide.url_postfix = '.jpg'
+    mock_slide.min_page = '0';
     mock_slide.max_page = '35';
 
     // if (message.title && message.url_prefix && message.url_postfix && message.max_page && message.min_page){
@@ -105,12 +105,15 @@ if (!IS_DEBUG){
           for (var i = message.min_page; i <= message.max_page; i++) {
             var datax = 1000 * i; //
 
+            // 900 x 675 -> 0.75
+            // 1024 x 576 -> 0.5625  width: 1200px; height: 675px;
+
             this._addDivNode(
               SLIDE_CANVAS_ID, 
               '', 
               datax.toString(), 
               '0', 
-              'background-image:url(' + message.url_prefix + i + message.url_postfix + ');',
+              'background-image:url(' + message.url_prefix + i + message.url_postfix + '); width: 900px; height: 675px;',
               'step slide'
             );
           }
@@ -152,7 +155,7 @@ if (!IS_DEBUG){
         if (page < 0){
           this.sendError(senderId, 'page number is less than the minimum number: ' + message.page);
         }
-        else if (page >= parseInt(this.max_page) - parseInt(this.min_page)){
+        else if (page > parseInt(this.max_page) - parseInt(this.min_page)){
           this.sendError(senderId, 'page number is larger than the maximum number: ' + message.page);
         }
         else {
