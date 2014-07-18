@@ -97,32 +97,19 @@ if (!IS_DEBUG){
           this.sender_id = senderId;
 
           this.title = message.title;
+
+          this.url_prefix = message.url_prefix;
+          this.url_postfix = message.url_postfix;
+
           this.max_page = message.max_page;
           this.min_page = message.min_page;
 
-          this._clearAllNode(SLIDE_CANVAS_ID);
-
-          for (var i = message.min_page; i <= message.max_page; i++) {
-            var datax = 1000 * i; //
-
-            // 900 x 675 -> 0.75
-            // 1024 x 576 -> 0.5625  width: 1200px; height: 675px;
-
-            this._addDivNode(
-              SLIDE_CANVAS_ID, 
-              '', 
-              datax.toString(), 
-              '0', 
-              'background-image:url(' + message.url_prefix + i + message.url_postfix + '); width: 900px; height: 675px;',
-              'step slide'
-            );
-          }
+          this.current_page = 0;
 
           impress().init();
 
           // show first page
-          message.page = message.min_page;
-          this.onGo(senderId, message);
+          document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + message.min_page + this.url_postfix + ')';          
         }
       }
       else {
@@ -145,22 +132,40 @@ if (!IS_DEBUG){
     },
 
     onGo: function(senderId, message) {
-      var page = parseInt(message.page) - parseInt(this.min_page);
+      var page = parseInt(message.page);
 
       console.log('<onGo senderId="' + senderId + '">');
       if (!this.is_start){
         this.sendError(senderId, 'slider has not been initialized');
       }
       else if (message.page){
-        if (page < 0){
+        if (page < parseInt(this.min_page)){
           this.sendError(senderId, 'page number is less than the minimum number: ' + message.page);
         }
-        else if (page > parseInt(this.max_page) - parseInt(this.min_page)){
+        else if (page > parseInt(this.max_page)){
           this.sendError(senderId, 'page number is larger than the maximum number: ' + message.page);
         }
         else {
           var api = impress();
-          api.goto(page);
+          var next_page = page + 1;
+          if (page >= parseInt(this.max_page) - parseInt(this.min_page)){
+            next_page = page;
+          }
+
+          if (this.current_page == 1){
+            this.current_page = 0;
+            document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + page + this.url_postfix + ')';
+            document.getElementById('SideB').style.backgroundImage = 'url(' + this.url_prefix + next_page + this.url_postfix + ')';
+
+            api.goto('SideA');
+          }
+          else {
+            this.current_page = 1;
+            document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + next_page + this.url_postfix + ')';
+            document.getElementById('SideB').style.backgroundImage = 'url(' + this.url_prefix + page + this.url_postfix + ')';
+
+            api.goto('SideB');
+          }
         }
       }
       else {

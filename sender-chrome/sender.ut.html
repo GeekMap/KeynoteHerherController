@@ -31,8 +31,8 @@ input {
 </style>
 <script type="text/javascript" src="//www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 <script type="text/javascript">
-// var applicationID = '794B7BBF'; // original sample app
-var applicationID = '43049BBC'; // own-hosted receiver simulator (?)
+var applicationID = '6EC34210'; // real slider receiver
+//var applicationID = '43049BBC'; // testing slider receiver
 var namespace = 'urn:x-cast:com.cve-2014-0160.keynote-herher-controller';
 var session = null;
 
@@ -116,12 +116,14 @@ function appendMessage(message) {
 
 function update() {
     var msg = {}
-    msg.command = document.getElementById("command").value;
-    msg.title = document.getElementById("title").value;
-    msg.url_prefix = document.getElementById("url_prefix").value;
-    msg.url_postfix = document.getElementById("url_postfix").value;
-    msg.pg_count = document.getElementById("pg_count").value;
-    msg.pg_no = document.getElementById("pg_no").value;
+    msg.cmd = document.getElementById("cmd").value;
+    msg.meta = {}
+    msg.meta.title = document.getElementById("title").value;
+    msg.meta.url_prefix = document.getElementById("url_prefix").value;
+    msg.meta.url_postfix = document.getElementById("url_postfix").value;
+    msg.meta.max_page = document.getElementById("max_page").value;
+    msg.meta.min_page = document.getElementById("min_page").value;
+    msg.meta.page = document.getElementById("page").value;
     sendMessage(msg);
 }
 
@@ -133,12 +135,13 @@ function update() {
     <tr>
         <td>
             <form method="get" action="JavaScript:update();">
-                Command: <input id="command" class="border" type="text" size="30" value="i am command"/><br/>
-                Slide Title: <input id="title" class="border" type="text" size="30" /><br/>
-                Slide URL Prefix: <input id="url_prefix" class="border" type="text" size="30" /><br/>
-                Slide URL Postfix: <input id="url_postfix" class="border" type="text" size="30" /><br/>
-                Slide Page Total Count: <input id="pg_count" class="border" type="text" size="30" /><br/>
-                Slide Page Number: <input id="pg_no" class="border" type="text" size="30" /><br/>
+                Command: <input id="cmd" class="border" type="text" size="30" value="init"/><br/>
+                Slide Title: <input id="title" class="border" type="text" size="30" value="title"/><br/>
+                Slide URL Prefix: <input id="url_prefix" class="border" type="text" size="30" value="http://image.slidesharecdn.com/lineintroductionoastickers201405272014-h2-140619112634-phpapp01/95/slide-"/><br/>
+                Slide URL Postfix: <input id="url_postfix" class="border" type="text" size="30" value="-638.jpg"/><br/>
+                Slide Page Max Number: <input id="max_page" class="border" type="text" size="30" value="35"/><br/>
+                Slide Page Min Number: <input id="min_page" class="border" type="text" size="30" value="1"/><br/>
+                Slide Page Number: <input id="page" class="border" type="text" size="30" value="3"/><br/>
                 <input type="submit" value="Submit"/>
             </form>
         </td>

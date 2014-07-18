@@ -105,7 +105,7 @@ a:focus {
 .impress-enabled .step.future {
     opacity: 0;
 
-    -webkit-transition: opacity 1s ease-in-out;
+    /*-webkit-transition: opacity 1s ease-in-out;*/
 }
 
 .impress-enabled .step.active { 
