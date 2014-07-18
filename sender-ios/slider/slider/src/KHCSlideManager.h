@@ -24,4 +24,7 @@
 - (void) receiverNextPage;
 - (void) receiverPrePage;
 
+- (BOOL) isFirst;
+- (BOOL) isLast;
+
 @end

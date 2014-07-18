@@ -16,6 +16,7 @@
 {
     KHCSlideManager *_slideMgr;
     NSObject<KHCSlideItem> *_slide;
+    UIButton *btnUp, *btnDown, *btnTooldom;
 }
 @end
 
@@ -58,21 +59,22 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    UIButton *btnUp = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnUp = [UIButton buttonWithType:UIButtonTypeCustom];
     btnUp.frame = CGRectMake(100, statusbarHeight, screenWidth-100, 130);
     btnUp.layer.borderWidth = 0.5f;
     btnUp.layer.borderColor = [[UIColor colorWithRed:0.6 green:0.6 blue:1.0 alpha:1.0] CGColor];
     [btnUp setImage:[UIImage imageNamed:@"arrow-up.png"] forState:UIControlStateNormal];
     [btnUp addTarget:self action:@selector(didClickPageUp:) forControlEvents:UIControlEventTouchUpInside];
+    [btnUp setEnabled:NO];
     
-    UIButton *btnDown = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnDown = [UIButton buttonWithType:UIButtonTypeCustom];
     btnDown.frame = CGRectMake(0, 130+statusbarHeight, screenWidth, screenHeight-130);
     btnDown.layer.borderWidth = 0.5f;
     btnDown.layer.borderColor = [[UIColor colorWithRed:0.6 green:0.6 blue:1.0 alpha:1.0] CGColor];
     [btnDown setImage:[UIImage imageNamed:@"arrow-down.png"] forState:UIControlStateNormal];
     [btnDown addTarget:self action:@selector(didClickPageDown:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *btnTooldom = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnTooldom = [UIButton buttonWithType:UIButtonTypeCustom];
     btnTooldom.frame = CGRectMake(0, statusbarHeight, 100, 130);
     btnTooldom.layer.borderWidth = 0.5f;
     btnTooldom.layer.borderColor = [[UIColor colorWithRed:0.6 green:0.6 blue:1.0 alpha:1.0] CGColor];
@@ -102,14 +104,27 @@
     [_slideMgr receiverInitWithSI: _slide];
 }
 
+- (void)toggleUpDownButton
+{
+    [btnUp setEnabled:YES];
+    [btnDown setEnabled:YES];
+    if ([_slideMgr isFirst] == YES) {
+        [btnUp setEnabled:NO];
+    } else if ([_slideMgr isLast] == YES) {
+        [btnDown setEnabled:NO];
+    }
+}
+
 - (void)didClickPageUp: (id)sender
 {
     [_slideMgr receiverPrePage];
+    [self toggleUpDownButton];
 }
 
 - (void)didClickPageDown: (id)sender
 {
     [_slideMgr receiverNextPage];
+    [self toggleUpDownButton];
 }
 
 - (void)didClickTooldom: (id)sender

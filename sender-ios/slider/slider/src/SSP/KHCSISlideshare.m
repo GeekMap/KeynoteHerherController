@@ -145,4 +145,13 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     }
     return [[meta_dict objectForKey:@"total_slides"] intValue];
 }
+
+- (int) page_count
+{
+    return self.max_page - self.min_page + 1;
+}
+
+
+
+
 @end
