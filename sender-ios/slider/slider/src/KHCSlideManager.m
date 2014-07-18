@@ -133,6 +133,16 @@ static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-he
     
 }
 
+- (BOOL) isFirst
+{
+    return (slide_current_page <= slide_min_page);
+}
+
+- (BOOL) isLast
+{
+    return (slide_current_page >= slide_max_page);
+}
+
 - (void) sendJsonToChromeCast: (NSString*) json
 {
     
