@@ -151,6 +151,63 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     return self.max_page - self.min_page + 1;
 }
 
+- (int) viewers_count
+{
+    // TODO
+    return 0;
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [[meta_dict objectForKey:@"viewers_count"] intValue];
+}
+
+- (NSArray*) categories
+{
+    // TODO
+    return [[NSArray alloc] init];
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    NSArray* ary = [NSArray arrayWithObjects: nil];
+    return ary;
+}
+
+- (NSDate*) upload_time
+{
+    // TODO
+    return [[NSDate alloc] init];
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"LLLL dd, yyyy"];
+    
+    NSDate *date = [formatter dateFromString:[meta_dict objectForKey:@"upload_time"]];
+    return date;
+}
+
+- (NSString*) description
+{
+    // TODO
+    return @"";
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [meta_dict objectForKey:@"description"];
+}
+
+- (NSArray*) preview_pages
+{
+    NSMutableArray* ary = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 5; i++) {
+        if (self.min_page + i > self.max_page) {
+            break;
+        }
+        int page = self.min_page + i;
+        [ary addObject: [NSString stringWithFormat: @"%@%d%@", self.url_prefix, page, self.url_postfix]];
+    }
+    return ary;
+}
 
 
 
