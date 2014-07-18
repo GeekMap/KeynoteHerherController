@@ -55,7 +55,8 @@
                                                  error:&error];
     
     NSString* html = [[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding];
-    NSLog(@"HTML: %@",html);
+    //NSLog(@"HTML: %@",html);
+    
 
     NSRegularExpression *reg;
     NSRange matchRange;
@@ -74,10 +75,29 @@
     matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
     NSString* hash = [html substringWithRange:matchRange];
     
+    // https://speakerdeck.com/player/<HASH>
+    NSURL* url2 = [NSURL URLWithString: [NSString stringWithFormat:@"https://speakerdeck.com/player/%@", hash]];
+    NSURLRequest *url_request2 = [NSURLRequest requestWithURL:url2
+                                                  cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                              timeoutInterval:30];
+    // Fetch the JSON response
+    NSData *url_data2;
+    NSURLResponse *response2;
+    NSError *error2;
+    // TODO: error handle for
+    
+    
+    // Make synchronous request
+    url_data2 = [NSURLConnection sendSynchronousRequest:url_request2
+                                      returningResponse:&response2
+                                                  error:&error2];
+    
+    NSString* html2 = [[NSString alloc] initWithData:url_data2 encoding:NSUTF8StringEncoding];
+    
     // get max_page
-    reg =[NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat: @"data-id=\"%@\" data-slide-count=\"([0-9]+)\"", hash] options:NSRegularExpressionCaseInsensitive error:nil];
-    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
-    NSString* max = [NSString stringWithFormat:@"%d" ,[[html substringWithRange:matchRange] intValue]-1];
+    reg =[NSRegularExpression regularExpressionWithPattern:@" of ([0-9]+)" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html2 options:0 range:NSMakeRange(0, [html2 length])] rangeAtIndex:1];
+    NSString* max = [NSString stringWithFormat:@"%d" ,[[html2 substringWithRange:matchRange] intValue]-1];
 
     // get viewers_count
     reg =[NSRegularExpression regularExpressionWithPattern:@"<li class=\"views\">Stats <span>([0-9,]+) Views</span></li>" options:NSRegularExpressionCaseInsensitive error:nil];
@@ -91,7 +111,7 @@
     NSString* upload_time = [html substringWithRange:matchRange];
     
     // get description
-    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta name=\"twitter:description\" content=\"(.+?)\">" options:NSRegularExpressionCaseInsensitive error:nil];
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta name=\"twitter:description\" content=\"([^>]+?)\">" options:NSRegularExpressionCaseInsensitive error:nil];
     matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
     NSString* description = [html substringWithRange:matchRange];
     

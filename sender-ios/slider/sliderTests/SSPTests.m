@@ -53,7 +53,7 @@
 
 -(void) testSISpeakerDeck
 {
-    KHCSISpeakerDeck* slide_item = [[KHCSISpeakerDeck alloc] initWithURL:@"https://speakerdeck.com/jlugia/build-your-cross-platform-service-in-a-week-with-app-engine"];
+    KHCSISpeakerDeck* slide_item = [[KHCSISpeakerDeck alloc] initWithURL:@"https://speakerdeck.com/denniskardys/the-straight-up-how-to-draw-better-workshop"];
     NSLog(@"Title: %@", [slide_item title]);
     NSLog(@"Author: %@", [slide_item author]);
     NSLog(@"Cover: %@", [slide_item cover_url]);
