@@ -12,8 +12,8 @@
 
 
 #define TIMESTAMP [NSString stringWithFormat:@"%ld",(time_t)[[NSDate date] timeIntervalSince1970]]
-static NSString *const SLIDESHARE_API_KEY = @"Nr6UMFRO";
-static NSString *const SLIDESHARE_API_SHAREDSECRET = @"YDkAB20Z";
+static NSString *const SLIDESHARE_API_KEY = @"6Vusl7yf";
+static NSString *const SLIDESHARE_API_SHAREDSECRET = @"mcpB0XTV";
 
 
 /*
