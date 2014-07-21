@@ -33,27 +33,6 @@
     [super viewDidLoad];
     [self setTitle:@"Select Slide Service"];
     
-    UIButton *btnSlideShare = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnSlideShare setImage:[UIImage imageNamed:@"slideshare.png"] forState:UIControlStateNormal];
-    btnSlideShare.frame = CGRectMake(50, 100, 165, 45);
-    btnSlideShare.layer.cornerRadius = 10;
-    btnSlideShare.layer.borderWidth = 1;
-    btnSlideShare.layer.borderColor = [UIColor colorWithRed:0.23 green:0.72 blue:0.83 alpha:1].CGColor;
-    
-    [btnSlideShare addTarget:self action:@selector(slideShareSelected:) forControlEvents:UIControlEventTouchUpInside];
-
-    
-    UIButton *btnSpeakerdeck = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnSpeakerdeck setImage:[UIImage imageNamed:@"speakerdeck.png"] forState:UIControlStateNormal];
-    btnSpeakerdeck.frame = CGRectMake(50, 150, 165, 45);
-    btnSpeakerdeck.layer.cornerRadius = 10;
-    btnSpeakerdeck.layer.borderWidth = 1;
-    btnSpeakerdeck.layer.borderColor = [UIColor colorWithRed:0.23 green:0.72 blue:0.83 alpha:1].CGColor;
-    
-    [btnSpeakerdeck addTarget:self action:@selector(speakerDeckSelected:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:btnSlideShare];
-    [self.view addSubview:btnSpeakerdeck];
     // set a default SSP
     selectedSSP = @"SlideShare";
 }
@@ -94,6 +73,88 @@
         [slideSelectorView setUserName:userName];
         [self.navigationController pushViewController:slideSelectorView animated:YES];
     }
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"SSPSelectorCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+    
+    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    NSString *imageName;
+    if (indexPath.row == 0) {
+        imageName = @"slideshare.png";
+    }
+    else if (indexPath.row == 1){
+        imageName = @"speakerdeck.png";
+    }
+    else
+    {
+        imageName = @"";
+    }
+    
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [cell setBackgroundView:  imageView];
+    
+    UIImageView *selectedView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: imageName]];
+    selectedView.contentMode = UIViewContentModeScaleAspectFit;
+    selectedView.backgroundColor = [UIColor lightGrayColor];
+    [cell setSelectedBackgroundView:selectedView];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70;
+}
+
+#pragma mark - TableView Delegate
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0) {
+        [self slideShareSelected:nil];
+    }
+    else if (indexPath.row == 1){
+        [self speakerDeckSelected:nil];
+    }
+    else
+    {
+        
+    }
+    
 }
 
 @end
