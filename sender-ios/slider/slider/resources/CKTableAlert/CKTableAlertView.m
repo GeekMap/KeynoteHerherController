@@ -11,12 +11,12 @@
 #define AlertPosX 50
 #define AlertPosY 108
 #define AlertWidth 260
-#define AlertHeight 232
+#define AlertHeight 240
 #define AlertTitleHeight 50
 #define AlertLinePosY 200
 #define AlertButtonPosY 200.3
 #define AlertButtonWidth 260
-#define AlertButtonHeight 32
+#define AlertButtonHeight 40
 #define AlertTablePaddingX 10
 #define AlertTableWidth 240
 #define AlertTableHeight 132
