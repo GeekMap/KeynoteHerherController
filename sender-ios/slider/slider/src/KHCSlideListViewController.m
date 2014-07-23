@@ -127,7 +127,7 @@
 
     [cell.titleLabel setText:slide.title];
 //    [cell.imageView setImage:[UIImage imageWitzzhData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[slide cover_url]]]]];
-    [cell.pageNumLabel setText:[NSString stringWithFormat:@"Pages: %d", (slide.max_page-slide.min_page+1)]];
+    [cell.pageNumLabel setText:[NSString stringWithFormat:@"Pages: %d", slide.page_count]];
     return cell;
 }
 
