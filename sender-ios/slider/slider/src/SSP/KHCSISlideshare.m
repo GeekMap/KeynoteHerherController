@@ -204,7 +204,7 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
             break;
         }
         int page = self.min_page + i;
-        [ary addObject: [NSString stringWithFormat: @"%@%d%@", self.url_prefix, page, self.url_postfix]];
+        [ary addObject: [NSURL URLWithString:[NSString stringWithFormat: @"%@%d%@", self.url_prefix, page, self.url_postfix]]];
     }
     return ary;
 }
