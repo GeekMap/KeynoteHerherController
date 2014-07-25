@@ -8,7 +8,6 @@
 
 #import "KHCSISlideshare.h"
 
-static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare.net/api/oembed/2?url=%@&format=json";
 
 @implementation KHCSISlideshare
 {
@@ -37,36 +36,7 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
 
 - (NSDictionary*) getMetadata
 {
-    /*
-     @Return
-         slideshow_id       : Slideshow ID
-         version            : The oEmbed version number.
-         type               : Type of oEmbed response.
-         title              : Title of the embed media.
-         author_name        : Author of the embed content.
-         author_url         : SlideShare profile page of the author of embed content.
-         provider_name      : Provider of the embed content, SlideShare.
-         provider_url       : URL of provider.
-         html               : The real juice lies here. This is the html embed code, which contains links to embed media.
-         width              : Width of the embed media, respects maxheight query parameter
-         height             : Height of the embed media, respects maxheight query parameter
-         thumbnail          : URL to the thumbnail of embed content.
-         thumbnail_width    : Width of thumbnail
-         thumbnail_height   : Height of thumbnail
-         total_slides       : Number of slides in the slideshow
-         version_no         : Version of the slideshow
-         slide_image_baseurl : Base URL of the slideshow images
-         slide_image_baseurl_suffix : Base URL suffix
-     TODO:
-         Error handle for,
-         404 Not Found : If URL is missing or doesn't point to an embeddable resource.
-         501 Not Implemented : If the format provided is not supported. Should be one of xml, json or jsonp
-     ref:
-     http://www.slideshare.net/developers/oembed
-     */
-    
-    
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:SLIDESHARE_OEMBED_TEMPLATE_URL, base_url]];
+    NSURL* url = [NSURL URLWithString: base_url];
     NSURLRequest *url_request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                              timeoutInterval:30];
@@ -82,10 +52,77 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
                                      returningResponse:&response
                                                  error:&error];
     
-    // Construct a NSDict around the Data from the response
-    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:url_data options:NSJSONReadingMutableLeaves error:&error];
+    NSString* html = [[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding];
+    //NSLog(@"HTML: %@",html);
     
-    return res;
+    
+    NSRegularExpression *reg;
+    NSRange matchRange;
+    
+    // get title
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"(.+?)\" class=\"fb_og_meta\" property=\"og:title\" name=\"og_title\" />"
+                                                   options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* title = [html substringWithRange:matchRange];
+    
+    // get author
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"http://www.slideshare.net/(.+?)\" class=\"fb_og_meta\" property=\"slideshare:author\" name=\"slideshow_author\" />" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* author = [html substringWithRange:matchRange];
+    
+    // get description
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"(.+?)\" class=\"fb_og_meta\" property=\"og:description\" name=\"og_description\" />" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* description = [html substringWithRange:matchRange];
+    
+    // get upload_time
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"(.+?)\" class=\"fb_og_meta\" property=\"slideshare:updated_at\" name=\"slideshow_updated_at\" />" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* upload_time = [html substringWithRange:matchRange];
+    
+    // get viewers_count
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"(.+?)\" class=\"fb_og_meta\" property=\"slideshare:view_count\" name=\"slideshow_view_count\" />" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* viewers_count = [html substringWithRange:matchRange];
+    
+    // get categories
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"(.+?)\" class=\"fb_og_meta\" property=\"slideshare:category\" name=\"slideshow_category\" />" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* categories = [html substringWithRange:matchRange];
+   
+    // get cover_url
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta class=\"twitter_image\" value=\"(.+?)\" name=\"twitter:image\" />" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* cover_url = [html substringWithRange:matchRange];
+    
+    // get max
+    reg =[NSRegularExpression regularExpressionWithPattern:@"\"totalSlides\":([0-9]+)," options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* max = [html substringWithRange:matchRange];
+    
+    // get author_avatar_url
+    reg =[NSRegularExpression regularExpressionWithPattern:@"\"userimage_placeholder\":\"([^\"]+?)\"," options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* author_avatar_url = [html substringWithRange:matchRange];
+    
+    // get url_prefix
+    reg =[NSRegularExpression regularExpressionWithPattern:@"data-full=\"(.+?)1-1024.jpg" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* url_prefix = [html substringWithRange:matchRange];
+    
+    NSMutableDictionary* ret = [[NSMutableDictionary alloc] initWithCapacity:10];
+    [ret setValue:title forKey:@"title"];
+    [ret setValue:author forKey:@"author"];
+    [ret setValue:cover_url forKey:@"cover_url"];
+    [ret setValue:url_prefix forKey:@"url_prefix"];
+    [ret setValue:@"-1024.jpg" forKey:@"url_postfix"];
+    [ret setValue:max forKey:@"max_page"];
+    [ret setValue:viewers_count forKey:@"viewers_count"];
+    [ret setValue:upload_time forKey:@"upload_time"];
+    [ret setValue:description forKey:@"description"];
+    [ret setValue:categories forKey:@"categories"];
+    [ret setValue:author_avatar_url forKey:@"author_avatar_url"];
+    return ret;
 }
 
 - (void) refresh_cache
@@ -106,7 +143,7 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     if (meta_dict == nil) {
         [self refresh_cache];
     }
-    return [meta_dict objectForKey:@"author_name"];
+    return [meta_dict objectForKey:@"author"];
 }
 
 - (NSString*) cover_url
@@ -114,7 +151,7 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     if (meta_dict == nil) {
         [self refresh_cache];
     }
-    return [NSString stringWithFormat:@"http:%@",[meta_dict objectForKey:@"thumbnail"]];
+    return [meta_dict objectForKey:@"cover_url"];
 }
 
 - (NSString*) url_prefix
@@ -122,7 +159,7 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     if (meta_dict == nil) {
         [self refresh_cache];
     }
-    return [NSString stringWithFormat:@"http:%@",[meta_dict objectForKey:@"slide_image_baseurl"]];
+    return [meta_dict objectForKey:@"url_prefix"];
 }
 
 - (NSString*) url_postfix
@@ -130,7 +167,7 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     if (meta_dict == nil) {
         [self refresh_cache];
     }
-    return [meta_dict objectForKey:@"slide_image_baseurl_suffix"];
+    return [meta_dict objectForKey:@"url_postfix"];
 }
 
 - (int) min_page
@@ -143,7 +180,7 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     if (meta_dict == nil) {
         [self refresh_cache];
     }
-    return [[meta_dict objectForKey:@"total_slides"] intValue];
+    return [[meta_dict objectForKey:@"max_page"] intValue];
 }
 
 - (int) page_count
@@ -153,8 +190,6 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
 
 - (int) viewers_count
 {
-    // TODO
-    return 0;
     if (meta_dict == nil) {
         [self refresh_cache];
     }
@@ -163,33 +198,25 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
 
 - (NSArray*) categories
 {
-    // TODO
-    return [[NSArray alloc] init];
     if (meta_dict == nil) {
         [self refresh_cache];
     }
-    NSArray* ary = [NSArray arrayWithObjects: nil];
-    return ary;
+    return [[meta_dict objectForKey:@"categories"] componentsSeparatedByString:@","];
 }
 
 - (NSDate*) upload_time
 {
-    // TODO
-    return [[NSDate alloc] init];
     if (meta_dict == nil) {
         [self refresh_cache];
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"LLLL dd, yyyy"];
-    
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss 'UTC'"];
     NSDate *date = [formatter dateFromString:[meta_dict objectForKey:@"upload_time"]];
     return date;
 }
 
 - (NSString*) description
 {
-    // TODO
-    return @"";
     if (meta_dict == nil) {
         [self refresh_cache];
     }
@@ -209,6 +236,13 @@ static NSString *const  SLIDESHARE_OEMBED_TEMPLATE_URL = @"http://www.slideshare
     return ary;
 }
 
+- (NSString*) author_avatar_url
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [NSString stringWithFormat:@"http:%@",[meta_dict objectForKey:@"author_avatar_url"]];
+}
 
 
 @end

@@ -41,7 +41,7 @@
     for (NSTextCheckingResult* match in matches) {
         NSRange url_range = [match rangeAtIndex:1];
         NSString* substring = [html substringWithRange:url_range];
-        NSLog(@"Extracted suburl: %@",substring);
+        // NSLog(@"Extracted suburl: %@",substring);
         
         KHCSISpeakerDeck* si_item = [[KHCSISpeakerDeck alloc] initWithURL:[NSString stringWithFormat:@"https://speakerdeck.com%@" ,substring]];
         [si_array addObject:si_item];

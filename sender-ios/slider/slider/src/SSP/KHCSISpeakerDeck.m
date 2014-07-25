@@ -55,7 +55,7 @@
                                                  error:&error];
     
     NSString* html = [[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding];
-    //NSLog(@"HTML: %@",html);
+    NSLog(@"HTML: %@",html);
     
 
     NSRegularExpression *reg;
@@ -120,6 +120,11 @@
     matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
     NSString* categories = [html substringWithRange:matchRange];
     
+    // get author_avatar_url
+    reg =[NSRegularExpression regularExpressionWithPattern:@"src=\"(//secure.gravatar.com/avatar[^\"]+?)\" />" options:NSRegularExpressionCaseInsensitive error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    NSString* author_avatar_url = [html substringWithRange:matchRange];
+    
     // return
     NSMutableDictionary* ret = [[NSMutableDictionary alloc] initWithCapacity:10];
     [ret setValue:title forKey:@"title"];
@@ -132,6 +137,7 @@
     [ret setValue:upload_time forKey:@"upload_time"];
     [ret setValue:description forKey:@"description"];
     [ret setValue:categories forKey:@"categories"];
+    [ret setValue:author_avatar_url forKey:@"author_avatar_url"];
     
     return ret;
 }
@@ -212,8 +218,7 @@
     if (meta_dict == nil) {
         [self refresh_cache];
     }
-    NSArray* ary = [NSArray arrayWithObjects:[meta_dict objectForKey:@"categories"], nil];
-    return ary;
+    return [[meta_dict objectForKey:@"categories"] componentsSeparatedByString:@","];
 }
 
 - (NSDate*) upload_time
@@ -247,6 +252,14 @@
         [ary addObject: [NSURL URLWithString:[NSString stringWithFormat: @"%@%d%@", self.url_prefix, page, self.url_postfix]]];
     }
     return ary;
+}
+
+- (NSString*) author_avatar_url
+{
+    if (meta_dict == nil) {
+        [self refresh_cache];
+    }
+    return [NSString stringWithFormat:@"http:%@",[meta_dict objectForKey:@"author_avatar_url"]];
 }
 
 @end
