@@ -49,21 +49,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Setup Volume Button steal
-    buttonStealer = [[RBVolumeButtons alloc] init];
-    id controller = self;
-    buttonStealer.upBlock = ^{
-        [controller didClickPageUp:nil];
-    };
-    buttonStealer.downBlock = ^{
-        [controller didClickPageDown:nil];
-    };
-    
-    // Start Steal
-    [buttonStealer startStealingVolumeButtonEvents];
-    // Stop steal
-    // [buttonStealer stopStealingVolumeButtonEvents];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -112,6 +97,16 @@
     [self.view addSubview:btnDown];
     [self.view addSubview:btnTooldom];
     
+    // Setup Volume Button steal
+    buttonStealer = [[RBVolumeButtons alloc] init];
+    id controller = self;
+    buttonStealer.upBlock = ^{
+        [controller didClickPageUp:nil];
+    };
+    buttonStealer.downBlock = ^{
+        [controller didClickPageDown:nil];
+    };
+
     [self startPlay];
 }
 
@@ -152,7 +147,7 @@
 
 - (void)didClickTooldom: (id)sender
 {
-    UIActionSheet *tooldoms = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"End slide" otherButtonTitles: nil];
+    UIActionSheet *tooldoms = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"End slide" otherButtonTitles: @"Volume Button Mode", nil];
     
     tooldoms.actionSheetStyle = UIActionSheetStyleAutomatic;
     [tooldoms showInView:self.view];
@@ -182,11 +177,19 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
+        // End Slide
         [_slideMgr receiverUninit];
         [_slideMgr deviceDisconnect];
         
         [self.navigationController setNavigationBarHidden: NO animated:NO];
         [self.navigationController popToRootViewControllerAnimated:YES];
+    } else if (buttonIndex == 1) {
+        // Start Volume Button Mode
+
+        // Start Steal
+        [buttonStealer startStealingVolumeButtonEvents];
+        // Stop steal
+        // [buttonStealer stopStealingVolumeButtonEvents];
     }
 }
 
