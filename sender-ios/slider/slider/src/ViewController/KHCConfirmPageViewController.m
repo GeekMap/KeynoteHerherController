@@ -25,6 +25,7 @@
     CKTableAlertView *alert;
     UIButton *btnChooseChromecast;
     
+    NSTimer *timerDismissPagecontrol;
     UIPageControl *pageControl;
     UIScrollView *scrollView;
     NSMutableArray *previewImageViews;
@@ -69,9 +70,9 @@
     //UIPageControl
     [pageControl setNumberOfPages:[_slide.preview_pages count]];
     [pageControl setCurrentPage:0];
-    [pageControl setFrame:CGRectMake(0, 0, 90, 10)];
-    [pageControl setCenter:CGPointMake(screenWidth/2, 230)];
-    [pageControl setBackgroundColor:[UIColor colorWithWhite:0.6 alpha:0.2]];
+    [pageControl setFrame:CGRectMake(0, 0, 90, 15)];
+    [pageControl setCenter:CGPointMake(screenWidth/2, 225)];
+    [pageControl setBackgroundColor:[UIColor colorWithWhite:0.4 alpha:0.4]];
     [pageControl setUserInteractionEnabled:NO];
     pageControl.layer.cornerRadius = 5;
     pageControl.layer.masksToBounds = YES;
@@ -110,9 +111,9 @@
         NSNumber *index = [[NSNumber alloc] initWithInt:i];
         [NSThread detachNewThreadSelector:@selector(loadPreviewImages:) toTarget:self withObject:index];
     }
-    
-	// Do any additional setup after loading the view, typically from a nib.
+
     [self.view addSubview:scrollView];
+    [pageControl setAlpha:0.f];
     [self.view addSubview:pageControl];
 }
 
@@ -284,9 +285,28 @@
 
 #pragma mark - ScrollPageViewDelegate
 
+- (void)dismissPageControl: (NSTimer*) timer
+{
+    [UIView animateWithDuration:0.4f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [pageControl setAlpha:0.0f];
+    } completion:nil];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
     CGFloat width = scrollView.frame.size.width;
     NSInteger currentPage = ((scrollView.contentOffset.x - width / 2) / width) + 1;
+    [UIView animateWithDuration:0.2f delay:0.f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [pageControl setAlpha:1.0f];
+    } completion:nil];
+    if ([timerDismissPagecontrol isValid]) {
+        [timerDismissPagecontrol invalidate];
+    }
+    timerDismissPagecontrol = [NSTimer scheduledTimerWithTimeInterval: 1.0f
+                                             target: self
+                                           selector: @selector(dismissPageControl:)
+                                           userInfo: nil
+                                            repeats: NO];
+    
     [pageControl setCurrentPage:currentPage];
 }
 
