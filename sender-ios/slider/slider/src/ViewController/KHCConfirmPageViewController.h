@@ -10,6 +10,6 @@
 #import "CKTableAlertView.h"
 #import "KHCSlideItem.h"
 
-@interface KHCConfirmPageViewController : UIViewController <CKTableAlertViewDelegate>
+@interface KHCConfirmPageViewController : UIViewController <CKTableAlertViewDelegate, UIScrollViewDelegate>
 - (void)setSlide: (id<KHCSlideItem>)slide;
 @end
