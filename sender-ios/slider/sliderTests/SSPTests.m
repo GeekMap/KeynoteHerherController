@@ -40,6 +40,17 @@
     NSLog(@"UrlPostfix: %@", [slide_item url_postfix]);
     NSLog(@"MinPage: %d", [slide_item min_page]);
     NSLog(@"MaxPage: %d", [slide_item max_page]);
+    NSLog(@"PageCount: %d", [slide_item page_count]);
+    NSLog(@"ViewersCount: %d", [slide_item viewers_count]);
+    NSLog(@"Category: %@", [[slide_item categories] componentsJoinedByString: @", "]);
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
+	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+	NSString *dateString = [dateFormatter stringFromDate:[slide_item upload_time]];
+    NSLog(@"UploadTime: %@", dateString);
+    NSLog(@"Description: %@", [slide_item description]);
+    NSLog(@"PreviewPages: %@", [[slide_item preview_pages] componentsJoinedByString: @", "]);
+    NSLog(@"Author_avatar_url: %@", [slide_item author_avatar_url]);
 }
 
 
@@ -71,6 +82,7 @@
     NSLog(@"UploadTime: %@", dateString);
     NSLog(@"Description: %@", [slide_item description]);
     NSLog(@"PreviewPages: %@", [[slide_item preview_pages] componentsJoinedByString: @", "]);
+    NSLog(@"Author_avatar_url: %@", [slide_item author_avatar_url]);
 }
 
 - (void) testSSPSpeakerDeck

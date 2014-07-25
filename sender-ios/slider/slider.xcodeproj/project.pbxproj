@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3FC9500C19795A3500C595CD /* RBVolumeButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9500B19795A3500C595CD /* RBVolumeButtons.m */; };
 		3FC9501019795DD800C595CD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC9500F19795DD800C595CD /* MediaPlayer.framework */; };
+		3FE87EFF19822AF100750C5A /* SlideshareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE87EFE19822AF100750C5A /* SlideshareAPI.m */; };
 		6B08F051193BAA24002513D4 /* SSPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B08F050193BAA24002513D4 /* SSPTests.m */; };
 		6B3A1A02194AE0740008FA9B /* KHCSISpeakerDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3A1A01194AE0740008FA9B /* KHCSISpeakerDeck.m */; };
 		6B3D1517194AFF98002702E4 /* KHCSSPSpeakerDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3D1516194AFF98002702E4 /* KHCSSPSpeakerDeck.m */; };
@@ -79,6 +80,8 @@
 		3FC9500A19795A3500C595CD /* RBVolumeButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBVolumeButtons.h; sourceTree = "<group>"; };
 		3FC9500B19795A3500C595CD /* RBVolumeButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBVolumeButtons.m; sourceTree = "<group>"; };
 		3FC9500F19795DD800C595CD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3FE87EFD19822AF100750C5A /* SlideshareAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SlideshareAPI.h; path = src/SSP/SlideshareAPI.h; sourceTree = "<group>"; };
+		3FE87EFE19822AF100750C5A /* SlideshareAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SlideshareAPI.m; path = src/SSP/SlideshareAPI.m; sourceTree = "<group>"; };
 		6B08F050193BAA24002513D4 /* SSPTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPTests.m; sourceTree = "<group>"; };
 		6B3A1A00194AE0740008FA9B /* KHCSISpeakerDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSISpeakerDeck.h; path = src/SSP/KHCSISpeakerDeck.h; sourceTree = "<group>"; };
 		6B3A1A01194AE0740008FA9B /* KHCSISpeakerDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSISpeakerDeck.m; path = src/SSP/KHCSISpeakerDeck.m; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				6F6835DB193B7AD8001517F2 /* KHCSSPSlideshare.m */,
 				6B3D1515194AFF98002702E4 /* KHCSSPSpeakerDeck.h */,
 				6B3D1516194AFF98002702E4 /* KHCSSPSpeakerDeck.m */,
+				3FE87EFD19822AF100750C5A /* SlideshareAPI.h */,
+				3FE87EFE19822AF100750C5A /* SlideshareAPI.m */,
 			);
 			name = SSP;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 				6F6835E8193B7AF3001517F2 /* KHCAddSlideNavController.m in Sources */,
 				3FC9500C19795A3500C595CD /* RBVolumeButtons.m in Sources */,
 				6F6835DD193B7AD8001517F2 /* KHCSSPSlideshare.m in Sources */,
+				3FE87EFF19822AF100750C5A /* SlideshareAPI.m in Sources */,
 				6F9DF5C9195D4DA400E81574 /* KHCSlideControllerViewController.m in Sources */,
 				6F6835EB193B7AF3001517F2 /* KHCSlideListViewController.m in Sources */,
 				6F6835EC193B7AF3001517F2 /* KHCSSPSelectorViewController.m in Sources */,
