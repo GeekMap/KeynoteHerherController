@@ -23,7 +23,7 @@
 @property(readonly) NSDate* upload_time;
 @property(readonly) NSString* description;
 @property(readonly) NSArray* preview_pages;
-@property(readonly) NSString* author_avatar_url;
+@property(readonly) NSURL* author_avatar_url;
 
 
 - (id) initWithURL: (NSString*) url;

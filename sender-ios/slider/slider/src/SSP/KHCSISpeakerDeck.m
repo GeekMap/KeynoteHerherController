@@ -254,12 +254,12 @@
     return ary;
 }
 
-- (NSString*) author_avatar_url
+- (NSURL*) author_avatar_url
 {
     if (meta_dict == nil) {
         [self refresh_cache];
     }
-    return [NSString stringWithFormat:@"http:%@",[meta_dict objectForKey:@"author_avatar_url"]];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http:%@",[meta_dict objectForKey:@"author_avatar_url"]]];
 }
 
 @end
