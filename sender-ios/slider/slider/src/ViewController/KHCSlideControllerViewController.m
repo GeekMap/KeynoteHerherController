@@ -107,6 +107,8 @@
         [controller didClickPageDown:nil];
     };
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DisableIdle" object:nil];
+
     [self startPlay];
 }
 
@@ -114,6 +116,7 @@
 {
     [super viewWillDisappear:animated];
     buttonStealer = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EnableIdle" object:nil];
 }
 
 - (void)startPlay

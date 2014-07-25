@@ -12,6 +12,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDisableIdelTimer:) name:@"DisableIdle" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnableIdelTimer:) name:@"EnableIdle" object:nil];
     return YES;
 }
 
@@ -40,6 +42,16 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)applicationDisableIdelTimer: (NSNotification*) notification
+{
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+}
+
+- (void)applicationEnableIdelTimer: (NSNotification*) notification
+{
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
 }
 
 @end
