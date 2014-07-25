@@ -40,6 +40,7 @@
 		6F1351C81982509D0005535C /* KHCSlideSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1351C01982509D0005535C /* KHCSlideSelectorViewController.m */; };
 		6F1351C91982509D0005535C /* KHCSSPSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1351C21982509D0005535C /* KHCSSPSelectorViewController.m */; };
 		6F1351CD198250E30005535C /* KHCSlideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1351CC198250E30005535C /* KHCSlideTableViewCell.m */; };
+		6F1351CF1982771A0005535C /* view.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1351CE1982771A0005535C /* view.png */; };
 		6F6835DC193B7AD8001517F2 /* KHCSISlideshare.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835D7193B7AD8001517F2 /* KHCSISlideshare.m */; };
 		6F6835DD193B7AD8001517F2 /* KHCSSPSlideshare.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835DB193B7AD8001517F2 /* KHCSSPSlideshare.m */; };
 		6F6835E9193B7AF3001517F2 /* KHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835E1193B7AF3001517F2 /* KHCAppDelegate.m */; };
@@ -121,6 +122,7 @@
 		6F1351C21982509D0005535C /* KHCSSPSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHCSSPSelectorViewController.m; sourceTree = "<group>"; };
 		6F1351CB198250E30005535C /* KHCSlideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHCSlideTableViewCell.h; sourceTree = "<group>"; };
 		6F1351CC198250E30005535C /* KHCSlideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHCSlideTableViewCell.m; sourceTree = "<group>"; };
+		6F1351CE1982771A0005535C /* view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view.png; sourceTree = "<group>"; };
 		6F6835D6193B7AD8001517F2 /* KHCSISlideshare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSISlideshare.h; path = src/SSP/KHCSISlideshare.h; sourceTree = "<group>"; };
 		6F6835D7193B7AD8001517F2 /* KHCSISlideshare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCSISlideshare.m; path = src/SSP/KHCSISlideshare.m; sourceTree = "<group>"; };
 		6F6835D8193B7AD8001517F2 /* KHCSlideItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideItem.h; path = src/SSP/KHCSlideItem.h; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		6F6835F0193B7B46001517F2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6F1351CE1982771A0005535C /* view.png */,
 				6FB3F5C7197FC298006465DC /* cast_icon.png */,
 				6FB3F5C8197FC298006465DC /* cast_icon@2x.png */,
 				6F9DF5CE195D77EA00E81574 /* arrow-down.png */,
@@ -472,6 +475,7 @@
 			files = (
 				6BBFB68F1960096A0018EF7C /* Icon-60.png in Resources */,
 				6BBFB68D1960096A0018EF7C /* Icon-40.png in Resources */,
+				6F1351CF1982771A0005535C /* view.png in Resources */,
 				6BBFB6981960096A0018EF7C /* Icon-Small@2x.png in Resources */,
 				6BBFB6961960096A0018EF7C /* Icon-Small-50@2x.png in Resources */,
 				6FFB987E196A48FB00FC6018 /* speakerdeck.png in Resources */,
