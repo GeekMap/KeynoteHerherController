@@ -50,6 +50,8 @@
 		6F9DF5D1195D77EA00E81574 /* arrow-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9DF5CF195D77EA00E81574 /* arrow-up.png */; };
 		6F9DF5D5195D7A2400E81574 /* settings-wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9DF5D4195D7A2400E81574 /* settings-wrench.png */; };
 		6FA88136195ACD9800B3870A /* CKTableAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA88135195ACD9800B3870A /* CKTableAlertView.m */; };
+		6FB3F5C9197FC298006465DC /* cast_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FB3F5C7197FC298006465DC /* cast_icon.png */; };
+		6FB3F5CA197FC298006465DC /* cast_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FB3F5C8197FC298006465DC /* cast_icon@2x.png */; };
 		6FD2AE7E19541C6300A8648C /* KHCConfirmPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2AE7D19541C6300A8648C /* KHCConfirmPageViewController.m */; };
 		6FD2AE8119541CBB00A8648C /* KHCSlideManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2AE8019541CBB00A8648C /* KHCSlideManager.m */; };
 		6FDE932A195E95C20077776D /* KHCSlideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE9329195E95C20077776D /* KHCSlideTableViewCell.m */; };
@@ -134,6 +136,8 @@
 		6F9DF5D4195D7A2400E81574 /* settings-wrench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-wrench.png"; sourceTree = "<group>"; };
 		6FA88134195ACD9800B3870A /* CKTableAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKTableAlertView.h; path = CKTableAlert/CKTableAlertView.h; sourceTree = "<group>"; };
 		6FA88135195ACD9800B3870A /* CKTableAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKTableAlertView.m; path = CKTableAlert/CKTableAlertView.m; sourceTree = "<group>"; };
+		6FB3F5C7197FC298006465DC /* cast_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cast_icon.png; sourceTree = "<group>"; };
+		6FB3F5C8197FC298006465DC /* cast_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cast_icon@2x.png"; sourceTree = "<group>"; };
 		6FD2AE7C19541C6300A8648C /* KHCConfirmPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCConfirmPageViewController.h; path = src/KHCConfirmPageViewController.h; sourceTree = "<group>"; };
 		6FD2AE7D19541C6300A8648C /* KHCConfirmPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCConfirmPageViewController.m; path = src/KHCConfirmPageViewController.m; sourceTree = "<group>"; };
 		6FD2AE7F19541CBB00A8648C /* KHCSlideManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideManager.h; path = src/KHCSlideManager.h; sourceTree = "<group>"; };
@@ -230,6 +234,8 @@
 		6F6835F0193B7B46001517F2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6FB3F5C7197FC298006465DC /* cast_icon.png */,
+				6FB3F5C8197FC298006465DC /* cast_icon@2x.png */,
 				6F9DF5CE195D77EA00E81574 /* arrow-down.png */,
 				6F9DF5D4195D7A2400E81574 /* settings-wrench.png */,
 				6F9DF5CF195D77EA00E81574 /* arrow-up.png */,
@@ -412,6 +418,9 @@
 				CLASSPREFIX = KHC;
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
+					6FEECA53193869560007B09F = {
+						DevelopmentTeam = 9SRURU3A38;
+					};
 					6FEECA6E193869570007B09F = {
 						TestTargetID = 6FEECA53193869560007B09F;
 					};
@@ -451,6 +460,7 @@
 				6F6835F2193B7B46001517F2 /* slideshare.png in Resources */,
 				6BBFB6951960096A0018EF7C /* Icon-Small-50.png in Resources */,
 				6BBFB6901960096A0018EF7C /* Icon-60@2x.png in Resources */,
+				6FB3F5CA197FC298006465DC /* cast_icon@2x.png in Resources */,
 				6BBFB6971960096A0018EF7C /* Icon-Small.png in Resources */,
 				6BBFB6911960096A0018EF7C /* Icon-72.png in Resources */,
 				6BBFB68E1960096A0018EF7C /* Icon-40@2x.png in Resources */,
@@ -464,6 +474,7 @@
 				6BBFB6941960096A0018EF7C /* Icon-76@2x.png in Resources */,
 				6BBFB6921960096A0018EF7C /* Icon-72@2x.png in Resources */,
 				6BBFB69C1960096A0018EF7C /* iTunesArtwork@2x.png in Resources */,
+				6FB3F5C9197FC298006465DC /* cast_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +627,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/slider/resources/framework",
@@ -633,6 +645,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/slider/resources/framework",
