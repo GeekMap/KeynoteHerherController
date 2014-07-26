@@ -24,11 +24,12 @@
     Boolean handling_connection;
     CKTableAlertView *alert;
     UIButton *btnChooseChromecast;
-    
-    NSTimer *timerDismissPagecontrol;
+
+    NSTimer *timerDismissPagecontrol, *timerShowSlideNotification;
     UIPageControl *pageControl;
     UIScrollView *scrollView;
     NSMutableArray *previewImageViews;
+    UIView *notifyArrow;
 }
 @end
 
@@ -115,6 +116,12 @@
     [self.view addSubview:scrollView];
     [pageControl setAlpha:0.f];
     [self.view addSubview:pageControl];
+
+    timerDismissPagecontrol = [NSTimer scheduledTimerWithTimeInterval: 2.3f
+                                                               target: self
+                                                             selector: @selector(createNotifyArrow)
+                                                             userInfo: nil
+                                                              repeats: NO];
 }
 
 - (void) addSlideInfomationViews
@@ -130,7 +137,7 @@
     imageView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
 
     [self.view addSubview:imageView];
-    
+
     UILabel *labTitle = [[UILabel alloc] initWithFrame:CGRectMake(88, TitleY, TitleWidth, TitleHeight)];
     labTitle.numberOfLines = 2;
     [labTitle setFont:[UIFont systemFontOfSize:18]];
@@ -241,7 +248,7 @@
     height = scrollView.frame.size.height;
 
     int i = [index intValue];
-    
+
     CGRect frame = CGRectMake(width*i + 1, 0, width - 2, height);
 
     UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[_slide.preview_pages objectAtIndex:i]]];
@@ -256,6 +263,59 @@
     [activityIndicator stopAnimating];
     [activityIndicator removeFromSuperview];
     [previewImageViews insertObject:imageView atIndex:i];
+
+    if (i == 0) {
+        if ([scrollView.subviews containsObject:notifyArrow])
+            [scrollView bringSubviewToFront:notifyArrow];
+    }
+}
+
+- (void) createNotifyArrow
+{
+    NSLog(@"Create Arrow");
+    CGPoint origin = CGPointMake(0, 30);
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:origin];
+    [path addLineToPoint:CGPointMake(origin.x+20, origin.y-25)];
+    [path addLineToPoint:CGPointMake(origin.x+20, origin.y-15)];
+    [path addLineToPoint:CGPointMake(origin.x+60, origin.y-15)];
+    [path addLineToPoint:CGPointMake(origin.x+60, origin.y+15)];
+    [path addLineToPoint:CGPointMake(origin.x+20, origin.y+15)];
+    [path addLineToPoint:CGPointMake(origin.x+20, origin.y+25)];
+    [path closePath];
+
+    CAShapeLayer *sl = [CAShapeLayer layer];
+    sl.fillColor = [UIColor grayColor].CGColor;
+    sl.path = path.CGPath;
+    sl.transform = CATransform3DMakeScale(2.5, 1.5, 1);
+
+    sl.masksToBounds = NO; // this default
+    sl.shadowColor = [[UIColor blackColor] CGColor];
+    sl.shadowOpacity = 0.4;
+    sl.shadowRadius = 1.4;
+    sl.shadowOffset = CGSizeMake(0.0f, 0.0f);
+
+    // set the frame height to 0 so the arrow won't disable the scroll function
+    notifyArrow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 0)];
+    [notifyArrow.layer addSublayer:sl];
+
+    notifyArrow.center = CGPointMake(249, 75);
+
+    UILabel *labSlide = [[UILabel alloc] initWithFrame:CGRectMake(25, 33, 200, 25)];
+    [labSlide setText:@"Slide to preview"];
+    [labSlide setTextColor:[UIColor whiteColor]];
+    [notifyArrow addSubview:labSlide];
+    [notifyArrow setBackgroundColor:[UIColor blueColor]];
+
+    [UIView animateWithDuration:1.5f
+                          delay:0.0f
+                        options:UIViewAnimationOptionRepeat
+                     animations:^{
+                         notifyArrow.center = CGPointMake(199, 75);
+                     }
+                     completion:nil];
+
+    [scrollView addSubview:notifyArrow];
 }
 
 - (void)chooseChromecast: (id)sender
@@ -306,6 +366,14 @@
                                            selector: @selector(dismissPageControl:)
                                            userInfo: nil
                                             repeats: NO];
+
+    // disable notify arrow timer
+    if ([timerShowSlideNotification isValid]) {
+        [timerShowSlideNotification invalidate];
+    }
+    if ([scrollView.subviews containsObject:notifyArrow]) {
+        [notifyArrow removeFromSuperview];
+    }
     
     [pageControl setCurrentPage:currentPage];
 }
