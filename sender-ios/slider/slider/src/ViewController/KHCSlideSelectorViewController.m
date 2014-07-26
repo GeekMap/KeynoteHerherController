@@ -11,12 +11,14 @@
 #import "KHCSSPSpeakerDeck.h"
 #import "KHCSlideItem.h"
 #import "KHCSlideTableViewCell.h"
+#import "KHCConfirmPageViewController.h"
 
 @interface KHCSlideSelectorViewController ()
 {
     UIActivityIndicatorView *_activityIndicatorView;
     NSString *cellIdentifier;
     NSArray *_slides;
+    NSObject<KHCSlideItem> *selectedSlide;
 }
 @property (nonatomic, retain) UITableView *tableview;
 @end
@@ -93,6 +95,13 @@
     }
 }
 
+- (void) didClickAddSlide
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addSlide" object:selectedSlide];
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -133,12 +142,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSObject<KHCSlideItem> *selectedSlide = [_slides objectAtIndex:indexPath.row];
-    NSLog(@"%@", selectedSlide.title);
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addSlide" object:selectedSlide];
-    
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    selectedSlide = [_slides objectAtIndex:indexPath.row];
+
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    KHCConfirmPageViewController *confirmPage = (KHCConfirmPageViewController*) [storyBoard instantiateViewControllerWithIdentifier: @"KHCConfirmPage"];
+
+    // must being set before we force load the view
+    [confirmPage setSlide:selectedSlide];
+    // force to load the view, so we can change the rightBarButton
+    [confirmPage view];
+    confirmPage.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleDone target:self action:@selector(didClickAddSlide)];
+
+    [self.navigationController pushViewController:confirmPage animated:YES];
 }
 
 @end
