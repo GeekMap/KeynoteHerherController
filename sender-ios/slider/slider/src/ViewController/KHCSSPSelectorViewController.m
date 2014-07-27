@@ -13,6 +13,7 @@
 @interface KHCSSPSelectorViewController ()
 {
     NSString *selectedSSP;
+    NSArray *sspList;
 }
 
 @end
@@ -33,8 +34,10 @@
     [super viewDidLoad];
     [self setTitle:@"Select Slide Service"];
     
+    sspList = [[NSArray alloc] initWithObjects:@"SlideShare", @"SpeakerDeck", nil];
+
     // set a default SSP
-    selectedSSP = @"SlideShare";
+    selectedSSP = [sspList objectAtIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,20 +45,12 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)slideShareSelected:(id)sender{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Input username" message:@"Please input the username of slideshare." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Search", nil];
+- (void)sspSelected:(NSString *)sspName{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Input username" message:[NSString stringWithFormat:@"Please input the username of %@.", sspName] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Search", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert show];
     
-    selectedSSP = @"SlideShare";
-}
-
-- (void)speakerDeckSelected:(id)sender{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Input username" message:@"Please input the username of speakerdeck." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Search", nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alert show];
-    
-    selectedSSP = @"SpeakerDeck";
+    selectedSSP = sspName;
 }
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -85,7 +80,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return [sspList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,29 +93,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     //cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    NSString *imageName;
-    if (indexPath.row == 0) {
-        imageName = @"slideshare.png";
-    }
-    else if (indexPath.row == 1){
-        imageName = @"speakerdeck.png";
-    }
-    else
-    {
-        imageName = @"";
-    }
-    
-    
+
+    NSString *imageName = [NSString stringWithFormat:@"%@.png", [[sspList objectAtIndex:indexPath.row] lowercaseString]];
+
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [cell setBackgroundView:  imageView];
-    
+
     UIImageView *selectedView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: imageName]];
     selectedView.contentMode = UIViewContentModeScaleAspectFit;
     selectedView.backgroundColor = [UIColor lightGrayColor];
     [cell setSelectedBackgroundView:selectedView];
-    
+
     return cell;
 }
 
@@ -144,17 +128,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == 0) {
-        [self slideShareSelected:nil];
-    }
-    else if (indexPath.row == 1){
-        [self speakerDeckSelected:nil];
-    }
-    else
-    {
-        
-    }
-    
+    [self sspSelected:[sspList objectAtIndex:indexPath.row]];
 }
 
 @end
