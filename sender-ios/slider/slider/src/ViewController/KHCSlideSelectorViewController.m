@@ -19,6 +19,8 @@
     NSString *cellIdentifier;
     NSArray *_slides;
     NSObject<KHCSlideItem> *selectedSlide;
+
+    NSDictionary *sspMappingTable;
 }
 @property (nonatomic, retain) UITableView *tableview;
 @end
@@ -52,6 +54,8 @@
     _activityIndicatorView.center = CGPointMake(size.width / 2.0, size.height / 2.0);
     [_activityIndicatorView startAnimating];
     [self.view addSubview:_activityIndicatorView];
+
+    sspMappingTable = [[NSDictionary alloc] initWithObjectsAndKeys:[KHCSSPSlideshare class], @"SlideShare", [KHCSSPSpeakerDeck class], @"SpeakerDeck", nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -62,13 +66,11 @@
 
     NSLog(@"SSP name: %@", _sspName);
     NSLog(@"User name: %@", _userName);
-    
-    _slides = [[NSArray alloc] initWithObjects: nil];
 
-    if ([_sspName isEqualToString: @"SlideShare"]) {
-        _slides = [KHCSSPSlideshare getUserSlideList:self.userName];
-    } else if ([_sspName isEqualToString:@"SpeakerDeck"]) {
-        _slides = [KHCSSPSpeakerDeck getUserSlideList:self.userName];
+    if ([sspMappingTable objectForKey:_sspName]) {
+        _slides = [[sspMappingTable objectForKey:_sspName] getUserSlideList:self.userName];
+    } else {
+        _slides = [[NSArray alloc] initWithObjects: nil];
     }
 
     NSLog(@"Print slide titles");
@@ -86,7 +88,8 @@
         [self.view addSubview:noSlides];
     } else {
         cellIdentifier = @"slideCell";
-        _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, size.width, size.height)];
+        // Height must minus 64; otherwise the scroll cannot scroll to bottom
+        _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, size.width, size.height-64)];
         [_tableview registerClass:[KHCSlideTableViewCell class] forCellReuseIdentifier:cellIdentifier];
         [_tableview setDelegate:self];
         [_tableview setDataSource:self];
