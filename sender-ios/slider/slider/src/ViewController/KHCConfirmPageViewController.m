@@ -30,6 +30,7 @@
     UIScrollView *scrollView;
     NSMutableArray *previewImageViews;
     UIView *notifyArrow;
+    UILabel *labSlide;
 }
 @end
 
@@ -278,8 +279,8 @@
     [path moveToPoint:origin];
     [path addLineToPoint:CGPointMake(origin.x+20, origin.y-25)];
     [path addLineToPoint:CGPointMake(origin.x+20, origin.y-15)];
-    [path addLineToPoint:CGPointMake(origin.x+60, origin.y-15)];
-    [path addLineToPoint:CGPointMake(origin.x+60, origin.y+15)];
+    [path addLineToPoint:CGPointMake(origin.x+70, origin.y-15)];
+    [path addLineToPoint:CGPointMake(origin.x+70, origin.y+15)];
     [path addLineToPoint:CGPointMake(origin.x+20, origin.y+15)];
     [path addLineToPoint:CGPointMake(origin.x+20, origin.y+25)];
     [path closePath];
@@ -299,23 +300,28 @@
     notifyArrow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 0)];
     [notifyArrow.layer addSublayer:sl];
 
-    notifyArrow.center = CGPointMake(249, 75);
+    notifyArrow.center = CGPointMake(279, 75);
 
-    UILabel *labSlide = [[UILabel alloc] initWithFrame:CGRectMake(25, 33, 200, 25)];
-    [labSlide setText:@"Slide to preview"];
+    labSlide = [[UILabel alloc] initWithFrame:CGRectMake(25, 33, 65, 25)];
+    [labSlide setText:@"Preview"];
     [labSlide setTextColor:[UIColor whiteColor]];
-    [notifyArrow addSubview:labSlide];
-    [notifyArrow setBackgroundColor:[UIColor blueColor]];
+//    [labSlide setBackgroundColor:[UIColor blueColor]];
+//    [notifyArrow addSubview:labSlide];
+    labSlide.center = CGPointMake(288, 120);
+//    [notifyArrow setBackgroundColor:[UIColor blueColor]];
+
+    [scrollView addSubview:notifyArrow];
+    [scrollView addSubview:labSlide];
 
     [UIView animateWithDuration:1.5f
                           delay:0.0f
                         options:UIViewAnimationOptionRepeat
                      animations:^{
-                         notifyArrow.center = CGPointMake(199, 75);
+//                          notifyArrow.frame = CGRectMake(0, 0, 250, 0);
+                          notifyArrow.center = CGPointMake(239, 75);
+                          [scrollView layoutIfNeeded];
                      }
                      completion:nil];
-
-    [scrollView addSubview:notifyArrow];
 }
 
 - (void)chooseChromecast: (id)sender
@@ -373,8 +379,9 @@
     }
     if ([scrollView.subviews containsObject:notifyArrow]) {
         [notifyArrow removeFromSuperview];
+        [labSlide removeFromSuperview];
     }
-    
+
     [pageControl setCurrentPage:currentPage];
 }
 
@@ -410,14 +417,14 @@
         NSLog(@"Callback Connected");
         
         [alert hide];
-        
+
         handling_connection = false;
-        
+
         KHCSlideControllerViewController *slideController = [[KHCSlideControllerViewController alloc] initWithSlideManager:slideManager];
-        
+
         [slideController view];
         [slideController setSlide: _slide];
-        
+
         [self.navigationController pushViewController:slideController animated:YES];
     }
 }
