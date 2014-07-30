@@ -34,7 +34,7 @@
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     _window.windowLevel = UIWindowLevelAlert;
-    _window.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.2];
+    _window.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
     
     self.center = CGPointMake(CGRectGetMidX(self.window.bounds), CGRectGetMidY(self.window.bounds));
     
@@ -62,8 +62,14 @@
     self = [super initWithFrame:CGRectMake(AlertPosX, AlertPosY, AlertWidth, AlertHeight)];
 
     if (self) {
-        self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.95f];
+        self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.99f];
         self.layer.cornerRadius = 5.0f;
+        // Add shadow
+        self.layer.masksToBounds = NO; // this default
+        self.layer.shadowColor = [[UIColor blackColor] CGColor];
+        self.layer.shadowOpacity = 0.4;
+        self.layer.shadowRadius = 5;
+        self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
         
         UILabel *labTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, AlertWidth, AlertTitleHeight)];
         [labTitle setText:title];
