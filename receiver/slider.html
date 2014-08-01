@@ -31,8 +31,17 @@
     <script type="text/javascript">
         window.onload = onLoad;
 
+        function sleep(millis, callback) {
+            setTimeout(function(){ callback(); }, millis);
+        }
+
+        function loadFirstPage(){
+            impress().goto('SideA');
+        };
+
         function onLoad() {
-            window.engine = new cast.KHC();                
+            window.engine = new cast.KHC();
+            sleep(1500, loadFirstPage);
         }
     </script>
 
@@ -40,26 +49,35 @@
 </head>
 
 <body class="impress-supported">
-
 <div id="impress">
+    <div
+        class="step title"
+        data-x="0"
+        data-y="0"
+        id="title">
+        <span class='headnote'>2014 Trend Micro Device App Contest</span>
+        <h1>Slider</h1>
+        <span class="footnote">CVE-2014-0160: Chuck - Jarron - Reverb</span>
+    </div>
+
     <div 
         class="step slide"
         data-x="0"
-        data-y="0" 
+        data-y="1000" 
         style="width: 900px; height: 675px;"
         id="SideA">
     </div>
     <div 
         class="step slide"
         data-x="0"
-        data-y="0" 
+        data-y="1000" 
         style="width: 900px; height: 675px;"
         id="SideB">
     </div>
 </div>
 
 <script src="js/impress.js"></script>
-<script></script>
+<script>impress().init();</script>
 
 </body>
 </html>

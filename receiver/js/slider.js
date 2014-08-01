@@ -14,6 +14,8 @@ if (!IS_DEBUG){
   var sender_id = '';
   var SLIDE_CANVAS_ID = 'impress';
 
+  var cached_images = new Array();
+
   function KHC(board) {
     console.log('******** KeynoteHerherController ********');
     if (!IS_DEBUG){
@@ -105,8 +107,6 @@ if (!IS_DEBUG){
           this.min_page = message.min_page;
 
           this.current_page = 0;
-
-          impress().init();
 
           // show first page
           document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + message.min_page + this.url_postfix + ')';          
