@@ -114,6 +114,7 @@ if (!IS_DEBUG){
 
           // show first page
           document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + message.min_page + this.url_postfix + ')';          
+          this._cacheSlides(parseInt(message.min_page));
         }
       }
       else {
@@ -176,17 +177,7 @@ if (!IS_DEBUG){
         this.sendError(senderId, 'missing parameters for init');
       }
 
-      // caching for slides
-      var pre_cache = page - this.cache_count;
-      var post_cache = page + this.cache_count;
-      var min_page_i = parseInt(this.min_page);
-      var max_page_i = parseInt(this.max_page);
-      for(var x  = (min_page_i > pre_cache  ? min_page_i : pre_cache), y = 0;
-              x <= (post_cache > max_page_i ? max_page_i : post_cache) && y < this.cached_slides_length;
-          x++, y++) {
-        this.cached_slides[y] = new Image();
-        this.cached_slides[y].src = this.url_prefix + x.toString() + this.url_postfix;
-      }
+      this._cacheSlides(page);
 
       console.log('</onGo>');
     },
@@ -212,6 +203,20 @@ if (!IS_DEBUG){
       var canvas = document.getElementById(domId);
       while (canvas.firstChild) {
           canvas.removeChild(canvas.firstChild);
+      }
+    },
+
+    _cacheSlides: function(page){
+      // caching for slides
+      var pre_cache = page - this.cache_count;
+      var post_cache = page + this.cache_count;
+      var min_page_i = parseInt(this.min_page);
+      var max_page_i = parseInt(this.max_page);
+      for(var x  = (min_page_i > pre_cache  ? min_page_i : pre_cache), y = 0;
+              x <= (post_cache > max_page_i ? max_page_i : post_cache) && y < this.cached_slides_length;
+          x++, y++) {
+        this.cached_slides[y] = new Image();
+        this.cached_slides[y].src = this.url_prefix + x.toString() + this.url_postfix;
       }
     }
   };
