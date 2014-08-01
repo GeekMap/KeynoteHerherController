@@ -8,6 +8,7 @@
 
 #import "KHCSISpeakerDeck.h"
 
+
 @implementation KHCSISpeakerDeck
 {
     NSString* base_url;
@@ -61,8 +62,7 @@
     // get title
     reg =[NSRegularExpression regularExpressionWithPattern:@"<title>(.+?) // Speaker Deck</title>" options:NSRegularExpressionCaseInsensitive error:nil];
     matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
-    NSString* title = [self decode_htmlentities:[html substringWithRange:matchRange]];
-    
+    NSString* title = [html substringWithRange:matchRange];
 
     // get author
     reg =[NSRegularExpression regularExpressionWithPattern:@"<h2><a href=\"/(.+?)\">.+?</a></h2>" options:NSRegularExpressionCaseInsensitive error:nil];
@@ -139,16 +139,6 @@
     [ret setValue:author_avatar_url forKey:@"author_avatar_url"];
     
     return ret;
-}
-
-- (NSString *) decode_htmlentities: (NSString *) html_str
-{
-    // Use for decode htmlentities
-    NSDictionary *options = @{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType};
-    NSData *stringData = [html_str dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *decoded_str = [[[NSAttributedString alloc] initWithData:stringData options:options documentAttributes:NULL error:NULL] string];
-    
-    return decoded_str;
 }
 
 - (void) refresh_cache

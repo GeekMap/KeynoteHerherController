@@ -125,10 +125,15 @@
         slide = [slides objectAtIndex:indexPath.row];
     }
 
-    [cell.titleLabel setText:slide.title];
+    [cell.titleLabel setText:[slide.title stringByHTMLDecoded]];
 //    [cell.imageView setImage:[UIImage imageWitzzhData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[slide cover_url]]]]];
     [cell.pageNumLabel setText:[NSString stringWithFormat:@"Pages: %d", slide.page_count]];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70;
 }
 
 #pragma mark - TableView Delegate

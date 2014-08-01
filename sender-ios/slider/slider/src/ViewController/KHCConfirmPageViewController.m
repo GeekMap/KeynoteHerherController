@@ -142,7 +142,7 @@
     UILabel *labTitle = [[UILabel alloc] initWithFrame:CGRectMake(88, TitleY, TitleWidth, TitleHeight)];
     labTitle.numberOfLines = 2;
     [labTitle setFont:[UIFont systemFontOfSize:18]];
-    [labTitle setText:_slide.title];
+    [labTitle setText:[_slide.title stringByHTMLDecoded]];
     [self.view addSubview:labTitle];
 
     UILabel *labAuthor = [[UILabel alloc] initWithFrame:CGRectMake(88, TitleY + 52, 150, 20)];

@@ -52,7 +52,7 @@
                                                  error:&error];
     
     NSString* html = [[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding];
-    //NSLog(@"HTML: %@",html);
+    NSLog(@"HTML: %@",html);
     
     
     NSRegularExpression *reg;
@@ -62,7 +62,7 @@
     reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"(.+?)\" class=\"fb_og_meta\" property=\"og:title\" name=\"og_title\" />"
                                                    options:NSRegularExpressionCaseInsensitive error:nil];
     matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
-    NSString* title = [self decode_htmlentities:[html substringWithRange:matchRange]];
+    NSString* title = [html substringWithRange:matchRange];
     
     // get author
     reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"http://www.slideshare.net/(.+?)\" class=\"fb_og_meta\" property=\"slideshare:author\" name=\"slideshow_author\" />" options:NSRegularExpressionCaseInsensitive error:nil];
@@ -122,16 +122,6 @@
     [ret setValue:categories forKey:@"categories"];
     [ret setValue:author_avatar_url forKey:@"author_avatar_url"];
     return ret;
-}
-
-- (NSString *) decode_htmlentities: (NSString *) html_str
-{
-    // Use for decode htmlentities
-    NSDictionary *options = @{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType};
-    NSData *stringData = [html_str dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *decoded_str = [[[NSAttributedString alloc] initWithData:stringData options:options documentAttributes:NULL error:NULL] string];
-    
-    return decoded_str;
 }
 
 - (void) refresh_cache

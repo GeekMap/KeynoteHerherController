@@ -29,3 +29,18 @@
 - (id) initWithURL: (NSString*) url;
 - (void) refresh_cache;
 @end
+
+@interface NSString(HTML)
+- (NSString *) stringByHTMLDecoded;
+@end
+
+@implementation NSString(HTML)
+- (NSString *) stringByHTMLDecoded {
+    // Use for decode htmlentities
+    NSDictionary *options = @{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType};
+    NSData *stringData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *decoded_str = [[[NSAttributedString alloc] initWithData:stringData options:options documentAttributes:NULL error:NULL] string];
+    return decoded_str;
+}
+
+@end
