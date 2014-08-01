@@ -151,7 +151,10 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-    [slides exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+    //[slides exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+    NSObject<KHCSlideItem> *slide = [slides objectAtIndex:fromIndexPath.row];
+    [slides removeObjectAtIndex:fromIndexPath.row];
+    [slides insertObject:slide atIndex:toIndexPath.row];
     [self saveData];
 }
 
