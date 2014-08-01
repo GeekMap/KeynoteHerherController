@@ -155,7 +155,7 @@
     viewicon.frame = CGRectMake(245, TitleY + 52, 24, 24);
     [self.view addSubview:viewicon];
 
-    UILabel *labViews = [[UILabel alloc] initWithFrame:CGRectMake(270, TitleY + 54, 45, 20)];
+    UILabel *labViews = [[UILabel alloc] initWithFrame:CGRectMake(272, TitleY + 54, 45, 20)];
     labViews.numberOfLines = 1;
     [labViews setFont:[UIFont systemFontOfSize:14]];
     [labViews setText:[NSString stringWithFormat:@"%d", _slide.viewers_count]];
@@ -171,64 +171,18 @@
     [self.view addSubview:staticLabDescription];
 
     UILabel *labDescription = [[UILabel alloc] initWithFrame:CGRectMake(1, 364, 318, 75)];
-    labDescription.numberOfLines = 4;
+    labDescription.numberOfLines = 0; //no limit
     [labDescription setFont:[UIFont systemFontOfSize:14]];
     [labDescription setText:_slide.description];
+    [labDescription sizeToFit];
+    CGFloat desHeight = labDescription.frame.size.height;
     [self.view addSubview:labDescription];
-
-    UILabel *labLine2 = [[UILabel alloc] initWithFrame:CGRectMake(1, 446, 318, 1)];
-    [labLine2 setBackgroundColor:[UIColor blackColor]];
-    [self.view addSubview:labLine2];
-
-    UILabel *staticLabCategory= [[UILabel alloc] initWithFrame:CGRectMake(1, 454, 90, 20)];
-    [staticLabCategory setText:@"Categories"];
-    [staticLabCategory setFont:[UIFont systemFontOfSize:16]];
-    [self.view addSubview:staticLabCategory];
-
-    CGFloat cateX = 95;
-    CGFloat cateY = 454;
-    NSMutableArray *cateArrays = [[NSMutableArray alloc] initWithObjects: nil];
-    for (int i = 0; i < [_slide.categories count]; i ++) {
-        UILabel *labCategory = [[UILabel alloc] initWithFrame:CGRectMake(cateX, cateY, 0, 0)];
-        [labCategory setFont:[UIFont boldSystemFontOfSize:14]];
-        [labCategory setTextColor:[UIColor colorWithWhite:1 alpha:1]];
-        labCategory.layer.backgroundColor = [UIColor colorWithRed:0.4 green:0.6 blue:0.4 alpha:1].CGColor;
-        [labCategory setText:[_slide.categories objectAtIndex:i]];
-        [labCategory sizeToFit];
-        // Add padding-x and relocate label
-        if (i == 0) {
-            labCategory.frame = CGRectMake(labCategory.frame.origin.x,
-                                           labCategory.frame.origin.y,
-                                           labCategory.frame.size.width + 4,
-                                           labCategory.frame.size.height);
-        } else {
-            UILabel *lastLab = [cateArrays objectAtIndex:i-1];
-            CGFloat nextX = lastLab.frame.origin.x + lastLab.frame.size.width + 5.0;
-            CGFloat nextY = lastLab.frame.origin.y;
-            if (nextX + labCategory.frame.size.width > 318) {
-                nextX = cateX;
-                nextY += 25;
-            }
-
-            labCategory.frame = CGRectMake(nextX,
-                                           nextY,
-                                           labCategory.frame.size.width + 4,
-                                           labCategory.frame.size.height);
-        }
-
-        [labCategory setTextAlignment:NSTextAlignmentCenter];
-
-        // Add shadow on the label
-        labCategory.layer.masksToBounds = NO; // this default
-        labCategory.layer.shadowColor = [[UIColor blackColor] CGColor];
-        labCategory.layer.shadowOpacity = 0.4;
-        labCategory.layer.shadowRadius = 3;
-        labCategory.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-        labCategory.layer.cornerRadius = 3;
-
-        [self.view addSubview:labCategory];
-        [cateArrays addObject:labCategory];
-    }
+    
+    UIScrollView *mainView = (UIScrollView *)self.view;
+    CGFloat oX = [mainView contentSize].width;
+    CGFloat newY = 364 + desHeight;
+    [mainView setContentSize:CGSizeMake(oX, newY)];
+    self.view = mainView;
 }
 
 - (void) viewWillDisappear:(BOOL) animated {
