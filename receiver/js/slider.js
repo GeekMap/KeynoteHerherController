@@ -14,8 +14,6 @@ if (!IS_DEBUG){
   var sender_id = '';
   var SLIDE_CANVAS_ID = 'impress';
 
-  var cached_images = new Array();
-
   function KHC(board) {
     console.log('******** KeynoteHerherController ********');
     if (!IS_DEBUG){
@@ -89,6 +87,12 @@ if (!IS_DEBUG){
 
     onInit: function(senderId, message) {
       console.log('<onInit senderId="' + senderId + '">');
+
+      // settings for slide cache
+      this.cached_slides = Array();
+      this.cache_count = 4;
+      this.cached_slides_length = 1 + this.cache_count * 2; // left 2 + right 2
+
       // title, url_prefix, url_postfix, max_page, min_page
       if (message.title && message.url_prefix && message.url_postfix && message.max_page && message.min_page){
         if (this.is_start){
@@ -110,6 +114,7 @@ if (!IS_DEBUG){
 
           // show first page
           document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + message.min_page + this.url_postfix + ')';          
+          this._cacheSlides(parseInt(message.min_page));
         }
       }
       else {
@@ -171,6 +176,9 @@ if (!IS_DEBUG){
       else {
         this.sendError(senderId, 'missing parameters for init');
       }
+
+      this._cacheSlides(page);
+
       console.log('</onGo>');
     },
 
@@ -195,6 +203,20 @@ if (!IS_DEBUG){
       var canvas = document.getElementById(domId);
       while (canvas.firstChild) {
           canvas.removeChild(canvas.firstChild);
+      }
+    },
+
+    _cacheSlides: function(page){
+      // caching for slides
+      var pre_cache = page - this.cache_count;
+      var post_cache = page + this.cache_count;
+      var min_page_i = parseInt(this.min_page);
+      var max_page_i = parseInt(this.max_page);
+      for(var x  = (min_page_i > pre_cache  ? min_page_i : pre_cache), y = 0;
+              x <= (post_cache > max_page_i ? max_page_i : post_cache) && y < this.cached_slides_length;
+          x++, y++) {
+        this.cached_slides[y] = new Image();
+        this.cached_slides[y].src = this.url_prefix + x.toString() + this.url_postfix;
       }
     }
   };
