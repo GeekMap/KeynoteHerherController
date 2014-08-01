@@ -170,7 +170,7 @@
     [staticLabDescription setFont:[UIFont systemFontOfSize:16]];
     [self.view addSubview:staticLabDescription];
 
-    UILabel *labDescription = [[UILabel alloc] initWithFrame:CGRectMake(1, 364, 318, 75)];
+    UILabel *labDescription = [[UILabel alloc] initWithFrame:CGRectMake(1, 369, 318, 75)];
     labDescription.numberOfLines = 0; //no limit
     [labDescription setFont:[UIFont systemFontOfSize:14]];
     [labDescription setText:_slide.description];
@@ -180,7 +180,7 @@
     
     UIScrollView *mainView = (UIScrollView *)self.view;
     CGFloat oX = [mainView contentSize].width;
-    CGFloat newY = 364 + desHeight;
+    CGFloat newY = 369 + desHeight;
     [mainView setContentSize:CGSizeMake(oX, newY)];
     self.view = mainView;
 }
