@@ -266,8 +266,10 @@
     [previewImageViews insertObject:imageView atIndex:i];
 
     if (i == 0) {
-        if ([scrollView.subviews containsObject:notifyArrow])
+        if ([scrollView.subviews containsObject:notifyArrow]) {
             [scrollView bringSubviewToFront:notifyArrow];
+            [scrollView bringSubviewToFront:labSlide];
+        }
     }
 }
 
@@ -305,10 +307,8 @@
     labSlide = [[UILabel alloc] initWithFrame:CGRectMake(25, 33, 65, 25)];
     [labSlide setText:@"Preview"];
     [labSlide setTextColor:[UIColor whiteColor]];
-//    [labSlide setBackgroundColor:[UIColor blueColor]];
 //    [notifyArrow addSubview:labSlide];
     labSlide.center = CGPointMake(288, 120);
-//    [notifyArrow setBackgroundColor:[UIColor blueColor]];
 
     [scrollView addSubview:notifyArrow];
     [scrollView addSubview:labSlide];
@@ -317,7 +317,6 @@
                           delay:0.0f
                         options:UIViewAnimationOptionRepeat
                      animations:^{
-//                          notifyArrow.frame = CGRectMake(0, 0, 250, 0);
                           notifyArrow.center = CGPointMake(239, 75);
                           [scrollView layoutIfNeeded];
                      }
