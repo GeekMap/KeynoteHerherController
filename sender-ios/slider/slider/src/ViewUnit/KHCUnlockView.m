@@ -22,7 +22,7 @@
 #define SliderTipLabelPosY 500
 
 #define SliderLength 350
-#define SliderWidth 95
+#define SliderWidth 96
 #define SliderPosX (320-SliderWidth)/2
 #define SliderPosY 150
 
@@ -51,14 +51,14 @@
         // add Text
         volumeUpLabel = [[UILabel alloc] initWithFrame:CGRectMake(VolumeUpLabelPosX, VolumeUpLabelPosY, ViewWidth, LabelWidth)];
         [volumeUpLabel setText:@"<<  Previous"];
-        [volumeUpLabel setTextColor:[UIColor grayColor]];
+        [volumeUpLabel setTextColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5f]];
         [volumeUpLabel setTextAlignment:NSTextAlignmentLeft];
         [volumeUpLabel setFont:[UIFont boldSystemFontOfSize:20.0]];
         [self addSubview:volumeUpLabel];
         
         volumeDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(VolumeDownLabelPosX, VolumeDownLabelPosY, ViewWidth, LabelWidth)];
         [volumeDownLabel setText:@"<<  Next"];
-        [volumeDownLabel setTextColor:[UIColor grayColor]];
+        [volumeDownLabel setTextColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5f]];
         [volumeDownLabel setTextAlignment:NSTextAlignmentLeft];
         [volumeDownLabel setFont:[UIFont boldSystemFontOfSize:20.0]];
         [self addSubview:volumeDownLabel];
@@ -70,7 +70,7 @@
         [sliderTipLabel.layer setBackgroundColor:[UIColor lightGrayColor].CGColor];
         sliderTipLabel.layer.cornerRadius = SliderWidth/2;
         [sliderTipLabel setText:@"slide to unlock\t\t"];
-        [sliderTipLabel setTextColor:[UIColor blackColor]];
+        [sliderTipLabel setTextColor:[[UIColor blackColor] colorWithAlphaComponent:0.8f ]];
         [sliderTipLabel setTextAlignment:NSTextAlignmentRight];
         [sliderTipLabel setFont:[UIFont boldSystemFontOfSize: 28.0]];
         [self addSubview:sliderTipLabel];
@@ -167,6 +167,7 @@
     UISlider *slider = (UISlider*)sender;
     if (slider.value != slider.maximumValue)
     {
+        sliderTipLabel.text = @"";
         [UIView animateWithDuration:0.2f
                          animations:^{
                              [slider setValue:0.0f animated:YES];
