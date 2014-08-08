@@ -10,6 +10,7 @@
 #import "KHCSlideManager.h"
 #import "KHCSlideItem.h"
 #import "RBVolumeButtons.h"
+#import "KHCUnlockView.h"
 
 #define statusbarHeight 20
 
@@ -191,8 +192,11 @@
 
         // Start Steal
         [buttonStealer startStealingVolumeButtonEvents];
-        // Stop steal
-        // [buttonStealer stopStealingVolumeButtonEvents];
+        KHCUnlockView *unlock_view = [[KHCUnlockView alloc] init];
+        [unlock_view showWithComplition:^{
+            // Stop steal
+            [buttonStealer stopStealingVolumeButtonEvents];
+        }];
     }
 }
 

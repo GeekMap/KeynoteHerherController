@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F9D90A9198B7AC900552765 /* KHCUnlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D90A8198B7AC900552765 /* KHCUnlockView.m */; };
 		3FC9500C19795A3500C595CD /* RBVolumeButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9500B19795A3500C595CD /* RBVolumeButtons.m */; };
 		3FC9501019795DD800C595CD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC9500F19795DD800C595CD /* MediaPlayer.framework */; };
 		3FE87EFF19822AF100750C5A /* SlideshareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE87EFE19822AF100750C5A /* SlideshareAPI.m */; };
@@ -78,6 +79,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F9D90A7198B7AC900552765 /* KHCUnlockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHCUnlockView.h; sourceTree = "<group>"; };
+		3F9D90A8198B7AC900552765 /* KHCUnlockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHCUnlockView.m; sourceTree = "<group>"; };
 		3FC9500A19795A3500C595CD /* RBVolumeButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBVolumeButtons.h; sourceTree = "<group>"; };
 		3FC9500B19795A3500C595CD /* RBVolumeButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBVolumeButtons.m; sourceTree = "<group>"; };
 		3FC9500F19795DD800C595CD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -253,6 +256,8 @@
 			children = (
 				6F1351CB198250E30005535C /* KHCSlideTableViewCell.h */,
 				6F1351CC198250E30005535C /* KHCSlideTableViewCell.m */,
+				3F9D90A7198B7AC900552765 /* KHCUnlockView.h */,
+				3F9D90A8198B7AC900552765 /* KHCUnlockView.m */,
 			);
 			name = ViewUnit;
 			path = src/ViewUnit;
@@ -533,6 +538,7 @@
 				6F6835E9193B7AF3001517F2 /* KHCAppDelegate.m in Sources */,
 				6F1351C71982509D0005535C /* KHCSlideListViewController.m in Sources */,
 				6F1351C91982509D0005535C /* KHCSSPSelectorViewController.m in Sources */,
+				3F9D90A9198B7AC900552765 /* KHCUnlockView.m in Sources */,
 				6F904B8E1982505800A60547 /* KHCCommandChannel.m in Sources */,
 				6F6835FC193B7BC5001517F2 /* main.m in Sources */,
 				6F1351C31982509D0005535C /* KHCAddSlideNavController.m in Sources */,
