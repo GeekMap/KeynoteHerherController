@@ -199,7 +199,11 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     KHCConfirmPageViewController *confirmPage = (KHCConfirmPageViewController*) [storyBoard instantiateViewControllerWithIdentifier: @"KHCConfirmPage"];
     
-    [confirmPage setSlide:[slides objectAtIndex:indexPath.row]];
+    if ([searchResults count] > 0) {
+        [confirmPage setSlide:[searchResults objectAtIndex:indexPath.row]];
+    } else {
+        [confirmPage setSlide:[slides objectAtIndex:indexPath.row]];
+    }
     [self.navigationController pushViewController:confirmPage animated:YES];
 }
 
