@@ -50,15 +50,15 @@
         self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:ViewMask];
         // add Text
         volumeUpLabel = [[UILabel alloc] initWithFrame:CGRectMake(VolumeUpLabelPosX, VolumeUpLabelPosY, ViewWidth, LabelWidth)];
-        [volumeUpLabel setText:@"<<<  Previous"];
-        [volumeUpLabel setTextColor:[UIColor lightGrayColor]];
+        [volumeUpLabel setText:@"<<  Previous"];
+        [volumeUpLabel setTextColor:[UIColor grayColor]];
         [volumeUpLabel setTextAlignment:NSTextAlignmentLeft];
         [volumeUpLabel setFont:[UIFont boldSystemFontOfSize:20.0]];
         [self addSubview:volumeUpLabel];
         
         volumeDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(VolumeDownLabelPosX, VolumeDownLabelPosY, ViewWidth, LabelWidth)];
-        [volumeDownLabel setText:@"<<<  Next"];
-        [volumeDownLabel setTextColor:[UIColor lightGrayColor]];
+        [volumeDownLabel setText:@"<<  Next"];
+        [volumeDownLabel setTextColor:[UIColor grayColor]];
         [volumeDownLabel setTextAlignment:NSTextAlignmentLeft];
         [volumeDownLabel setFont:[UIFont boldSystemFontOfSize:20.0]];
         [self addSubview:volumeDownLabel];
@@ -67,7 +67,7 @@
         sliderTipLabel.transform = CGAffineTransformMakeRotation(M_PI_2);
         [sliderTipLabel setAutoresizesSubviews:NO];
         [sliderTipLabel setFrame: CGRectMake(SliderPosX, SliderPosY, SliderWidth, SliderLength)];
-        [sliderTipLabel.layer setBackgroundColor:[UIColor grayColor].CGColor];
+        [sliderTipLabel.layer setBackgroundColor:[UIColor lightGrayColor].CGColor];
         sliderTipLabel.layer.cornerRadius = SliderWidth/2;
         [sliderTipLabel setText:@"slide to unlock\t\t"];
         [sliderTipLabel setTextColor:[UIColor blackColor]];
