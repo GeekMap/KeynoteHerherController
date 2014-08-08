@@ -6,7 +6,7 @@
 //
 //
 
-#define imageWidth (size.height+4)
+#define imageWidth (80)
 
 #import "KHCSlideTableViewCell.h"
 
@@ -20,11 +20,12 @@
         CGSize size = self.contentView.frame.size;
 
         // Initialize UI units
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageWidth, 0, size.width - imageWidth, size.height - 16.0)];
-        self.pageNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageWidth, size.height - 16.0, size.width -imageWidth, 16)];
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageWidth, 0, size.width - imageWidth - 2, size.height - 16.0)];
+        self.pageNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(size.width-60, size.height - 10.0, 50, 16)];
         
         // Configure Main Label
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.titleLabel.numberOfLines = 2;
         [self.titleLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
         [self.titleLabel setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
         [self.pageNumLabel setFont:[UIFont systemFontOfSize:10.0]];

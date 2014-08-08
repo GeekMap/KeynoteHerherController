@@ -19,6 +19,7 @@
     NSMutableArray *slides;
     NSArray *searchResults;
     NSString *cellIdentifier;
+    NSMutableDictionary *coverImgs;
 }
 
 @end
@@ -48,6 +49,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addSlide:) name:@"addSlide" object:nil];
 
+    coverImgs = [[NSMutableDictionary alloc] initWithObjects:nil forKeys:nil];
     //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
@@ -126,7 +128,28 @@
     }
 
     [cell.titleLabel setText:[slide.title stringByHTMLDecoded]];
-//    [cell.imageView setImage:[UIImage imageWitzzhData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[slide cover_url]]]]];
+    UIImage *cover_image = [coverImgs objectForKey:slide.cover_url];
+    if (cover_image != nil) {
+        NSLog(@"Get image for %@", slide.cover_url);
+        [cell.imageView setImage:cover_image];
+    } else {
+        NSLog(@"CANNOT Get image for %@, title: %@", slide.cover_url, slide.title);
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+        dispatch_async(queue, ^{
+            if (!cell.isHidden) {
+                UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:slide.cover_url]]];
+                [coverImgs setObject:img forKey:slide.cover_url];
+
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    if (!cell.isHidden) {
+                        [[cell imageView] setImage:img];
+                        [cell setNeedsLayout];
+                    }
+                });
+            }
+        });
+    }
+
     [cell.pageNumLabel setText:[NSString stringWithFormat:@"Pages: %d", slide.page_count]];
     return cell;
 }
