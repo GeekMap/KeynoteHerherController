@@ -52,15 +52,14 @@
                                                  error:&error];
     
     NSString* html = [[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding];
-    NSLog(@"HTML: %@",html);
+    // NSLog(@"HTML: %@",html);
     
     
     NSRegularExpression *reg;
     NSRange matchRange;
     
     // get title
-    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"(.+?)\" class=\"fb_og_meta\" property=\"og:title\" name=\"og_title\" />"
-                                                   options:NSRegularExpressionCaseInsensitive error:nil];
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"(.+?)\" class=\"fb_og_meta\" property=\"og:title\" name=\"og_title\" />" options:NSRegularExpressionCaseInsensitive error:nil];
     matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
     NSString* title = [html substringWithRange:matchRange];
     
@@ -70,10 +69,12 @@
     NSString* author = [html substringWithRange:matchRange];
     
     // get description
-    reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"(.+?)\" class=\"fb_og_meta\" property=\"og:description\" name=\"og_description\" />" options:NSRegularExpressionCaseInsensitive error:nil];
-    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
+    reg =[NSRegularExpression regularExpressionWithPattern:@"<p class=\"descriptionExpanded notranslate\"(.+?)itemprop=\"description\">(.+?)</p>" options:NSRegularExpressionCaseInsensitive|NSRegularExpressionDotMatchesLineSeparators error:nil];
+    matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:2];
     NSString* description = [html substringWithRange:matchRange];
-    
+    description = [description stringByReplacingOccurrencesOfString:@"<br />"
+                                                         withString:@""];
+
     // get upload_time
     reg =[NSRegularExpression regularExpressionWithPattern:@"<meta content=\"(.+?)\" class=\"fb_og_meta\" property=\"slideshare:updated_at\" name=\"slideshow_updated_at\" />" options:NSRegularExpressionCaseInsensitive error:nil];
     matchRange = [[reg firstMatchInString:html options:0 range:NSMakeRange(0, [html length])] rangeAtIndex:1];
