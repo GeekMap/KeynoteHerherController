@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KHCSSPSelectorViewController : UIViewController
+@interface KHCSSPSelectorViewController : UIViewController <UITextFieldDelegate>
 
 @end

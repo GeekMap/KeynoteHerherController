@@ -14,6 +14,8 @@
 {
     NSString *selectedSSP;
     NSArray *sspList;
+
+    UIAlertView *alertUserName;
 }
 
 @end
@@ -46,10 +48,16 @@
 }
 
 - (void)sspSelected:(NSString *)sspName{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Input username" message:[NSString stringWithFormat:@"Please input the username of %@.", sspName] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Search", nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alert show];
-    
+    alertUserName = [[UIAlertView alloc] initWithTitle:@"Input username" message:[NSString stringWithFormat:@"Please input the username of %@.", sspName] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Search", nil];
+    alertUserName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *txtInput = [alertUserName textFieldAtIndex:0];
+    txtInput.placeholder = @"Username";
+    txtInput.autocorrectionType = UITextAutocorrectionTypeNo;
+    txtInput.enablesReturnKeyAutomatically= YES;
+    txtInput.keyboardType = UIKeyboardTypeWebSearch;
+    txtInput.delegate = self;
+    [alertUserName show];
+
     selectedSSP = sspName;
 }
 
@@ -68,6 +76,14 @@
         [slideSelectorView setUserName:userName];
         [self.navigationController pushViewController:slideSelectorView animated:YES];
     }
+}
+
+#pragma TextField Delegate method
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [alertUserName dismissWithClickedButtonIndex:1 animated:YES];
+    return YES;
 }
 
 #pragma mark - Table view data source
