@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F2EC2B71994AE5000F39C2B /* Nothing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F2EC2B41994AE5000F39C2B /* Nothing.png */; };
 		3F9D90A9198B7AC900552765 /* KHCUnlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D90A8198B7AC900552765 /* KHCUnlockView.m */; };
 		3FC9500C19795A3500C595CD /* RBVolumeButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9500B19795A3500C595CD /* RBVolumeButtons.m */; };
 		3FC9501019795DD800C595CD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC9500F19795DD800C595CD /* MediaPlayer.framework */; };
+		3FE33B8E1994CE0700868F33 /* slider-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE33B8D1994CE0700868F33 /* slider-arrow.png */; };
 		3FE87EFF19822AF100750C5A /* SlideshareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE87EFE19822AF100750C5A /* SlideshareAPI.m */; };
 		6B08F051193BAA24002513D4 /* SSPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B08F050193BAA24002513D4 /* SSPTests.m */; };
 		6B3A1A02194AE0740008FA9B /* KHCSISpeakerDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3A1A01194AE0740008FA9B /* KHCSISpeakerDeck.m */; };
@@ -79,11 +81,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F2EC2B41994AE5000F39C2B /* Nothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nothing.png; sourceTree = "<group>"; };
 		3F9D90A7198B7AC900552765 /* KHCUnlockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHCUnlockView.h; sourceTree = "<group>"; };
 		3F9D90A8198B7AC900552765 /* KHCUnlockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHCUnlockView.m; sourceTree = "<group>"; };
 		3FC9500A19795A3500C595CD /* RBVolumeButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBVolumeButtons.h; sourceTree = "<group>"; };
 		3FC9500B19795A3500C595CD /* RBVolumeButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBVolumeButtons.m; sourceTree = "<group>"; };
 		3FC9500F19795DD800C595CD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3FE33B8D1994CE0700868F33 /* slider-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-arrow.png"; sourceTree = "<group>"; };
 		3FE87EFD19822AF100750C5A /* SlideshareAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SlideshareAPI.h; path = src/SSP/SlideshareAPI.h; sourceTree = "<group>"; };
 		3FE87EFE19822AF100750C5A /* SlideshareAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SlideshareAPI.m; path = src/SSP/SlideshareAPI.m; sourceTree = "<group>"; };
 		6B08F050193BAA24002513D4 /* SSPTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPTests.m; sourceTree = "<group>"; };
@@ -276,6 +280,8 @@
 		6F6835F0193B7B46001517F2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3F2EC2B41994AE5000F39C2B /* Nothing.png */,
+				3FE33B8D1994CE0700868F33 /* slider-arrow.png */,
 				6F1351CE1982771A0005535C /* view.png */,
 				6FB3F5C7197FC298006465DC /* cast_icon.png */,
 				6FB3F5C8197FC298006465DC /* cast_icon@2x.png */,
@@ -478,11 +484,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE33B8E1994CE0700868F33 /* slider-arrow.png in Resources */,
 				6BBFB68F1960096A0018EF7C /* Icon-60.png in Resources */,
 				6BBFB68D1960096A0018EF7C /* Icon-40.png in Resources */,
 				6F1351CF1982771A0005535C /* view.png in Resources */,
 				6BBFB6981960096A0018EF7C /* Icon-Small@2x.png in Resources */,
 				6BBFB6961960096A0018EF7C /* Icon-Small-50@2x.png in Resources */,
+				3F2EC2B71994AE5000F39C2B /* Nothing.png in Resources */,
 				6FFB987E196A48FB00FC6018 /* speakerdeck.png in Resources */,
 				6F6835F4193B7BB8001517F2 /* Images.xcassets in Resources */,
 				6BBFB6931960096A0018EF7C /* Icon-76.png in Resources */,
