@@ -19,6 +19,7 @@
     NSString *cellIdentifier;
     NSArray *_slides;
     NSObject<KHCSlideItem> *selectedSlide;
+    NSMutableDictionary *coverImgs;
 
     NSDictionary *sspMappingTable;
 }
@@ -131,7 +132,27 @@
     NSObject<KHCSlideItem> *slide = [_slides objectAtIndex:indexPath.row];
 
     [cell.titleLabel setText:slide.title];
-    //    [cell.imageView setImage:[UIImage imageWitzzhData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[slide cover_url]]]]];
+    UIImage *cover_image = [coverImgs objectForKey:slide.cover_url];
+    if (cover_image != nil) {
+        NSLog(@"Get image for %@", slide.cover_url);
+        [cell.imageView setImage:cover_image];
+    } else {
+        NSLog(@"CANNOT Get image for %@, title: %@", slide.cover_url, slide.title);
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+        dispatch_async(queue, ^{
+            if (!cell.isHidden) {
+                UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:slide.cover_url]]];
+                [coverImgs setObject:img forKey:slide.cover_url];
+                
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    if (!cell.isHidden) {
+                        [[cell imageView] setImage:img];
+                        [cell setNeedsLayout];
+                    }
+                });
+            }
+        });
+    }
     [cell.pageNumLabel setText:[NSString stringWithFormat:@"Pages: %d", (slide.max_page-slide.min_page+1)]];
     return cell;
 }
