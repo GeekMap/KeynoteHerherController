@@ -68,6 +68,8 @@
 		6FEECA73193869570007B09F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEECA5B193869560007B09F /* UIKit.framework */; };
 		6FEECA7B193869570007B09F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FEECA79193869570007B09F /* InfoPlist.strings */; };
 		6FFB987E196A48FB00FC6018 /* speakerdeck.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFB987D196A48FB00FC6018 /* speakerdeck.png */; };
+		D4392C86199615FC005721D7 /* launchimage-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4392C84199615FC005721D7 /* launchimage-2x.png */; };
+		D4392C87199615FC005721D7 /* launchimage-r4.png in Resources */ = {isa = PBXBuildFile; fileRef = D4392C85199615FC005721D7 /* launchimage-r4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +167,8 @@
 		6FEECA78193869570007B09F /* sliderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sliderTests-Info.plist"; sourceTree = "<group>"; };
 		6FEECA7A193869570007B09F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6FFB987D196A48FB00FC6018 /* speakerdeck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speakerdeck.png; sourceTree = "<group>"; };
+		D4392C84199615FC005721D7 /* launchimage-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchimage-2x.png"; sourceTree = "<group>"; };
+		D4392C85199615FC005721D7 /* launchimage-r4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchimage-r4.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +284,8 @@
 		6F6835F0193B7B46001517F2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D4392C84199615FC005721D7 /* launchimage-2x.png */,
+				D4392C85199615FC005721D7 /* launchimage-r4.png */,
 				3F2EC2B41994AE5000F39C2B /* Nothing.png */,
 				3FE33B8D1994CE0700868F33 /* slider-arrow.png */,
 				6F1351CE1982771A0005535C /* view.png */,
@@ -484,6 +490,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4392C87199615FC005721D7 /* launchimage-r4.png in Resources */,
 				3FE33B8E1994CE0700868F33 /* slider-arrow.png in Resources */,
 				6BBFB68F1960096A0018EF7C /* Icon-60.png in Resources */,
 				6BBFB68D1960096A0018EF7C /* Icon-40.png in Resources */,
@@ -512,6 +519,7 @@
 				6BBFB6941960096A0018EF7C /* Icon-76@2x.png in Resources */,
 				6BBFB6921960096A0018EF7C /* Icon-72@2x.png in Resources */,
 				6BBFB69C1960096A0018EF7C /* iTunesArtwork@2x.png in Resources */,
+				D4392C86199615FC005721D7 /* launchimage-2x.png in Resources */,
 				6FB3F5C9197FC298006465DC /* cast_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -666,7 +674,6 @@
 		6FEECA81193869570007B09F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -684,7 +691,6 @@
 		6FEECA82193869570007B09F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
