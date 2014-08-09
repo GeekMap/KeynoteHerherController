@@ -22,6 +22,7 @@
     NSMutableDictionary *coverImgs;
 
     NSDictionary *sspMappingTable;
+    BOOL initialized;
 }
 @property (nonatomic, retain) UITableView *tableview;
 @end
@@ -35,6 +36,8 @@
         UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
         [view setBackgroundColor:[UIColor whiteColor]];
         self.view = view;
+
+        initialized = NO;
     }
     return self;
 }
@@ -48,54 +51,60 @@
 {
     [super viewWillAppear:animated];
 
-    //size helper
-    CGSize size = self.view.frame.size;
-    
-    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    _activityIndicatorView.center = CGPointMake(size.width / 2.0, size.height / 2.0);
-    [_activityIndicatorView startAnimating];
-    [self.view addSubview:_activityIndicatorView];
+    if (!initialized) {
+        //size helper
+        CGSize size = self.view.frame.size;
 
-    sspMappingTable = [[NSDictionary alloc] initWithObjectsAndKeys:[KHCSSPSlideshare class], @"SlideShare", [KHCSSPSpeakerDeck class], @"SpeakerDeck", nil];
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activityIndicatorView.center = CGPointMake(size.width / 2.0, size.height / 2.0);
+        [_activityIndicatorView startAnimating];
+        [self.view addSubview:_activityIndicatorView];
+
+        sspMappingTable = [[NSDictionary alloc] initWithObjectsAndKeys:[KHCSSPSlideshare class], @"SlideShare", [KHCSSPSpeakerDeck class], @"SpeakerDeck", nil];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 
-    CGSize size = self.view.frame.size;
+    if (!initialized) {
+        CGSize size = self.view.frame.size;
 
-    NSLog(@"SSP name: %@", _sspName);
-    NSLog(@"User name: %@", _userName);
+        NSLog(@"SSP name: %@", _sspName);
+        NSLog(@"User name: %@", _userName);
 
-    if ([sspMappingTable objectForKey:_sspName]) {
-        _slides = [[sspMappingTable objectForKey:_sspName] getUserSlideList:self.userName];
-    } else {
-        _slides = [[NSArray alloc] initWithObjects: nil];
-    }
+        if ([sspMappingTable objectForKey:_sspName]) {
+            _slides = [[sspMappingTable objectForKey:_sspName] getUserSlideList:self.userName];
+        } else {
+            _slides = [[NSArray alloc] initWithObjects: nil];
+        }
 
-    NSLog(@"Print slide titles");
-    for (NSObject<KHCSlideItem> *slide in _slides) {
-        NSLog(@"Slide title: %@", slide.title);
-    }
-    NSLog(@"End printing");
+        NSLog(@"Print slide titles");
+        for (NSObject<KHCSlideItem> *slide in _slides) {
+            NSLog(@"Slide title: %@", slide.title);
+        }
+        NSLog(@"End printing");
 
-    if ([_slides count] <= 0) {
-        UILabel *noSlides = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, 100)];
-        [noSlides setText:@"No slides found"];
-        noSlides.center = CGPointMake(size.width / 2.0, size.height / 2.0);
-        [noSlides setTextAlignment:NSTextAlignmentCenter];
-        [_activityIndicatorView removeFromSuperview];
-        [self.view addSubview:noSlides];
-    } else {
-        cellIdentifier = @"slideCell";
-        // Height must minus 64; otherwise the scroll cannot scroll to bottom
-        _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, size.width, size.height-64)];
-        [_tableview registerClass:[KHCSlideTableViewCell class] forCellReuseIdentifier:cellIdentifier];
-        [_tableview setDelegate:self];
-        [_tableview setDataSource:self];
-        [_activityIndicatorView removeFromSuperview];
-        [self.view addSubview:_tableview];
+        if ([_slides count] <= 0) {
+            UILabel *noSlides = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, 100)];
+            [noSlides setText:@"No slides found"];
+            noSlides.center = CGPointMake(size.width / 2.0, size.height / 2.0);
+            [noSlides setTextAlignment:NSTextAlignmentCenter];
+            [_activityIndicatorView removeFromSuperview];
+            [self.view addSubview:noSlides];
+        } else {
+            cellIdentifier = @"slideCell";
+            // Height must minus 64; otherwise the scroll cannot scroll to bottom
+            _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, size.width, size.height-64)];
+            [_tableview registerClass:[KHCSlideTableViewCell class] forCellReuseIdentifier:cellIdentifier];
+            [_tableview setDelegate:self];
+            [_tableview setDataSource:self];
+            [_activityIndicatorView removeFromSuperview];
+            self.view = _tableview;
+        }
+
+        initialized = YES;
     }
 }
 
@@ -171,6 +180,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     selectedSlide = [_slides objectAtIndex:indexPath.row];
 
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
