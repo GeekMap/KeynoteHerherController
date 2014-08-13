@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var IS_DEBUG;
 
 if (!IS_DEBUG){
@@ -6,11 +5,6 @@ if (!IS_DEBUG){
   cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
 }
 
-=======
-var cast = window.cast || {};
-
-cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
->>>>>>> 8434db4ee047d32f06c9bebfcd841d6d9400a500
 // Anonymous namespace
 (function() {
   'use strict';
@@ -18,7 +12,6 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
 
   var is_start = false;
   var sender_id = '';
-<<<<<<< HEAD
   var SLIDE_CANVAS_ID = 'impress';
 
   function KHC(board) {
@@ -51,17 +44,6 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
 
     // if (message.title && message.url_prefix && message.url_postfix && message.max_page && message.min_page){
     KHC.prototype.onInit('123', mock_slide);
-=======
-
-  function KHC(board) {
-    console.log('******** KeynoteHerherController ********');
-    this.castReceiverManager_ = cast.receiver.CastReceiverManager.getInstance();
-    this.castMessageBus_ = this.castReceiverManager_.getCastMessageBus(KHC.PROTOCOL, cast.receiver.CastMessageBus.MessageType.JSON);
-    this.castMessageBus_.onMessage = this.onMessage.bind(this);
-    this.castReceiverManager_.onSenderConnected = this.onSenderConnected.bind(this);
-    this.castReceiverManager_.onSenderDisconnected = this.onSenderDisconnected.bind(this);
-    this.castReceiverManager_.start();
->>>>>>> 8434db4ee047d32f06c9bebfcd841d6d9400a500
   }
 
   KHC.prototype = {
@@ -105,15 +87,12 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
 
     onInit: function(senderId, message) {
       console.log('<onInit senderId="' + senderId + '">');
-<<<<<<< HEAD
 
       // settings for slide cache
       this.cached_slides = Array();
       this.cache_count = 4;
       this.cached_slides_length = 1 + this.cache_count * 2; // left 2 + right 2
 
-=======
->>>>>>> 8434db4ee047d32f06c9bebfcd841d6d9400a500
       // title, url_prefix, url_postfix, max_page, min_page
       if (message.title && message.url_prefix && message.url_postfix && message.max_page && message.min_page){
         if (this.is_start){
@@ -124,7 +103,6 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
           this.sender_id = senderId;
 
           this.title = message.title;
-<<<<<<< HEAD
 
           this.url_prefix = message.url_prefix;
           this.url_postfix = message.url_postfix;
@@ -137,14 +115,6 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
           // show first page
           document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + message.min_page + this.url_postfix + ')';          
           this._cacheSlides(parseInt(message.min_page));
-=======
-          this.url_prefix = message.url_prefix;
-          this.url_postfix = message.url_postfix;
-          this.max_page = message.max_page;
-          this.min_page = message.min_page;
-
-          $("#slide_title").html(this.title);
->>>>>>> 8434db4ee047d32f06c9bebfcd841d6d9400a500
         }
       }
       else {
@@ -160,22 +130,13 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
       this.is_start = false;
       this.sender_id = '';
 
-<<<<<<< HEAD
       this._clearAllNode(SLIDE_CANVAS_ID);
       this._addDivNode(SLIDE_CANVAS_ID, '<q>bye ._.\\~/</q>', '', '', '', '');
-=======
-      var slide = $("#slide_spotlight")[0];
-
-      $("#slide_title")[0].style.visibility = 'visible';
-      slide.style.visibility = 'hidden';
-      $("#slide_title").html('._.\\~/');
->>>>>>> 8434db4ee047d32f06c9bebfcd841d6d9400a500
 
       console.log('</onUninit>');
     },
 
     onGo: function(senderId, message) {
-<<<<<<< HEAD
       var page = parseInt(message.page);
 
       console.log('<onGo senderId="' + senderId + '">');
@@ -211,28 +172,13 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
             api.goto('SideB');
           }
         }
-=======
-      console.log('<onGo senderId="' + senderId + '">');
-      if (message.page){
-        var slide = $("#slide_spotlight")[0];
-
-        if (slide.style.visibility == 'hidden'){
-          console.log('changing visibility...');
-          $("#slide_title")[0].style.visibility = 'hidden';
-          slide.style.visibility = 'visible';
-        }
-        slide.src = this.url_prefix + message.page + this.url_postfix;
->>>>>>> 8434db4ee047d32f06c9bebfcd841d6d9400a500
       }
       else {
         this.sendError(senderId, 'missing parameters for init');
       }
-<<<<<<< HEAD
 
       this._cacheSlides(page);
 
-=======
->>>>>>> 8434db4ee047d32f06c9bebfcd841d6d9400a500
       console.log('</onGo>');
     },
 
@@ -242,7 +188,6 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
 
     broadcast: function(message) {
       this.castMessageBus_.broadcast(message);
-<<<<<<< HEAD
     },
 
     _addDivNode: function(domId, html, x, y, style, className){
@@ -273,8 +218,6 @@ cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
         this.cached_slides[y] = new Image();
         this.cached_slides[y].src = this.url_prefix + x.toString() + this.url_postfix;
       }
-=======
->>>>>>> 8434db4ee047d32f06c9bebfcd841d6d9400a500
     }
   };
 
