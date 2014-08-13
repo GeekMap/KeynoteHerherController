@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!doctype html>
 
 <html lang="en">
@@ -81,41 +80,4 @@
 <script>impress().init();</script>
 
 </body>
-=======
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Slider</title>
-    <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.js"></script> 
-    <script src="js/slider.js"></script>
-    <script src="js/jquery-photo-resize.js"></script>
-    <link rel=stylesheet type="text/css" href="css/slider.css">
-    <script type="text/javascript">
-      window.onload = onLoad;
-
-      function onLoad() {
-        window.engine = new cast.KHC();
-      }
-
-      function resizeImg() {
-        $("img").photoResize({
-          bottomSpacing: 50
-        });        
-      }
-
-      $(document).ready(resizeImg);
-    </script>
-  </head>
-  <body>
-    <table>
-      <tr>
-        <td align="center" valign="center">
-          <div id="slide_title" style="color:white; font-size:100px;">123</div>
-          <img id="slide_spotlight" border="2" style="border-color:yellow; visibility: hidden;" src="http://localhost.jpg" />
-        </td>
-      </tr>
-    </table>
-  </body>
->>>>>>> 8434db4ee047d32f06c9bebfcd841d6d9400a500
 </html>
