@@ -9,7 +9,9 @@
 #import "KHCSlideManager.h"
 #import "KHCCommandChannel.h"
 
-static NSString *const APP_ID = @"6EC34210";
+static NSString *const APP_ID = @"DB9889F6";    // prod
+//static NSString *const APP_ID = @"6EC34210";    // dev
+//static NSString *const APP_ID = @"43049BBC";    // ut
 static NSString *const APP_NAMESPACE = @"urn:x-cast:com.cve-2014-0160.keynote-herher-controller";
 
 @interface KHCSlideManager (){
