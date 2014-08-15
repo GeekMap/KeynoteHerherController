@@ -134,9 +134,10 @@
         [cell.imageView setImage:cover_image];
     } else {
         NSLog(@"CANNOT Get image for %@, title: %@", slide.cover_url, slide.title);
+        [[cell imageView] setImage:[UIImage imageNamed:@"Nothing"]];
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
         dispatch_async(queue, ^{
-            if (!cell.isHidden) {
+            //if (!cell.isHidden) {
                 UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:slide.cover_url]]];
                 [coverImgs setObject:img forKey:slide.cover_url];
 
@@ -146,7 +147,7 @@
                         [cell setNeedsLayout];
                     }
                 });
-            }
+            //}
         });
     }
 

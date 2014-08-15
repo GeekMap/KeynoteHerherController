@@ -142,6 +142,8 @@
     UISlider *slider = (UISlider*)sender;
     if (slider.value >= slider.maximumValue)
     {
+        slider.userInteractionEnabled = NO;
+        slider.enabled = NO;
         [self hide];
     }
     else if(did_unlock == NO)
@@ -151,7 +153,7 @@
         [sliderTipLabel setFrame: CGRectMake(SliderPosX, SliderPosY+slider.value, SliderWidth, SliderLength-slider.value)];
         float alpha = ViewMask - ViewMask*0.8*(slider.value/slider.maximumValue);
         self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:alpha];
-        if (SliderLength-slider.value > 300)
+        if (SliderLength-slider.value > 320)
         {
             sliderTipLabel.text = @"slide to unlock\t\t";
         }
