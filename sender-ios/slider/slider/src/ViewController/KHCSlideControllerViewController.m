@@ -14,12 +14,19 @@
 
 #define statusbarHeight 20
 
+#define rightHandBtnUpX 100
+#define leftHandBtnUpX 0
+#define rightHandBtnToolX 0
+#define leftHandBtnToolX screenWidth-100
+
 @interface KHCSlideControllerViewController ()
 {
     KHCSlideManager *_slideMgr;
     NSObject<KHCSlideItem> *_slide;
     UIButton *btnUp, *btnDown, *btnTooldom;
     RBVolumeButtons *buttonStealer;
+    BOOL rightHandMode;
+    NSString *leftHandModeStr, *rightHandModeStr;
 }
 @end
 
@@ -62,6 +69,7 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
+    rightHandMode = YES;
     btnUp = [UIButton buttonWithType:UIButtonTypeCustom];
     btnUp.frame = CGRectMake(100, statusbarHeight, screenWidth-100, 130);
     btnUp.layer.borderWidth = 0.5f;
@@ -110,6 +118,9 @@
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DisableIdle" object:nil];
 
+    rightHandModeStr = @"I'm righty";
+    leftHandModeStr = @"I'm lefty";
+
     [self startPlay];
 }
 
@@ -151,8 +162,11 @@
 
 - (void)didClickTooldom: (id)sender
 {
-    UIActionSheet *tooldoms = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"End slide" otherButtonTitles: @"Volume Button Mode", nil];
+    // if rightHandMode the tool msg will be change to leftHandMode
+    NSString *changeHandModeStr = (rightHandMode?leftHandModeStr:rightHandModeStr);
     
+    UIActionSheet *tooldoms = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"End slide" otherButtonTitles: @"Volume Button Mode", changeHandModeStr, nil];
+
     tooldoms.actionSheetStyle = UIActionSheetStyleAutomatic;
     [tooldoms showInView:self.view];
 }
@@ -197,6 +211,21 @@
             // Stop steal
             [buttonStealer stopStealingVolumeButtonEvents];
         }];
+    } else if (buttonIndex == 2) {
+        // Toggle different hand mode
+        rightHandMode = !rightHandMode;
+
+        //Get the Screen Size
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+
+        if (rightHandMode) {
+            btnUp.frame = CGRectMake(rightHandBtnUpX, statusbarHeight, screenWidth-100, 130);
+            btnTooldom.frame = CGRectMake(rightHandBtnToolX, statusbarHeight, 100, 130);
+        } else {
+            btnUp.frame = CGRectMake(leftHandBtnUpX, statusbarHeight, screenWidth-100, 130);
+            btnTooldom.frame = CGRectMake(leftHandBtnToolX, statusbarHeight, 100, 130);
+        }
     }
 }
 
