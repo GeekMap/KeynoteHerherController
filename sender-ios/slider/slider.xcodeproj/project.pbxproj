@@ -53,6 +53,7 @@
 		6F6835FB193B7BC5001517F2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F6835F7193B7BC5001517F2 /* InfoPlist.strings */; };
 		6F6835FC193B7BC5001517F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6835F9193B7BC5001517F2 /* main.m */; };
 		6F84B92319A74ACE00309183 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6F84B92219A74ACE00309183 /* Settings.bundle */; };
+		6F84B92519A7527F00309183 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F84B92419A7527F00309183 /* Default-568h@2x.png */; };
 		6F904B8E1982505800A60547 /* KHCCommandChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F904B8B1982505800A60547 /* KHCCommandChannel.m */; };
 		6F904B8F1982505800A60547 /* KHCSlideManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F904B8D1982505800A60547 /* KHCSlideManager.m */; };
 		6F9DF5D0195D77EA00E81574 /* arrow-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9DF5CE195D77EA00E81574 /* arrow-down.png */; };
@@ -149,6 +150,7 @@
 		6F6835F9193B7BC5001517F2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6F6835FA193B7BC5001517F2 /* slider-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "slider-Info.plist"; sourceTree = "<group>"; };
 		6F84B92219A74ACE00309183 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = slider/Settings.bundle; sourceTree = "<group>"; };
+		6F84B92419A7527F00309183 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6F904B8A1982505800A60547 /* KHCCommandChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCCommandChannel.h; path = src/ChromeCast/KHCCommandChannel.h; sourceTree = "<group>"; };
 		6F904B8B1982505800A60547 /* KHCCommandChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHCCommandChannel.m; path = src/ChromeCast/KHCCommandChannel.m; sourceTree = "<group>"; };
 		6F904B8C1982505800A60547 /* KHCSlideManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHCSlideManager.h; path = src/ChromeCast/KHCSlideManager.h; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 		6FEECA4B193869560007B09F = {
 			isa = PBXGroup;
 			children = (
+				6F84B92419A7527F00309183 /* Default-568h@2x.png */,
 				6F84B92219A74ACE00309183 /* Settings.bundle */,
 				6FEECA5D193869560007B09F /* slider */,
 				6FEECA76193869570007B09F /* sliderTests */,
@@ -516,6 +519,7 @@
 				6BBFB6991960096A0018EF7C /* Icon.png in Resources */,
 				6F9DF5D1195D77EA00E81574 /* arrow-up.png in Resources */,
 				6F6835EE193B7B02001517F2 /* Main.storyboard in Resources */,
+				6F84B92519A7527F00309183 /* Default-568h@2x.png in Resources */,
 				6F9DF5D0195D77EA00E81574 /* arrow-down.png in Resources */,
 				6BBFB69A1960096A0018EF7C /* Icon@2x.png in Resources */,
 				6F6835FB193B7BC5001517F2 /* InfoPlist.strings in Resources */,
