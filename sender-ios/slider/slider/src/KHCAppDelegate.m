@@ -12,6 +12,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Set the application defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
+                                                            forKey:@"rightHandMode"];
+    [defaults registerDefaults:appDefaults];
+    [defaults synchronize];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDisableIdelTimer:) name:@"DisableIdle" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnableIdelTimer:) name:@"EnableIdle" object:nil];
     return YES;

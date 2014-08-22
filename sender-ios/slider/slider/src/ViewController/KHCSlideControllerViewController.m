@@ -68,8 +68,7 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
-    
-    rightHandMode = YES;
+
     btnUp = [UIButton buttonWithType:UIButtonTypeCustom];
     btnUp.frame = CGRectMake(100, statusbarHeight, screenWidth-100, 130);
     btnUp.layer.borderWidth = 0.5f;
@@ -101,6 +100,11 @@
     [btnTooldom addTarget:self action:@selector(changeButtonBackGroundColor:) forControlEvents:UIControlEventTouchDown];
     [btnTooldom addTarget:self action:@selector(resetButtonBackGroundColor:) forControlEvents:UIControlEventTouchUpInside];
     [btnTooldom addTarget:self action:@selector(resetButtonBackGroundColor:) forControlEvents:UIControlEventTouchUpOutside];
+
+    // Get user preference
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    rightHandMode = [defaults boolForKey:@"rightHandMode"];
+    [self drawUpToolButtons:rightHandMode];
     
     [self.view addSubview:btnUp];
     [self.view addSubview:btnDown];
@@ -181,6 +185,21 @@
     _slide = slide;
 }
 
+- (void)drawUpToolButtons: (BOOL) isRightHand
+{
+    //Get the Screen Size
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+
+    if (isRightHand) {
+        btnUp.frame = CGRectMake(rightHandBtnUpX, statusbarHeight, screenWidth-100, 130);
+        btnTooldom.frame = CGRectMake(rightHandBtnToolX, statusbarHeight, 100, 130);
+    } else {
+        btnUp.frame = CGRectMake(leftHandBtnUpX, statusbarHeight, screenWidth-100, 130);
+        btnTooldom.frame = CGRectMake(leftHandBtnToolX, statusbarHeight, 100, 130);
+    }
+}
+
 #pragma ButtonReaction
 - (void)changeButtonBackGroundColor: (UIButton *) sender
 {
@@ -215,17 +234,12 @@
         // Toggle different hand mode
         rightHandMode = !rightHandMode;
 
-        //Get the Screen Size
-        CGRect screenRect = [[UIScreen mainScreen] bounds];
-        CGFloat screenWidth = screenRect.size.width;
+        // Set the application defaults
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:rightHandMode forKey:@"rightHandMode"];
+        [defaults synchronize];
 
-        if (rightHandMode) {
-            btnUp.frame = CGRectMake(rightHandBtnUpX, statusbarHeight, screenWidth-100, 130);
-            btnTooldom.frame = CGRectMake(rightHandBtnToolX, statusbarHeight, 100, 130);
-        } else {
-            btnUp.frame = CGRectMake(leftHandBtnUpX, statusbarHeight, screenWidth-100, 130);
-            btnTooldom.frame = CGRectMake(leftHandBtnToolX, statusbarHeight, 100, 130);
-        }
+        [self drawUpToolButtons:rightHandMode];
     }
 }
 
