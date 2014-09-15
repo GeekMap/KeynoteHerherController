@@ -55,7 +55,7 @@
                                                  error:&error];
     
     NSString* html = [[NSString alloc] initWithData:url_data encoding:NSUTF8StringEncoding];
-    NSLog(@"HTML: %@",html);
+    //NSLog(@"HTML: %@",html);
     
     NSRegularExpression *reg;
     NSRange matchRange;
