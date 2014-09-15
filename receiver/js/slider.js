@@ -90,7 +90,7 @@ if (!IS_DEBUG){
 
       // settings for slide cache
       this.cached_slides = Array();
-      this.cache_count = 4;
+      this.cache_count = 2;
       this.cached_slides_length = 1 + this.cache_count * 2; // left 2 + right 2
 
       // title, url_prefix, url_postfix, max_page, min_page
