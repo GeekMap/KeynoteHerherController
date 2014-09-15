@@ -157,20 +157,20 @@ if (!IS_DEBUG){
             next_page = page;
           }
 
-          if (this.current_page == 1){
-            this.current_page = 0;
-            document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + page + this.url_postfix + ')';
-            document.getElementById('SideB').style.backgroundImage = 'url(' + this.url_prefix + next_page + this.url_postfix + ')';
+          // if (this.current_page == 1){
+          //   this.current_page = 0;
+          //   document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + page + this.url_postfix + ')';
+          //   api.goto('SideA');
+          //   document.getElementById('SideB').style.backgroundImage = 'url(' + this.url_prefix + next_page + this.url_postfix + ')';
+          // }
+          // else {
+          //   this.current_page = 1;
+          //   document.getElementById('SideB').style.backgroundImage = 'url(' + this.url_prefix + page + this.url_postfix + ')';
+          //   api.goto('SideB');
+          //   document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + next_page + this.url_postfix + ')';
+          // }
 
-            api.goto('SideA');
-          }
-          else {
-            this.current_page = 1;
-            document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + next_page + this.url_postfix + ')';
-            document.getElementById('SideB').style.backgroundImage = 'url(' + this.url_prefix + page + this.url_postfix + ')';
-
-            api.goto('SideB');
-          }
+          document.getElementById('SideA').style.backgroundImage = 'url(' + this.url_prefix + page + this.url_postfix + ')';
         }
       }
       else {
