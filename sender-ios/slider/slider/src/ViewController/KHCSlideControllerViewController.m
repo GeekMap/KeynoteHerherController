@@ -32,15 +32,6 @@
 
 @implementation KHCSlideControllerViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (id) initWithSlideManager: (KHCSlideManager*) slideMgr
 {
     self = [super init];
@@ -50,8 +41,17 @@
         self.view = view;
         
         _slideMgr = slideMgr;
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnteringBackground:) name:@"LeaveApp" object:nil];
     }
     return self;
+}
+
+- (void) applicationEnteringBackground: (NSNotification*) notification
+{
+    // User pressed Home or Power button the chromecast application will be stopped, so return to the slide list
+    [self.navigationController setNavigationBarHidden: NO animated:NO];
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 - (void)viewDidLoad
