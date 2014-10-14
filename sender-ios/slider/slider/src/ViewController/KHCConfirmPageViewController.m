@@ -173,7 +173,7 @@
     UILabel *labDescription = [[UILabel alloc] initWithFrame:CGRectMake(1, 369, 318, 75)];
     labDescription.numberOfLines = 0; //no limit
     [labDescription setFont:[UIFont systemFontOfSize:14]];
-    [labDescription setText:_slide.description];
+    [labDescription setText:[_slide.description stringByHTMLDecoded]];
     [labDescription sizeToFit];
     CGFloat desHeight = labDescription.frame.size.height;
     [self.view addSubview:labDescription];
