@@ -41,7 +41,7 @@
     // https://speakerdeck.com/jlugia/build-your-cross-platform-service-in-a-week-with-app-engine
     NSURL* url = [NSURL URLWithString: base_url];
     NSURLRequest *url_request = [NSURLRequest requestWithURL:url
-                                                 cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                              timeoutInterval:30];
     // Fetch the JSON response
     NSData *url_data;
@@ -77,7 +77,7 @@
     // https://speakerdeck.com/player/<HASH>
     NSURL* url2 = [NSURL URLWithString: [NSString stringWithFormat:@"https://speakerdeck.com/player/%@", hash]];
     NSURLRequest *url_request2 = [NSURLRequest requestWithURL:url2
-                                                  cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                                  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                               timeoutInterval:30];
     // Fetch the JSON response
     NSData *url_data2;

@@ -31,7 +31,7 @@ static NSString* SLIDESHARE_GET_SLIDESSHOW_TEMPLATE_URL = @"https://www.slidesha
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:SLIDESHARE_GET_SLIDESSHOW_TEMPLATE_URL , slide_url, SLIDESHARE_API_KEY,ts, hash]];
     
     NSURLRequest *url_request = [NSURLRequest requestWithURL: url
-                                                 cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                              timeoutInterval:30];
     // Fetch the JSON response
     NSData *url_data;
@@ -56,7 +56,7 @@ static NSString* SLIDESHARE_GET_SLIDESSHOW_TEMPLATE_URL = @"https://www.slidesha
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:SLIDESHARE_GET_SLIDESSHOW_BY_USER_TEMPLATE_URL, user, SLIDESHARE_API_KEY,ts, hash]];
     
     NSURLRequest *url_request = [NSURLRequest requestWithURL:url
-                                                 cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                              timeoutInterval:30];
     // Fetch the JSON response
     NSData *url_data;

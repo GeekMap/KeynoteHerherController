@@ -38,7 +38,7 @@
 {
     NSURL* url = [NSURL URLWithString: base_url];
     NSURLRequest *url_request = [NSURLRequest requestWithURL:url
-                                                 cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                              timeoutInterval:30];
     // Fetch the JSON response
     NSData *url_data;
